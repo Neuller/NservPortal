@@ -3,33 +3,31 @@ require_once "../../Classes/Conexao.php";
 require_once "../../Classes/Clientes.php";
 
 $c = new conectar();
-$conexao = $c->conexao();
-$obj= new clientes();
+$conexao = $c -> conexao();
+$obj = new clientes();
 
-$sql = "SELECT ID_Cliente, Nome, CPF, CNPJ, CEP, Bairro, Endereco, Numero, 
-Complemento, Telefone, Celular, Email 
+$sql = "SELECT id_cliente, nome, cpf, cnpj, cep, bairro, uf, endereco, 
+numero, complemento, telefone, telefone2, celular, celular2, email 
 FROM clientes
-ORDER BY ID_Cliente DESC";
+ORDER BY id_cliente DESC";
 
 $result=mysqli_query($conexao,$sql);
 ?>
 
 <!DOCTYPE html>
-<head>
-  	
-</head>
+<html>
 <body>
 	<div class="table-responsive">
 		<table id="tabelaClientesLoad" class="table table-hover table-condensed table-bordered text-center table-striped">
-			<!-- CABEÇALHO -->
 			<thead>
 				<tr>
-					<td>Nome</td>
+					<td>NOME</td>
 					<td>CPF</td>
 					<td>CNPJ</td>
-					<td>Editar</td>
-					<td>Visualizar</td>
-					<td>Excluir</td>
+					<td>CELULAR</td>
+					<td>EDITAR</td>
+					<td>VISUALIZAR</td>
+					<td>EXCLUIR</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -42,13 +40,14 @@ $result=mysqli_query($conexao,$sql);
 						<td>'.$mostrar[1].'</td>
 						<td>'.$mostrar[2].'</td>
 						<td>'.$mostrar[3].'</td>
-						<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#atualizarCliente" title="EDITAR" onclick="adicionarDado('.$mostrar[0].')">
+						<td>'.$mostrar[12].'</td>
+						<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarClientes" title="EDITAR" onclick="editarClientes('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-pencil"></span>
 						</span>'.'</td>
-						<td>'.'<span class="btn btn-default btn-sm" data-toggle="modal" data-target="#visualizarCliente" title="VISUALIZAR" onclick="adicionarDadosVisualizar('.$mostrar[0].')">
+						<td>'.'<span class="btn btn-default btn-sm" data-toggle="modal" data-target="#visualizarClientes" title="VISUALIZAR" onclick="visualizarClientes('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-search"></span>
 						</span>'.'</td>		
-						<td>'.'<span class="btn btn-danger btn-sm" title="EXCLUIR" onclick="eliminarCliente('.$mostrar[0].')">
+						<td>'.'<span class="btn btn-danger btn-sm" title="EXCLUIR" onclick="excluirClientes('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-remove"></span>
 						</span>'.'</td>
 						</tr>
@@ -66,17 +65,17 @@ $(document).ready(function(){
 	$('#tabelaClientesLoad').DataTable(
 		{	
 			"language": {
-			"lengthMenu": "_MENU_ registros por página",
-			"zeroRecords": "Nada enconstrado, desculpe",
-			"info": "Página _PAGE_ de _PAGES_",
+			"lengthMenu": "_MENU_ REGISTROS POR PÁGINA",
+			"zeroRecords": "NENHUM REGISTRO ENCONTRADO",
+			"info": "PÁGINA _PAGE_ DE _PAGES_",
 			"infoEmpty": "Nenhum registro foi encontrado",
-			"infoFiltered": "(Filtrado de _MAX_ registros no total)",
-			"search": "Pesquisar:",
+			"infoFiltered": "(FILTRADO DE _MAX_ REGISTROS NO TOTAL)",
+			"search": "PESQUISAR:",
 			"paginate":{
-				"first":      "Primeiro",
-				"last":       "Ultimo",
-				"next":       "Próximo",
-				"previous":   "Anterior"
+				"first":      "PRIMEIRO",
+				"last":       "ÚLTIMO",
+				"next":       "PRÓXIMO",
+				"previous":   "ANTERIOR"
 			}
 			}
 		}

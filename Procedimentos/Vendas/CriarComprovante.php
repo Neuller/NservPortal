@@ -3,7 +3,7 @@ require_once '../../Lib/dompdf/autoload.inc.php';
 
 use Dompdf\Dompdf;
 
-$id = $_GET['idvenda']; // Via URL - Método GET
+$id = $_GET['idVenda']; 
 
 function file_get_contents_curl($url) {
     $ch = curl_init();
@@ -18,7 +18,7 @@ function file_get_contents_curl($url) {
     return $dados;
 }
 
-$html = file_get_contents("http://localhost/NservPortal/Views/Vendas/ComprovanteVenda.php?idvenda=".$id);
+$html = file_get_contents("http://localhost/NservPortal/Views/Vendas/ComprovanteVenda.php?idVenda=".$id);
 
 // Instanciamos um objeto da classe DOMPDF.
 $pdf = new DOMPDF();

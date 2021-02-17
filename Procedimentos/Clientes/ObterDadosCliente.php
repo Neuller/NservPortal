@@ -5,6 +5,5 @@ require_once "../../Classes/Clientes.php";
 
 $obj = new clientes();
 
-echo json_encode($obj->obterDadosCliente($_POST['idcliente']));
-
+echo json_encode($obj -> obterDadosCliente($_POST['idCliente']));
 ?>

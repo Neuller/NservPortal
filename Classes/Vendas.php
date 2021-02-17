@@ -1,77 +1,47 @@
 <?php 
 class vendas{
-// MÉTODO RETORNAR DADOS 
-public function obterDadosProdutos($idProduto){
-	$c= new conectar();
-	$conexao=$c->conexao();
+    public function CadastrarVendas($dados) {
+        $c = new conectar();
+        $conexao = $c -> conexao();
+        $data = date('Y-m-d');
+        $idVenda = self :: criarComprovante();
+        $carrinho = $_SESSION['vendasTemp'];
+        $idUsuario = $_SESSION['IDUser'];
+        $r = 0;
 
-	$sql="SELECT Codigo, Descricao, Preco, PrecoInstalacao, Estoque, NF, NCM
-	FROM produtosnserv  
-	WHERE ID_Produto = '$idProduto'";
-	$result=mysqli_query($conexao,$sql);
+        for ($i = 0; $i < count($carrinho); $i++) { 
+            $c = explode("||", $carrinho[$i]);
 
-	$mostrar=mysqli_fetch_row($result);
+            $sql="INSERT INTO vendas (id_venda, id_cliente, id_produto, id_usuario, total, data_venda, valor_total, forma_pagamento, 
+            valor_pagamento, desconto, troco, saldo_devedor, observacao, quantidade, valor_unitario)
+            VALUES ('$idVenda', '$c[7]', '$c[0]', '$idUsuario', '$c[6]', '$data', '$dados[6]', '$dados[0]', '$dados[2]', '$dados[3]', 
+            '$dados[4]', '$dados[5]', '$dados[7]', '$c[5]', '$c[2]')";
 
+            $r = $r + $result=mysqli_query($conexao, $sql);
+        }
+        
+        $sql = "SELECT max(id_venda) FROM vendas";
 
-	$dados=array(
-	'Codigo' => $mostrar[0],
-	'Descricao' => $mostrar[1],
-	'Preco' => $mostrar[2],
-    'PrecoInstalacao' => $mostrar[3],
-    'Estoque' => $mostrar[4],
-    'NF' => $mostrar[5],
-    'NCM' => $mostrar[6]
-	);		
-	return $dados;
-}
-// MÉTODO ADICIONAR
-public function adicionarVenda(){
-    $c= new conectar();
-    $conexao=$c->conexao();
+        $result = mysqli_query($conexao, $sql);
+        $ultimoID = mysqli_fetch_row($result)[0];
 
-    $data = date('Y-m-d');
-    $idVenda = self::criarComprovante();
-    $dados = $_SESSION['tabelaVendasTemp'];
-    $idUsuario = $_SESSION['User'];
-    $r = 0;
-
-    for ($i=0; $i < count($dados) ; $i++) { 
-        $d=explode("||", $dados[$i]);
-
-        $sql="INSERT INTO vendas (ID_Venda, ID_Cliente, ID_Produto, ID_Usuario, ValorTotal, DataVenda)
-        VALUES ('$idVenda', '$d[7]', '$d[0]', '$idUsuario', '$d[6]', '$data')";
-
-        $r=$r + $result=mysqli_query($conexao,$sql);
+        return $ultimoID;
     }
-    return $r;
-}
-public function criarComprovante(){
-    $c= new conectar();
-    $conexao=$c->conexao();
+    
+    public function criarComprovante(){
+        $c = new conectar();
+        $conexao = $c -> conexao();
 
-    $sql="SELECT ID_Venda from vendas group by ID_Venda desc";
+        $sql="SELECT id_venda from vendas group by id_venda desc";
 
-    $resul=mysqli_query($conexao,$sql);
-    $id=mysqli_fetch_row($resul)[0];
+        $resul = mysqli_query($conexao, $sql);
+        $id = mysqli_fetch_row($resul)[0];
 
-    if($id=="" or $id==null or $id==0){
-        return 1;
-    }else{
-        return $id + 1;
+        if($id == "" or $id == null or $id == 0){
+            return 1;
+        }else{
+            return $id + 1;
+        }
     }
-}
-// MÉTODOS INFORMAÇÕES DO CLIENTE PELO ID
-public function nomeCliente($idCliente){
-	$c= new conectar();
-	$conexao=$c->conexao();
-
-	$sql="SELECT Nome 
-	FROM clientes WHERE ID_Cliente='$idCliente'";
-
-	$result=mysqli_query($conexao,$sql);
-	$ver=mysqli_fetch_row($result);
-
-	return $ver[0];
-}
 }
 ?>

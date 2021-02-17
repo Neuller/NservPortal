@@ -6,5 +6,5 @@ require_once "../../Classes/Servicos.php";
 
 $obj = new servicos();
 
-echo json_encode($obj->obterDadosServicos($_POST['idServico']));
+echo json_encode($obj -> obterDadosServicos($_POST['idServico']));
 ?>

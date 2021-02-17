@@ -11,5 +11,5 @@ $_POST['usuario'],
 $_POST['senha']
 );
 
-echo $obj-> login($dados);
+echo $obj -> login($dados);
 ?>

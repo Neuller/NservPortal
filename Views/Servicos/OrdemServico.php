@@ -3,46 +3,38 @@ require_once "../../Classes/Conexao.php";
 require_once "../../Classes/Servicos.php";
 require_once "../../Classes/Utilitarios.php";
 
-$objv = new servicos();
 $objUtils = new utilitarios();
 
 $c = new conectar();
-$conexao = $c->conexao();
+$conexao = $c -> conexao();
 
-$idServico = $_GET['idserv'];
+$idServico = $_GET['idServ'];
 
-$sql = "SELECT serv.ID_Servico,
- 	serv.ID_Cliente,
- 	serv.ID_Status,
-	serv.Equipamento,
-	serv.Info,
-	serv.Servico,
-	serv.idTecnico,
-    serv.SerialNumber,
-    serv.Garantia,
-    serv.Preco,
-    serv.DataCadastro,
-    serv.DataSaida,
-    serv.Diagnostico
-	FROM servicos AS serv WHERE ID_Servico='$idServico'";
+$sql = "SELECT id_servico, id_cliente, equipamento, observacao, servico_realizado, id_tecnico, serial_number, garantia, 
+valor_total, data_cadastro, data_saida, diagnostico, status, ordem_servico
+FROM servicos WHERE id_servico = '$idServico'";
 
 $result = mysqli_query($conexao, $sql);
 
 $mostrar = mysqli_fetch_row($result);
 
-$codigoServico = $mostrar[0];
-$dataEntrada = $mostrar[10];
-$dataSaida = $mostrar[11];
 $idCliente = $mostrar[1];
-$idStatus = $mostrar[2];
-$idTecnico = $mostrar[6];
-$serialNumber = $mostrar[7];
-$garantia = $mostrar[8];
-$valorTotal = $mostrar[9];
+$equipamento = $mostrar[2];
+$observacoes = $mostrar[3];
+$servExecutado = $mostrar[4];
+$idTecnico = $mostrar[5];
+$serialNumber = $mostrar[6];
+$garantia = $mostrar[7];
+$valorTotal = $mostrar[8];
+$dataEntrada = $mostrar[9];
+$dataSaida = $mostrar[10];
+$status = $mostrar[12];
+$ordemServ = $mostrar[13];
 ?>
 
 <html>
 <link rel="stylesheet" type="text/css" href="../../Lib/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../Css/OrdemServico.css">
 
 <!-- TÍTULO -->
 <title>ORDEM DE SERVICO - NSERV</title>
@@ -50,15 +42,14 @@ $valorTotal = $mostrar[9];
 <head class="container">
     <div class="text-center">
         <!-- TÍTULO DA PÁGINA -->
-        <title>Nserv</title>
+        <title>NSERV</title>
         <!-- ICONE DA PÁGINA -->
         <link rel="icon" href="../../Img/Icon.png">
 
         <!-- CABEÇALHO -->
         <div class="cabecalho">
             <div class="logo">
-                <!-- LOGO -->
-                <img src="../../Img/Documentos/CABECALHO_DOCUMENTOS.png" width="600" widht="600">
+                <img src="../../Img/Documentos/BannerOrcamento.png" width="600" widht="600">
             </div>
         </div>
     </div>
@@ -82,9 +73,8 @@ $valorTotal = $mostrar[9];
                 <hr>
             </div>
             <?php
-            $sql = "SELECT Nome, CPF, CNPJ, CEP, Bairro, Endereco, Numero, Complemento, Telefone, Celular,
-            Email
-            FROM clientes WHERE ID_Cliente='$idCliente'";
+            $sql = "SELECT nome, cpf, cnpj, cep, bairro, uf, endereco, numero, complemento, telefone, celular, email
+            FROM clientes WHERE id_cliente = '$idCliente'";
 
             $result = mysqli_query($conexao, $sql);
             while ($informacoesCliente = mysqli_fetch_row($result)) {
@@ -104,7 +94,7 @@ $valorTotal = $mostrar[9];
                     </div>
                     <div>
                         <span>EMAIL:</span>
-                        <span><?php echo $informacoesCliente[10]; ?></span>
+                        <span><?php echo $informacoesCliente[11]; ?></span>
                     </div>
                 </div>
                 <div class="dadosCliente">
@@ -114,7 +104,7 @@ $valorTotal = $mostrar[9];
                     </div>
                     <div>
                         <span>ENDEREÇO:</span>
-                        <span><?php echo $informacoesCliente[5]; ?></span>
+                        <span><?php echo $informacoesCliente[6]; ?></span>
                     </div>
                     <div>
                         <span>BAIRRO:</span>
@@ -122,20 +112,20 @@ $valorTotal = $mostrar[9];
                     </div>
                     <div>
                         <span>NUMERO:</span>
-                        <span><?php echo $informacoesCliente[6]; ?></span>
+                        <span><?php echo $informacoesCliente[7]; ?></span>
                     </div>
                     <div>
                         <span>COMPLEMENTO:</span>
-                        <span><?php echo $informacoesCliente[7]; ?></span>
+                        <span><?php echo $informacoesCliente[8]; ?></span>
                     </div>
                 </div>
                 <div class="dadosCliente">
                     <span>TELEFONE:</span>
-                    <span><?php echo $informacoesCliente[8]; ?></span>
+                    <span><?php echo $informacoesCliente[9]; ?></span>
                 </div>
                 <div>
                     <span>CELULAR:</span>
-                    <span><?php echo $informacoesCliente[9]; ?></span>
+                    <span><?php echo $informacoesCliente[10]; ?></span>
                 </div>
             <?php } ?>
             <!-- INFORMAÇÕES DO EQUIPAMENTO E SERVIÇOS -->
@@ -145,43 +135,97 @@ $valorTotal = $mostrar[9];
                 </div>
                 <hr>
             </div>
-            <div class="dadosEquipamento">
+                <div class="dadosEquipamento">
+                <!-- ORDEM -->
+                <div>
+                    <span>
+                    <?php 
+                        if(($status != "ORCAMENTO")){
+                            echo "<span>ORDEM: </span>".$ordemServ;
+                        }else{
+                            echo "<span>ORDEM: </span>"."ORÇAMENTO";
+                        } 
+                    ?>
+                    </span>
+                </div>
+
                 <div>
                     <span>EQUIPAMENTO:</span>
-                    <span><?php echo $mostrar[3]; ?></span>
+                    <span><?php echo $equipamento; ?></span>
                 </div>
                 <div>
                     <span>NÚMERO DE SÉRIE:</span>
                     <span><?php echo $serialNumber; ?></span>
                 </div>
+
+                <!-- OBSERVAÇÕES -->
                 <div>
-                    <span>OBSERVAÇÕES:</span>
-                    <span><?php echo $mostrar[4]; ?></span>
+                    <span>OBSERVAÇÕES: </span>
+                    <span><?php echo $observacoes;  ?></span>
                 </div>
+
                 <div>
                     <span>DATA DE ENTRADA:</span>
-                    <span><?php echo $objUtils->data($dataEntrada); ?></span>
+                    <span><?php echo $objUtils -> data($dataEntrada); ?></span>
                 </div>
+
+                <!-- DATA DE SAÍDA -->
                 <div>
-                    <span>DATA DE SAÍDA:</span>
-                    <span><?php echo $dataSaida; ?></span>
+                    <span>
+                    <?php 
+                        if(($dataSaida == 0) || ($dataSaida == null) || ($dataSaida == "")){
+                            echo "";
+                        }else{
+                            echo "<span>DATA DE SAÍDA: </span>".$dataSaida;
+                        } 
+                    ?>
+                    </span>
                 </div>
+
+                <!-- SERVIÇO(s) EXECUTADO(s) -->
                 <div>
-                    <span>SERVIÇO(s) EXECUTADO(s):</span>
-                    <span><?php echo  $mostrar[5]; ?></span>
+                    <span>SERVIÇO(s) EXECUTADO(s): </span>
+                    <span><?php echo $servExecutado; ?></span>
                 </div>
+
+                <!-- TÉCNICO -->
                 <div>
-                    <span>TÉCNICO:</span>
-                    <span><?php echo $objv->nomeTecnico($idTecnico); ?></span>
+                    <span>
+                    <?php 
+                        if(($garantia == 0) || ($garantia == null) || ($garantia == "")){
+                            echo "";
+                        }else{
+                            echo "<span>TÉCNICO: </span>".$objUtils -> nomeTecnico($idTecnico);
+                        } 
+                    ?>
+                    </span>
                 </div>
+
+                <!-- GARANTIA -->
                 <div>
-                    <span>GARANTIA:</span>
-                    <span><?php echo  $garantia ?></span>
+                    <span>
+                    <?php 
+                        if(($garantia == 0) || ($garantia == null) || ($garantia == "")){
+                            echo "";
+                        }else{
+                            echo "<span>GARANTIA: </span>".$garantia;
+                        } 
+                    ?>
+                    </span>
                 </div>
+
+                <!-- VALOR TOTAL -->
                 <div>
-                    <span>VALOR TOTAL:</span>
-                    <span>R$ <?php echo  $valorTotal ?></span>
-                </div>
+                    <span>
+                    <?php 
+                        if(($valorTotal == 0) || ($valorTotal == null) || ($valorTotal == "")){
+                            echo "";
+                        }else{
+                            echo "<span>VALOR TOTAL: R$ </span>".$valorTotal;
+                        } 
+                    ?>
+                    </span>
+                </div> 
             </div>
         </form>
         <!-- CONDIÇÕES DE SERVIÇOS -->
@@ -192,62 +236,48 @@ $valorTotal = $mostrar[9];
                 </div>
             </div>
             <div class="text-justity condicoesServico">
-                <div>
+                <?php if ($status == "ORCAMENTO"){
+                    echo 
+                    "
+                    <div class='itensFormulario'>
+                        <span>
+                            <strong>ORÇAMENTOS</strong>
+                        </span>
+                    </div>
+                    <div class='itensFormulario'>
+                        <span>
+                            SERÁ COBRADO UMA TAXA DE R$ 25,00 PARA ORÇAMENTOS RECUSADOS.
+                        </span>
+                    </div>
+                    ";   
+                    }
+                ?>
+                <div class="itensFormulario">
                     <span>
-                        Orçamento de IMPRESSORAS e NOTEBOOKS,
-                        será cobrada uma taxa de R$ 25,00 caso o mesmo seja recusado pelo cliente.
+                        <strong>DO BEM ESQUECIDO PELO CLIENTE</strong>
                     </span>
                 </div>
-                <div>
+                <div class="itensFormulario">
                     <span>
-                        Após 90 dias para retirada do equipamento, será cobrado MULTA no valor de R$ 01,00 ao dia a título de guarda.
+                        O PROPRIETÁRIO DE EQUIPAMENTO ELETRÔNICO, QUE O ENTREGOU A UM PRESTADOR DE SERVIÇO 
+                        DE ASSISTÊNCIA TÉCNICA PARA CONCERTO, 
+                        OBRIGASSE A RETIRAR O BEM NO PRAZO MÁXIMO DE 60 (SESSENTA) DIAS, 
+                        CONTADOS DA DATA DE CONTATO DO ESTABELECIMENTO 
+                        COMUNICANDO A REALIZAÇÃO DO CONCERTO OU DE SUA IMPOSSIBILIDADE. 
+                        SUJEITO AO PAGAMENTO DE TAXA DIÁRIA NO VALOR DE R$ 01,00 À TÍTULO DE GUARDA. 
                     </span>
                 </div>
             </div>
             <div class="text-center msgFidelidade">
                 <span>
-                    A qualidade é a nossa melhor garantia de fidelidade ao cliente,
-                    nossa mais forte defesa contra a concorrência e o único caminho para o crescimento e para os lucros.
-                    Agradecemos a preferência!
+                    A QUALIDADE É A NOSSA MELHOR GARANTIA DE FIDELIDADE AO CLIENTE,
+                    NOSSA MAIS FORTE DEFESA CONTRA A CONCORRÊNCIA E O ÚNICO CAMINHO PARA O CRESCIMENTO E PARA OS LUCROS.
+                    AGRADECEMOS A PREFERÊNCIA!
                 </span>
             </div>
         </div>
+
     </div>
 </body>
 
 </html>
-
-<style>
-    .tituloOrdemServico {
-        margin: 30px;
-    }
-
-    .formulario {
-        position: fixed;
-    }
-
-    .formularioOrdemServico {
-        margin-top: 5px;
-        border: 1px solid #000;
-        padding: 15px;
-    }
-
-    .equipamentoServicos {
-        margin-top: 30px;
-    }
-
-    .condicoesServico {
-        margin-top: 15px;
-        color: red;
-        font-size: 11px;
-    }
-
-    .msgFidelidade {
-        margin-top: 15px;
-        font-size: 11px;
-    }
-
-    .dadosCliente, .dadosEquipamento{
-        font-size: 13px;
-    }
-</style>

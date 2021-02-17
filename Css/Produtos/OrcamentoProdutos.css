@@ -1,0 +1,13 @@
+.orcamentos{
+    width: 25%;
+    float: left;
+    padding: 0% 2%;
+    text-align: center;
+}
+
+.conteudoOrcamentos{
+    margin: 15px;
+    display: block;
+    flex-wrap: wrap;
+    display: inline-flex;
+}

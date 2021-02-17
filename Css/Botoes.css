@@ -1,27 +1,38 @@
-.btnGroup{
+.btnGroup   {
     margin: 25px;
     float: right;
 }
-.btnCadastrar{
+
+.btnEditar  {
     margin: 25px;
     float: right;
 }
-.btnEditar{
+
+.btnAdicionar   {
     margin: 25px;
     float: right;
 }
-.btnAdicionar{
+
+.btnLimpar  {
     margin: 25px;
     float: right;
 }
-.btnLimpar{
-    margin: 25px;
-    float: right;
+
+.btnLeft    {
+    margin: 15px !important;
+    float: left !important;
 }
-.btnLeft{
-    margin: 25px;
-    float: right;
+
+.btnRight   {
+    margin: 15px !important;
+    float: right !important;
 }
-.btnRadio{
+
+.btnCenter  {
+    margin: 15px !important;
+    text-align: center !important;
+}
+
+.btnRadio   {
     margin: 05px;
 }

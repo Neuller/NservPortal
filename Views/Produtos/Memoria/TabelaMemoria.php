@@ -1,86 +1,86 @@
-<?php 
+<?php
 require_once "../../../Classes/Conexao.php";
 require_once "../../../Classes/Produtos.php";
 
 $c = new conectar();
-$conexao = $c->conexao();
-$obj= new produtos();
+$conexao = $c -> conexao();
+$obj = new produtos();
 
-$sql = "SELECT ID_Produto, ID_Categoria, Codigo, Descricao, Preco, PrecoInstalacao, Estoque, NF
-FROM produtosnserv
-WHERE ID_Categoria = 2
-ORDER BY ID_Produto DESC";
+$sql = "SELECT id_produto, categoria, codigo, descricao, preco, preco_instalacao, estoque, nf, ncm
+FROM produtos
+WHERE categoria = 'MEMORIA'
+ORDER BY id_produto DESC";
 
-$result=mysqli_query($conexao,$sql);
+$result = mysqli_query($conexao, $sql);
 ?>
 
 <!DOCTYPE html>
-<head>
-  	
-</head>
+<html>
 <body>
 	<div class="table-responsive">
 		<table id="tabelaMemoriaLoad" class="table table-hover table-condensed table-bordered text-center table-striped">
 			<!-- CABEÇALHO -->
 			<thead>
 				<tr>
-					<td>Código</td>
-					<td>Descrição</td>
-					<td>Editar</td>
-					<td>Visualizar</td>
-					<td>Excluir</td>
+					<td>CÓDIGO</td>
+					<td>DESCRIÇÃO</td>
+					<td>VALOR UNITÁRIO</td>
+					<td>EDITAR</td>
+					<td>VISUALIZAR</td>
+					<td>EXCLUIR</td>
 				</tr>
 			</thead>
 			<tbody>
 				<?php
-					while($mostrar=mysqli_fetch_array($result))
-					{
-						echo 
+				while ($mostrar = mysqli_fetch_array($result)) {
+					echo
 						'
 						<tr>
-						<td>'.$mostrar[2].'</td>
-						<td>'.$mostrar[3].'</td>
+						<td>' . $mostrar[2] . '</td>
+						<td>' . $mostrar[3] . '</td>
+						<td>' . 'R$ '. $mostrar[4] . '</td>
 						<!-- BOTÂO EDITAR -->
-						<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarProduto" title="EDITAR" onclick="adicionarDados('.$mostrar[0].','.$mostrar[1].')">
+						<td>' . '<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarProduto" title="EDITAR" onclick="editarProdutos('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-pencil"></span>
-						</span>'.'</td>
+						</span>' . '</td>
 						<!-- BOTÃO VISUALIZAR -->
-						<td>'.'<span class="btn btn-default btn-sm" data-toggle="modal" data-target="#visualizarProduto" title="VISUALIZAR" onclick="visualizarDados('.$mostrar[0].','.$mostrar[1].')">
+						<td>' . '<span class="btn btn-default btn-sm" data-toggle="modal" data-target="#visualizarProduto" title="VISUALIZAR" onclick="visualizarProdutos('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-search"></span>
-						</span>'.'</td>
+						</span>' . '</td>
 						<!-- BOTÃO EXCLUIR -->
-						<td>'.'<span class="btn btn-danger btn-sm" title="EXCLUIR" onclick="excluirProduto('.$mostrar[0].')">
+						<td>' . '<span class="btn btn-danger btn-sm" title="EXCLUIR" onclick="excluirProduto('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-remove"></span>
-						</span>'.'</td>
+						</span>' . '</td>
 						</tr>
 						';
-					}
+				}
 				?>
 			</tbody>
 		</table>
 	</div>
 </body>
+
 </html>
-		
+
 <script>
-$(document).ready(function(){
-	$('#tabelaMemoriaLoad').DataTable(
-		{	
-			"language": {
-			"lengthMenu": "_MENU_ registros por página",
-			"zeroRecords": "Nada enconstrado, desculpe",
-			"info": "Página _PAGE_ de _PAGES_",
-			"infoEmpty": "Nenhum registro foi encontrado",
-			"infoFiltered": "(Filtrado de _MAX_ registros no total)",
-			"search": "Pesquisar:",
-			"paginate":{
-				"first":      "Primeiro",
-				"last":       "Ultimo",
-				"next":       "Próximo",
-				"previous":   "Anterior"
+	$(document).ready(function() {
+		$('#tabelaMemoriaLoad').DataTable(
+			{
+				"language": {
+				"lengthMenu": "_MENU_ REGISTROS POR PÁGINA",
+				"zeroRecords": "NENHUM REGISTRO ENCONTRADO",
+				"info": "PÁGINA _PAGE_ DE _PAGES_",
+				"infoEmpty": "Nenhum registro foi encontrado",
+				"infoFiltered": "(FILTRADO DE _MAX_ REGISTROS NO TOTAL)",
+				"search": "PESQUISAR:",
+				"paginate":{
+					"first":      "PRIMEIRO",
+					"last":       "ÚLTIMO",
+					"next":       "PRÓXIMO",
+					"previous":   "ANTERIOR"
+				}
+				}
 			}
-			}
-		}
-	);
-});
+		);
+	});
 </script>

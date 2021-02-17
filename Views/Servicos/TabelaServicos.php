@@ -1,63 +1,65 @@
 <?php 
 require_once "../../Classes/Conexao.php";
 require_once "../../Classes/Servicos.php";
+require_once "../../Classes/Utilitarios.php";
 
-$c= new conectar();
-$conexao=$c->conexao();
-$obj= new servicos();
+$c = new conectar();
+$conexao = $c -> conexao();
+$obj = new servicos();
+$objUtils = new utilitarios();
 
-$sql="SELECT ID_Servico, ID_Cliente, ID_Status, Equipamento, Info, SerialNumber, Preco, DataCadastro, DataSaida 
+$sql = "SELECT id_servico, id_cliente, equipamento, observacao, serial_number, valor_total, data_cadastro, data_saida, status 
 FROM servicos 
-ORDER BY ID_Servico DESC";
+ORDER BY id_servico DESC";
 
-$result=mysqli_query($conexao,$sql);	
+$result = mysqli_query($conexao, $sql);	
 ?>
 
 <!DOCTYPE html>
-<head>
-  	
-</head>
+<html>
 <body>
 	<div class="table-responsive">
-		<table id="tabelaServicos" class="table table-hover table-condensed table-bordered text-center table-striped">
-			<!-- CABEÇALHO -->
+		<table id="tableServicos" class="table table-hover table-condensed table-bordered text-center table-striped">
 			<thead>
 				<tr>
-					<td>Nome</td>
-					<td>Status</td>
-					<td>N° Serial</td>
-					<td>Data de cadastro</td>
-					<td>Ordem de Serviço</td>
-					<td>Editar</td>
-					<td>Visualizar</td>
+					<td>CLIENTE</td>
+					<td>CELULAR</td>
+					<td>N° SERIAL</td>
+					<td>DATA DE ENTRADA</td>
+					<td>STATUS</td>
+					<td>ORDEM DE SERVIÇO</td>
+					<td>EDITAR</td>
+					<td>VISUALIZAR</td>
 				</tr>
 			</thead> 
 			<tbody>
 				<?php
-					while($mostrar=mysqli_fetch_array($result))
+					while($mostrar = mysqli_fetch_array($result))
 					{
-						$data = date('d/m/Y', strtotime($mostrar[7]));
+						$data = date('d/m/Y', strtotime($mostrar[6]));
 						echo 
 						'
 						<tr>
-						<!-- NOME -->
-							<td>'.$obj->nomeCliente($mostrar[1]).'</td>
-						<!-- STATUS	-->
-							<td>'.$obj->nomeStatus($mostrar[2]).'</td>
+						<!-- CLIENTE -->
+							<td>'.$obj -> nomeCliente($mostrar[1]).'</td>
+						<!-- CELULAR -->
+							<td>'.$objUtils -> celularCliente($mostrar[1]).'</td>
 						<!-- NÚMERO DE SERIAL -->
-							<td>'.$mostrar[5].'</td>
-						<!-- DATA DE CADASTRO -->
+							<td>'.$mostrar[4].'</td>
+						<!-- DATA DE ENTRADA -->
 							<td>'.$data.'</td>
-							<!-- ORDEM DE SERVIÇO -->
-							<td>'.'<a href="./Procedimentos/Servicos/CriarOrdemServico.php?idserv='.$mostrar[0].'" target="_BLANK" title="ORDEM DE SERVIÇO" class="btn btn-danger btn-sm">
+						<!-- STATUS	-->
+						<td>'.$mostrar[8].'</td>
+						<!-- ORDEM DE SERVIÇO -->
+							<td>'.'<a href="./Procedimentos/Servicos/OrdemServico.php?idServ='.$mostrar[0].'" target="_BLANK" title="IMPRIMIR" class="btn btn-danger btn-sm">
 							<span class="glyphicon glyphicon-print"></span>
 							</a>'.'</td>
 						<!-- BOTÂO EDITAR -->
-							<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#atualizarServico" title="EDITAR" onclick="adicionarDados('.$mostrar[0].','.$mostrar[1].')">
+							<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarServicos" title="EDITAR" onclick="editarServicos('.$mostrar[0].')">
 							<span class="glyphicon glyphicon-pencil"></span>
 							</span>'.'</td>
 						<!-- BOTÃO VISUALIZAR -->
-							<td>'.'<span class="btn btn-default btn-sm" data-toggle="modal" data-target="#visualizarServico" title="VISUALIZAR" onclick="visualizarDados('.$mostrar[0].','.$mostrar[1].')">
+							<td>'.'<span class="btn btn-default btn-sm" data-toggle="modal" data-target="#visualizarServicos" title="VISUALIZAR" onclick="visualizarServicos('.$mostrar[0].')">
 							<span class="glyphicon glyphicon-search"></span>
 							</span>'.'</td>							
 						</tr>
@@ -72,20 +74,20 @@ $result=mysqli_query($conexao,$sql);
 
 <script>
 $(document).ready(function(){
-    $('#tabelaServicos').DataTable(
+    $('#tableServicos').DataTable(
 		{	
 			"language": {
-            "lengthMenu": "_MENU_ registros por página",
-            "zeroRecords": "Nada enconstrado, desculpe",
-            "info": "Página _PAGE_ de _PAGES_",
-            "infoEmpty": "Nenhum registro foi encontrado",
-			"infoFiltered": "(Filtrado de _MAX_ registros no total)",
-			"search": "Pesquisar:",
+			"lengthMenu": "_MENU_ REGISTROS POR PÁGINA",
+			"zeroRecords": "NENHUM REGISTRO ENCONTRADO",
+			"info": "PÁGINA _PAGE_ DE _PAGES_",
+			"infoEmpty": "Nenhum registro foi encontrado",
+			"infoFiltered": "(FILTRADO DE _MAX_ REGISTROS NO TOTAL)",
+			"search": "PESQUISAR:",
 			"paginate":{
-				"first":      "Primeiro",
-				"last":       "Ultimo",
-				"next":       "Próximo",
-				"previous":   "Anterior"
+				"first":      "PRIMEIRO",
+				"last":       "ÚLTIMO",
+				"next":       "PRÓXIMO",
+				"previous":   "ANTERIOR"
 			}
         	}
 		}

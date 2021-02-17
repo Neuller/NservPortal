@@ -1,5 +1,5 @@
 .bgGradient{
-	background: linear-gradient(to right, #9c9c9c, #ffffff);
+	background: linear-gradient(to right, #010b26, #ffffff);
 }
 .bgBlack{
 	background-color: #000;
@@ -11,5 +11,5 @@
 	background-color: #e6e6e6;
 }
 .bgGradientFaleConosco{
-	background: linear-gradient(to bottom, #19406e, #ffffff);
+	background: linear-gradient(to bottom, #e6e6e6, #ffffff);
 }

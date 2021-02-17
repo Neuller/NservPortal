@@ -1,59 +1,60 @@
 <?php 
 class produtos{
-// MÉTODO ADICIONAR
-public function adicionarProduto($dados){
+public function CadastrarProdutos($dados){
 	$c = new conectar();
-	$conexao = $c->conexao();
+	$conexao = $c -> conexao();
+	$data = date('Y-m-d');
 
-	$sql = "INSERT INTO produtosnserv (ID_Categoria, Codigo, Descricao, Garantia, Preco, PrecoInstalacao, Estoque, NF, NCM) 
-	VALUES ('$dados[1]','$dados[0]', '$dados[2]','$dados[3]', '$dados[5]', '$dados[6]', '$dados[4]', '$dados[7]', '$dados[8]')";
+	$sql = "INSERT INTO produtos (categoria, codigo, descricao, garantia, preco, preco_instalacao, estoque, nf, ncm, data_cadastro) 
+	VALUES ('$dados[1]','$dados[0]', '$dados[2]','$dados[3]', '$dados[5]', '$dados[6]', '$dados[4]', '$dados[7]', '$dados[8]', '$data')";
 
 	return mysqli_query($conexao, $sql);
 }
-// MÉTODO RETORNAR DADOS 
+
 public function obterDadosProdutos($idProduto){
 	$c = new conectar();
 	$conexao = $c->conexao();
 
-	$sql = "SELECT ID_Produto, ID_Categoria, Codigo, Descricao, Garantia, Preco, 
-	PrecoInstalacao, Estoque, NF, NCM
-	FROM produtosnserv WHERE ID_Produto = '$idProduto' ";
+	$sql = "SELECT id_produto, categoria, codigo, descricao, garantia, preco, 
+	preco_instalacao, estoque, nf, ncm, data_cadastro
+	FROM produtos WHERE id_produto = '$idProduto' ";
 
 	$result = mysqli_query($conexao, $sql);
 	$mostrar = mysqli_fetch_row($result);
 
 	$dados = array(
-		'ID_Produto' => $mostrar[0],
-		'ID_Categoria' => $mostrar[1],
-		'Codigo' => $mostrar[2],
-		'Descricao' => $mostrar[3],
-		'Garantia' => $mostrar[4],
-		'Preco' => $mostrar[5],
-		'PrecoInstalacao' => $mostrar[6],
-		'Estoque' => $mostrar[7],
-		'NF' => $mostrar[8],
-		'NCM' => $mostrar[9]
+		'id_produto' => $mostrar[0],
+		'categoria' => $mostrar[1],
+		'codigo' => $mostrar[2],
+		'descricao' => $mostrar[3],
+		'garantia' => $mostrar[4],
+		'preco' => $mostrar[5],
+		'preco_instalacao' => $mostrar[6],
+		'estoque' => $mostrar[7],
+		'nf' => $mostrar[8],
+		'ncm' => $mostrar[9],
+		'data_cadastro'=> $mostrar[10]
 	);
 	return $dados;
 }
-// MÉTODO EDITAR
+
 public function editarProduto($dados){
 	$c = new conectar();
-	$conexao = $c->conexao();
+	$conexao = $c -> conexao();
 
-	$sql = "UPDATE produtosnserv SET Codigo = '$dados[1]', Descricao = '$dados[2]', Garantia = '$dados[3]',
-	Preco = '$dados[4]', PrecoInstalacao = '$dados[5]', Estoque = '$dados[6]', NF = '$dados[7]', NCM = '$dados[8]'
-    WHERE ID_Produto = '$dados[0]'
-    AND ID_Categoria = '$dados[9]'";
+	$sql = "UPDATE produtos SET codigo = '$dados[1]', descricao = '$dados[2]', garantia = '$dados[3]',
+	preco = '$dados[4]', preco_instalacao = '$dados[5]', estoque = '$dados[6]', nf = '$dados[7]', ncm = '$dados[8]', data_cadastro = '$dados[9]'
+    WHERE id_produto = '$dados[0]'
+    AND id_categoria = '$dados[9]'";
 
 	echo mysqli_query($conexao, $sql);
 }
-// MÉTODO EXCLUIR 
+
 public function excluirProduto($idProduto){
 	$c = new conectar();
-	$conexao = $c->conexao();
+	$conexao = $c -> conexao();
 
-	$sql = "DELETE from produtosnserv WHERE ID_Produto = '$idProduto' ";
+	$sql = "DELETE from produtos WHERE id_produto = '$idProduto' ";
 
 	return mysqli_query($conexao, $sql);
 }

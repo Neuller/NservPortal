@@ -1,0 +1,15 @@
+.itensMenu {
+    color: black !important;
+}
+
+.logo {
+    float: left !important;
+    position: absolute !important;
+    z-index: 2;
+}
+
+.foot {
+    color: white !important;
+    margin-top: 50px !important;
+    opacity: 0.3 !important;
+}

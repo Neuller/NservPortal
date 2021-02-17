@@ -1,23 +1,17 @@
 <?php
 require_once "../../Classes/Conexao.php";
-require_once "../../Classes/Vendas.php";
 require_once "../../Classes/Utilitarios.php";
 
-$objv = new vendas();
 $objUtils = new utilitarios();
 
 $c = new conectar();
-$conexao = $c->conexao();
+$conexao = $c-> conexao();
 
-$idVenda = $_GET['idvenda'];
+$idVenda = $_GET['idVenda'];
 
-$sql = "SELECT ve.ID_Venda,
- 	ve.ID_Cliente,
- 	ve.ID_Produto,
-    ve.ID_Usuario,
-    ve.ValorTotal,
-	ve.DataVenda
-	FROM vendas AS ve WHERE ID_Venda='$idVenda'";
+$sql = "SELECT id_venda, id_cliente, id_produto, id_usuario, valor_total, data_venda, total, forma_pagamento, valor_pagamento, 
+desconto, troco, saldo_devedor, observacao, quantidade, valor_unitario
+FROM vendas WHERE id_venda = '$idVenda' GROUP BY id_venda";
 
 $result = mysqli_query($conexao, $sql);
 
@@ -26,7 +20,12 @@ $mostrar = mysqli_fetch_row($result);
 $codigoVenda = $mostrar[0];
 $idCliente = $mostrar[1];
 $idVendedor = $mostrar[3];
+$valorTotal = $mostrar[4];
 $dataVenda = $mostrar[5];
+$formaPagamento = $mostrar[7];
+$valorPagamento = $mostrar[8];
+$descontos = $mostrar[9];
+$troco = $mostrar[10];
 ?>
 
 <html>
@@ -47,7 +46,7 @@ $dataVenda = $mostrar[5];
         <div class="cabecalho">
             <div class="logo">
                 <!-- LOGO -->
-                <img src="../../Img/Documentos/CABECALHO_DOCUMENTOS.png" width="600" widht="600">
+                <img src="../../Img/Documentos/BannerOrcamento.png" width="600" widht="600">
             </div>
         </div>
     </div>
@@ -66,14 +65,13 @@ $dataVenda = $mostrar[5];
             <!-- INFORMAÇÕES DO CLIENTE -->
             <div>
                 <div class="text-left">
-                    <label><strong>DADOS DO CLIENTE</strong></label>
+                    <label><strong>INFORMAÇÕES DO CLIENTE</strong></label>
                 </div>
                 <hr>
             </div>
             <?php
-            $sql = "SELECT Nome, CPF, CNPJ, CEP, Bairro, Endereco, Numero, Complemento, Telefone, Celular,
-            Email
-            FROM clientes WHERE ID_Cliente='$idCliente'";
+            $sql = "SELECT nome, cpf, cnpj, cep, bairro, endereco, numero, complemento, telefone, celular, email
+            FROM clientes WHERE id_cliente = '$idCliente'";
 
             $result = mysqli_query($conexao, $sql);
             while ($informacoesCliente = mysqli_fetch_row($result)) {
@@ -136,77 +134,151 @@ $dataVenda = $mostrar[5];
             </div>
             <div class="dadosProdutosServicos">               
                 <?php 
-                    $sql="SELECT ve.ID_Venda,
-                    ve.ID_Cliente,
-                    ve.ID_Produto,
-                    ve.ID_Usuario,
-                    ve.ValorTotal,
-                    ve.DataVenda,
-                    pro.Codigo,
-                    pro.Descricao,
-                    pro.Garantia,
-                    pro.Preco
-                    FROM vendas AS ve
-                    INNER JOIN produtosnserv AS pro
-                    ON ve.ID_Produto = pro.ID_Produto
-                    and ve.ID_Venda='$idVenda'";
+                    $sql="SELECT ve.id_venda, ve.id_cliente, ve.id_produto, ve.id_usuario, ve.valor_total, ve.data_venda, ve.quantidade, 
+                    pro.codigo, pro.descricao, pro.garantia, pro.preco
+                    FROM vendas as ve
+                    INNER JOIN produtos as pro
+                    ON ve.id_produto = pro.id_produto
+                    and id_venda = '$idVenda'";
                                 
                     $resultado = mysqli_query($conexao, $sql);
                     
-                    while($produtoPortal = mysqli_fetch_row($resultado)){
+                    while($item = mysqli_fetch_row($resultado)){
                 ?>
                 <div class="informacoesProdutos">
                     <ul>
                         <li>
-                            <span>CÓDIGO: <?php echo $produtoPortal[6] ?></span>
+                            <span>CÓDIGO: <?php echo $item[7] ?></span>
                             <br>
-                            <span>DESCRIÇÃO: <?php echo $produtoPortal[7] ?></span>
+                            <span>DESCRIÇÃO: <?php echo $item[8] ?></span>
                             <br>
-                            <span>VALOR: R$ <?php echo $produtoPortal[9] ?></span>
+                            <span>VALOR UN: R$ <?php echo $item[10] ?></span>
                             <br>
-                            <span>GARANTIA: <?php echo $produtoPortal[8] ?></span>
+                            <span>QUANTIDADE: <?php echo $item[6] ?></span>
+                            <br>
+                            <span>GARANTIA: <?php echo $item[9] ?></span>
                         </li>
                     </ul>
                 </div>              
                 <?php			    
  				}
- 			    ?> 
+ 			    ?>
+
+                <!-- VENDEDOR -->
                 <div>
-                    <span>VENDEDOR:</span>
                     <span>
                     <?php 
-                        if($idVendedor == 0){
+                        if(($idVendedor == 0) || ($idVendedor == null) || ($idVendedor == "")){
                             echo "";
                         }else{
-                            echo $idVendedor;
+                            echo "<span>VENDEDOR: </span>".$objUtils -> nomeColaborador($idVendedor);
                         } 
                     ?>
                     </span>
                 </div>
+
+                <!-- DATA DA VENDA -->
                 <div>
-                    <span>DATA DA VENDA:</span>
-                    <span><?php echo $objUtils->data($dataVenda) ?></span>
-                </div>              
-                <?php
-                    $sql = "SELECT SUM(ValorTotal) FROM vendas WHERE ID_Venda = '$idVenda'";
-                    $resultado = mysqli_query($conexao, $sql);
-                    while ($total = mysqli_fetch_row($resultado)) {
-                    $valorTotal = $total[0];
-                ?>               
+                    <span>DATA DA VENDA: </span>
+                    <span><?php echo $objUtils -> data($dataVenda) ?></span>
+                </div>  
+
+                <!-- FORMA DE PAGAMENTO -->
                 <div>
-                    <span>VALOR TOTAL:</span>
-                    <span><?php echo "R$ ".$valorTotal ?></span>
+                    <span>
+                    <?php 
+                        if(($formaPagamento == 0) || ($formaPagamento == null) || ($formaPagamento == "")){
+                            echo "";
+                        }else{
+                            echo "<span>FORMA DE PAGAMENTO: </span>".$formaPagamento;
+                        } 
+                    ?>
+                    </span>
                 </div>
-                <?php } ?>
+
+                <!-- TOTAL -->
+                <?php 
+                    $sql="SELECT SUM(total) FROM vendas WHERE id_venda = '$idVenda' GROUP BY id_venda";
+                    $resultado = mysqli_query($conexao, $sql);
+                    while ($result = mysqli_fetch_row($resultado)) {
+                    $total = $result[0];
+                ?>
+                <div>
+                    <span>
+                    <?php 
+                        if(($total == 0) || ($total == null) || ($total == "")){
+                            echo "";
+                        }else{
+                            echo "<span>TOTAL: R$ </span>".$total;
+                        } 
+                    ?>
+                    </span>
+                </div>
+                <?php
+                    }
+                ?>
+
+                <!-- DESCONTOS -->
+                <div>
+                    <span>
+                    <?php 
+                        if(($descontos == 0) || ($descontos == null) || ($descontos == "")){
+                            echo "";
+                        }else{
+                            echo "<span>DESCONTOS: R$ </span>".$descontos;
+                        } 
+                    ?>
+                    </span>
+                </div> 
+
+                <!-- VALOR TOTAL -->           
+                <div>
+                    <span>
+                    <?php 
+                        if(($valorTotal == 0) || ($valorTotal == null) || ($valorTotal == "")){
+                            echo "";
+                        }else{
+                            echo "<span>VALOR TOTAL: </span>"."R$ ".$valorTotal;
+                        } 
+                    ?>
+                    </span>
+                </div>
+
+                <!-- VALOR DO PAGAMENTO -->
+                <div>
+                    <span>
+                    <?php 
+                        if(($valorPagamento == 0) || ($valorPagamento == null) || ($valorPagamento == "")){
+                            echo "";
+                        }else{
+                            echo "<span>VALOR DO PAGAMENTO: R$ </span>".$valorPagamento;
+                        } 
+                    ?>
+                    </span>
+                </div>
+
+                <!-- TROCO -->
+                <div>
+                    <span>
+                    <?php 
+                        if(($troco == 0) || ($troco == null) || ($troco == "")){
+                            echo "";
+                        }else{
+                            echo "<span>TROCO: R$ </span>".$troco;
+                        } 
+                    ?>
+                    </span>
+                </div>
             </div>
         </form>
-        <!-- MENSAGEM FIDELIDADE -->
+
+        <!-- MENSAGEM -->
         <div class="produtosServicos">
             <div class="text-center msgFidelidade">
                 <span>
-                    A qualidade é a nossa melhor garantia de fidelidade ao cliente,
-                    nossa mais forte defesa contra a concorrência e o único caminho para o crescimento e para os lucros.
-                    Agradecemos a preferência!
+                    A QUALIDADE É A NOSSA MELHOR GARANTIA DE FIDELIDADE AO CLIENTE,
+                    NOSSA MAIS FORTE DEFESA CONTRA A CONCORRÊNCIA E O ÚNICO CAMINHO PARA O CRESCIMENTO E PARA OS LUCROS.
+                    AGRADECEMOS A PREFERÊNCIA!
                 </span>
             </div>
         </div>
