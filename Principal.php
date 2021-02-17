@@ -29,7 +29,7 @@ if (isset($_SESSION['User'])) {
                                 <!-- CLIENTES -->
                                 <li class="dropdown">
                                     <a class="dropdown-toggle itensMenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        CLIENTES
+                                        CLIENTESss
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a id="cadastrarClientes" href="#">NOVO CLIENTE</a></li>
