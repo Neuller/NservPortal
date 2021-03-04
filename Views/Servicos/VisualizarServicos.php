@@ -8,6 +8,7 @@ if (isset($_SESSION['User'])) {
 		<?php require_once "../../Classes/Conexao.php"; 
 		$c = new conectar();
 		$conexao = $c -> conexao();
+		$idServico = $_GET["id"];
 		?>
 	</head>
 
@@ -168,10 +169,84 @@ if (isset($_SESSION['User'])) {
 </html>
 
 <script type="text/javascript">
+	$(document).ready(function() {
+		idServico = "<?php echo @$idServico ?>";
+		carregarDados(idServico);
+	});
+
+	$(document).keyup(function(e) { 
+		var str = e.keyCode;
+		if(str == 27){
+			voltar();
+		}
+	}); 
+
 	$('#btnVoltar').click(function() {
+		voltar();
+	});
+
+	function voltar(){
 		$('#frmVisualizaServico')[0].reset();
 		$('#conteudo').load("./Views/Servicos/ProcurarServicos.php");
-	});
+	}
+
+	function carregarDados(id){
+		$.ajax({
+				type: "POST",
+				data: "idServico=" + id,
+				url: "./Procedimentos/Servicos/ObterDadosServicos.php",
+				success: function(r) {
+					dado = jQuery.parseJSON(r);
+					// DADOS CLIENTE
+					$.ajax({
+						type: "POST",
+						data: "idCliente=" + dado.id_cliente,
+						url: './Procedimentos/Utilitarios/ObterDadosResumidoCliente.php',
+					}).then(function(data) {
+						var result = JSON.parse(data);
+						var nomeCliente = result[0];
+						var telefoneCliente = result[1];
+						var celularCliente = result[2];
+						$('#clienteView').val(nomeCliente);
+						$('#telefoneClienteView').val(telefoneCliente);
+						$('#celularClienteView').val(celularCliente);
+					});
+					$('#idServicoView').val(dado['id_servico']);
+					$('#equipamentoView').val(dado['equipamento']);
+					$('#ordemServicoView').val(dado['ordem_servico']);
+					$('#serialNumberView').val(dado['serial_number']);
+					$('#selectStatusView').val(dado['status']);
+					// NOME DO TECNICO
+					$.ajax({
+						type: "POST",
+						data: "idTecnico=" + dado.id_tecnico,
+						url: './Procedimentos/Utilitarios/ObterNomeTecnico.php',
+					}).then(function(data) {
+						var nomeTecnico = JSON.parse(data);
+						$('#tecnicoView').val(nomeTecnico);
+					});
+					$('#informacaoView').val(dado['observacao']);
+					$('#diagnosticoView').val(dado['diagnostico']);
+					$('#servicoView').val(dado['servico_realizado']);
+					$('#garantiaView').val(dado['garantia']);
+					$('#precoView').val(dado['valor_total']);
+					$('#valorTerceiroView').val(dado['valor_terceiro']);
+					$('#dataSaidaView').val(dado['data_saida']);
+					// VERIFICAR NF-E
+					var $radios = $('input:radio[name = nfeEmitidaView]');
+					if (dado['nf_emitida'] === "NAO") {
+						$radios.filter('[value = NAO]').prop('checked', true);
+						console.log("NOTA FISCAL NÃO EMITIDA.");
+					} else if (dado['nf_emitida'] === "SIM") {
+						$radios.filter('[value = SIM]').prop('checked', true);
+						console.log("NOTA FISCAL JÁ EMITIDA.");
+					} else {
+						$radios.filter('[value = NAO]').prop('checked', true);
+						console.log("NÃO FOI POSSÍVEL IDENTIFICAR EMISSÃO DE NOTA.");
+					}
+				}
+			});
+	}
 </script>
 
 <?php
