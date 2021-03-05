@@ -1,11 +1,11 @@
-.orcamentos{
+.orcamentos {
     width: 25%;
     float: left;
     padding: 0% 2%;
     text-align: center;
 }
 
-.conteudoOrcamentos{
+.conteudoOrcamentos {
     margin: 15px;
     display: block;
     flex-wrap: wrap;

@@ -172,14 +172,14 @@ if (isset($_SESSION['User'])) {
 	$(document).ready(function() {
 		idServico = "<?php echo @$idServico ?>";
 		carregarDados(idServico);
-	});
 
-	$(document).keyup(function(e) { 
-		var str = e.keyCode;
-		if(str == 27){
-			voltar();
-		}
-	}); 
+		$(document).keyup(function(e) { 
+			var str = e.keyCode;
+			if(str == 27){
+				voltar();
+			}
+		}); 
+	});
 
 	$('#btnVoltar').click(function() {
 		voltar();

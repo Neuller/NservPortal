@@ -1,15 +1,19 @@
-.bgGradient{
+.bgGradient {
 	background: linear-gradient(to right, #010b26, #ffffff);
 }
-.bgBlack{
+
+.bgBlack {
 	background-color: #000;
 }
-.bgWhite{
-  background-color: #FFF;
+
+.bgWhite {
+	background-color: #FFF;
 }
-.bgGray{
+
+.bgGray {
 	background-color: #e6e6e6;
 }
-.bgGradientFaleConosco{
+
+.bgGradientFaleConosco {
 	background: linear-gradient(to bottom, #e6e6e6, #ffffff);
 }

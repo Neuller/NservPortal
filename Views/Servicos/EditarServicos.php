@@ -182,14 +182,14 @@ if (isset($_SESSION['User'])) {
 		$('.dataComunicadoU').mask('99/99/9999');
 		idServico = "<?php echo @$idServico ?>";
 		carregarDados(idServico);
+
+		$(document).keyup(function(e) { 
+			var str = e.keyCode;
+			if(str == 27){
+				cancelar();
+			}
+		}); 
 	});
-	
-	$(document).keyup(function(e) { 
-		var str = e.keyCode;
-		if(str == 27){
-			cancelar();
-		}
-	}); 
 
 	$('#btnEditar').click(function() {
 		var statusServico = $("#selectStatusU").val();

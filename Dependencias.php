@@ -41,4 +41,6 @@
 <link rel="stylesheet" type="text/css" href="./Css/Botoes.css">
 <link rel="stylesheet" type="text/css" href="./Css/Index.css">
 <link rel="stylesheet" type="text/css" href="./Css/Produtos/OrcamentoProdutos.css">
+<link rel="stylesheet" type="text/css" href="./Css/MediaQueries.css">
+<link rel="stylesheet" type="text/css" href="./Css/Principal/Menu.css">
 

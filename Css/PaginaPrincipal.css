@@ -3,22 +3,24 @@
 }
 
 .cabecalho {
-	width: 100%;
-	float: left;
-	text-align: center;
+    width: 100%;
+    float: left;
+    text-align: center;
     margin-top: 50px;
 }
 
-.textContatos{
-	color: black;
+.textContatos {
+    color: black;
 }
-.conteudoContatos{
+
+.conteudoContatos {
     margin: 15px;
     display: block;
     flex-wrap: wrap;
     display: inline-flex;
 }
-.contatos{
+
+.contatos {
     width: 25%;
     float: left;
     padding: 0% 2%;
@@ -39,15 +41,15 @@
 }
 
 .vendasMes {
-	width: 100%;
-	float: left;
-	text-align: center;
+    width: 100%;
+    float: left;
+    text-align: center;
     margin-top: 25px;
 }
 
 .servicosMes {
-	width: 100%;
-	float: left;
-	text-align: center;
+    width: 100%;
+    float: left;
+    text-align: center;
     margin-top: 25px;
 }

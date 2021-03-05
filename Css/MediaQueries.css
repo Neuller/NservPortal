@@ -1,0 +1,5 @@
+@media (max-width: 992) {
+    .menu_completo {
+        display: none !important;
+    }
+}

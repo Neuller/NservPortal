@@ -1,10 +1,12 @@
-.btnEntrar{
+.btnEntrar {
     margin-top: 15px;
     float: right;
 }
-#frmLogin{
+
+#frmLogin {
     margin-top: 25px;
 }
-.imagemPainel{
+
+.imagemPainel {
     margin-top: 10px;
 }

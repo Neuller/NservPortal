@@ -22,9 +22,8 @@ if (isset($_SESSION['User'])) {
                     <a class="navbar-brand" id="logo" href="#"><img class="img-responsive logoMenu img-thumbnail" src="./Img/NSERV.png" title="PÁGINA INICIAL" width="200px" height="150px"></a>
                 </div>
 
-                <nav class="navbar navbar-expand-lg navbar-light navbar-static-top">
-                    <div class=”container”>
-                        <div id="navbar" class="collapse navbar-collapse">
+                <nav class="navbar navbar-expand-lg navbar-light navbar-static-top menu_completo">
+                    <div id="navbar" class="collapse navbar-collapse">
                             <ul class="nav navbar-nav">
                                 <!-- CLIENTES -->
                                 <li class="dropdown">
@@ -117,7 +116,6 @@ if (isset($_SESSION['User'])) {
                                 </li>
                             </ul>
                         </div>
-                    </div>
                 </nav>
             </div>
 
