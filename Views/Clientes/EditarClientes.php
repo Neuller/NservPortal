@@ -8,6 +8,7 @@ if (isset($_SESSION['User'])) {
 		<?php require_once "../../Classes/Conexao.php"; 
 		$c = new conectar();
 		$conexao = $c -> conexao();
+		$idCliente = $_GET["id"];
 		?>
 	</head>
 
@@ -171,6 +172,8 @@ if (isset($_SESSION['User'])) {
 		$('.cep').mask('99999-999');
 		$('.telefone').mask('(99) 9999-9999');
 		$('.celular').mask('(99) 9 9999-9999');
+		idCliente = "<?php echo @$idCliente ?>";
+		carregarDados(idCliente);
 	});
 
 	
@@ -263,6 +266,32 @@ if (isset($_SESSION['User'])) {
         }, function(){
         });
 	});
+
+	function carregarDados(id) {
+		$.ajax({
+			type: "POST",
+			data: "idCliente=" + id,
+			url: "./Procedimentos/Clientes/ObterDadosCliente.php",
+			success: function(r) {
+				dado = jQuery.parseJSON(r);
+				$('#idClienteU').val(dado['id_cliente']);
+				$('#nomeU').val(dado['nome']);
+				$('#cpfU').val(dado['cpf']);
+				$('#cnpjU').val(dado['cnpj']);
+				$('#cepU').val(dado['cep']);
+				$('#bairroU').val(dado['bairro']);
+				$('#ufU').val(dado['uf']);
+				$('#enderecoU').val(dado['endereco']);
+				$('#numeroU').val(dado['numero']);
+				$('#complementoU').val(dado['complemento']);
+				$('#telefoneU').val(dado['telefone']);
+				$('#telefone2U').val(dado['telefone2']);
+				$('#celularU').val(dado['celular']);
+				$('#celular2U').val(dado['celular2']);
+				$('#emailU').val(dado['email']);
+			}
+		});
+	}
 </script>
 <?php
 } else {

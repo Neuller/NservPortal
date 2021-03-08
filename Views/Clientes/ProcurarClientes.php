@@ -27,57 +27,11 @@ if (isset($_SESSION['User'])) {
 	});
 
 	function editarClientes(idCliente) {
-		$('#conteudo').load('./Views/Clientes/EditarClientes.php');
-		$.ajax({
-			type: "POST",
-			data: "idCliente=" + idCliente,
-			url: "./Procedimentos/Clientes/ObterDadosCliente.php",
-			success: function(r) {
-				dado = jQuery.parseJSON(r);
-				$('#idClienteU').val(dado['id_cliente']);
-				$('#nomeU').val(dado['nome']);
-				$('#cpfU').val(dado['cpf']);
-				$('#cnpjU').val(dado['cnpj']);
-				$('#cepU').val(dado['cep']);
-				$('#bairroU').val(dado['bairro']);
-				$('#ufU').val(dado['uf']);
-				$('#enderecoU').val(dado['endereco']);
-				$('#numeroU').val(dado['numero']);
-				$('#complementoU').val(dado['complemento']);
-				$('#telefoneU').val(dado['telefone']);
-				$('#telefone2U').val(dado['telefone2']);
-				$('#celularU').val(dado['celular']);
-				$('#celular2U').val(dado['celular2']);
-				$('#emailU').val(dado['email']);
-			}
-		});
+		$('#conteudo').load("./Views/Clientes/EditarClientes.php?id="+idCliente);
 	}
 
 	function visualizarClientes(idCliente) {
-		$('#conteudo').load('./Views/Clientes/VisualizarCliente.php');
-		$.ajax({
-			type: "POST",
-			data: "idCliente=" + idCliente,
-			url: "./Procedimentos/Clientes/ObterDadosCliente.php",
-			success: function(r) {
-				dado = jQuery.parseJSON(r);
-				$('#idClienteV').val(dado['id_cliente']);
-				$('#nomeV').val(dado['nome']);
-				$('#cpfV').val(dado['cpf']);
-				$('#cnpjV').val(dado['cnpj']);
-				$('#cepV').val(dado['cep']);
-				$('#bairroV').val(dado['bairro']);
-				$('#ufV').val(dado['uf']);
-				$('#enderecoV').val(dado['endereco']);
-				$('#numeroV').val(dado['numero']);
-				$('#complementoV').val(dado['complemento']);
-				$('#telefoneV').val(dado['telefone']);
-				$('#telefone2V').val(dado['telefone2']);
-				$('#celularV').val(dado['celular']);
-				$('#celular2V').val(dado['celular2']);
-				$('#emailV').val(dado['email']);
-			}
-		});
+		$('#conteudo').load("./Views/Clientes/VisualizarCliente.php?id="+idCliente);
 	}
 
 	function excluirClientes(idCliente) {
