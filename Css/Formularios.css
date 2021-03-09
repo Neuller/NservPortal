@@ -1,16 +1,24 @@
 .formLogin {
-    margin-top: 25% !important;
+    margin-top: 25%;
 }
 
 .cabecalho {
-    margin-bottom: 50px !important;
+    margin-bottom: 50px;
 }
 
 .tituloFormulario {
-    margin-top: 25px !important;
+    margin-top: 25px;
 }
 
 .itensFormulario {
-    margin-top: 15px !important;
-    margin-bottom: 15px !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.avisoDanger {
+    background-color: red;
+    text-align: center;
+    color: white;
+    border-radius: 05px;
+    padding: 10px;
 }

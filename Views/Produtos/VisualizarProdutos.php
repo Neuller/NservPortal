@@ -58,7 +58,7 @@ if (isset($_SESSION['User'])) {
                             <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
                                 <div>
                                     <label>ESTOQUE</label>
-                                    <input type="text" readonly class="form-control input-sm estoque text-uppercase" id="estoqueView" name="estoqueView">
+                                    <input type="text" readonly class="form-control input-sm estoque text-uppercase estoqueView" id="estoqueView" name="estoqueView">
                                 </div>
                             </div>
                             <!-- VALOR UNIDADE -->
@@ -89,7 +89,11 @@ if (isset($_SESSION['User'])) {
                                     <input type="text" readonly class="form-control ncm input-sm text-uppercase" id="ncmView" name="ncmView">
                                 </div>
                             </div>
-                            <!-- BOTÃO VOLTAR -->
+                            <!-- AVISO INDISPONIBILIDADE DE ESTOQUE -->
+                            <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario avisoDanger">
+                                <span>ITEM INDISPONÍVEL EM ESTOQUE, CONSULTE DISPONIBILIDADE E VALOR COM O FORNECEDOR!</span>
+                            </div>
+                            <!-- BOTOES -->
                             <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                                 <div class="btnRight">
                                     <span class="btn btn-danger" id="btnVoltar" title="VOLTAR">VOLTAR</span>
@@ -107,6 +111,7 @@ if (isset($_SESSION['User'])) {
     $(document).ready(function() {
         idProduto = "<?php echo @$idProduto ?>";
         carregarDados(idProduto);
+        $(".avisoDanger").hide();
     });
 
 	$('#btnVoltar').click(function() {
@@ -127,12 +132,20 @@ if (isset($_SESSION['User'])) {
                 $('#descricaoView').val(dado['descricao']);
                 $('#garantiaView').val(dado['garantia']);
                 $('#estoqueView').val(dado['estoque']);
+                if(dado['estoque'] == 0){
+                    estoqueIndisponivel();
+                }
                 $('#precoView').val(dado['preco']);
                 $('#precoInstalacaoView').val(dado['preco_instalacao']);
                 $('#nfView').val(dado['nf']);
                 $('#ncmView').val(dado['ncm']);
             }
         });
+    }
+
+    function estoqueIndisponivel() {
+        $(".avisoDanger").show();
+        $('.estoqueView').css('border', '1px solid red');
     }
 </script>
 <?php
