@@ -92,7 +92,7 @@ if (isset($_SESSION['User'])) {
                             <!-- BOTÃO VOLTAR -->
                             <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                                 <div class="btnRight">
-                                    <!-- <span class="btn btn-danger" id="btnVoltar" title="VOLTAR">VOLTAR</span> -->
+                                    <span class="btn btn-danger" id="btnVoltar" title="VOLTAR">VOLTAR</span>
                                 </div>
                             </div>
                         </div>
@@ -104,12 +104,14 @@ if (isset($_SESSION['User'])) {
 </html>
 
 <script type="text/javascript">
-	// VOLTAR
+    $(document).ready(function() {
+        idProduto = "<?php echo @$idProduto ?>";
+        carregarDados(idProduto);
+    });
+
 	$('#btnVoltar').click(function() {
 		$('#frmVisualizarProduto')[0].reset();
 		$('#conteudo').load("./Principal.php");
-        idProduto = "<?php echo @$idProduto ?>";
-		carregarDados(idProduto);
 	});
 
     function carregarDados(id) {

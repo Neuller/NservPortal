@@ -43,9 +43,8 @@ public function editarProduto($dados){
 	$conexao = $c -> conexao();
 
 	$sql = "UPDATE produtos SET codigo = '$dados[1]', descricao = '$dados[2]', garantia = '$dados[3]',
-	preco = '$dados[4]', preco_instalacao = '$dados[5]', estoque = '$dados[6]', nf = '$dados[7]', ncm = '$dados[8]', data_cadastro = '$dados[9]'
-    WHERE id_produto = '$dados[0]'
-    AND id_categoria = '$dados[9]'";
+	preco = '$dados[4]', preco_instalacao = '$dados[5]', estoque = '$dados[6]', nf = '$dados[7]', ncm = '$dados[8]'
+    WHERE id_produto = '$dados[0]'";
 
 	echo mysqli_query($conexao, $sql);
 }

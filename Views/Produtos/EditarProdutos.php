@@ -99,7 +99,7 @@ if (isset($_SESSION['User'])) {
                             <!-- BOTÕES -->
                             <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                                 <div class="btnRight">
-                                    <!-- <span class="btn btn-danger" id="btnVoltar" title="VOLTAR">VOLTAR</span> -->
+                                    <span class="btn btn-danger" id="btnCancelar" title="CANCELAR">CANCELAR</span>
                                     <span class="btn btn-warning" id="btnEditar" title="EDITAR">EDITAR</span>
                                 </div>
                             </div>
@@ -140,6 +140,7 @@ if (isset($_SESSION['User'])) {
             data: dados,
             url: "./Procedimentos/Produtos/EditarProdutos.php",
             success: function(r) {
+                debugger;
                 if (r == 1) {
                     $('#conteudo').load("./Principal.php");
                     alertify.success("REGISTRO ATUALIZADO");
@@ -150,10 +151,13 @@ if (isset($_SESSION['User'])) {
         });
     });
 
-    // VOLTAR
-	$('#btnVoltar').click(function() {
-		$('#frmProduto')[0].reset();
-		$('#conteudo').load("./Principal.php");
+    $('#btnCancelar').click(function() {
+		alertify.confirm('ATENÇÃO', 'DESEJA CANCELAR?', function(){
+            alertify.confirm().close();
+			$('#frmProduto')[0].reset();
+            $('#conteudo').load("./Principal.php");
+        }, function(){
+        });
 	});
 
     function carregarDados(id) {
