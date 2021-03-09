@@ -27,11 +27,11 @@ if (isset($_SESSION['User'])) {
     });
     
     function editarProdutos(idProduto) {
-        $('#conteudo').load("./Views/Produtos/EditarProdutos.php"+idProduto);
+        $('#conteudo').load("./Views/Produtos/EditarProdutos.php?id="+idProduto);
     }
 
     function visualizarProdutos(idProduto) {
-        $('#conteudo').load("./Views/Produtos/VisualizarProdutos.php"+idProduto);
+        $('#conteudo').load("./Views/Produtos/VisualizarProdutos.php?id="+idProduto);
     }
         
     function excluirProduto(idProduto) {
