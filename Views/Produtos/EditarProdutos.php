@@ -8,6 +8,7 @@ if (isset($_SESSION['User'])) {
 		<?php require_once "../../Classes/Conexao.php"; 
 		$c = new conectar();
 		$conexao = $c -> conexao();
+        $idProduto = $_GET["id"];
 		?>
 	</head>
 
@@ -112,7 +113,8 @@ if (isset($_SESSION['User'])) {
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
+        idProduto = "<?php echo @$idProduto ?>";
+		carregarDados(idProduto);
 	});
 
     $('#btnEditar').click(function() {
@@ -153,6 +155,27 @@ if (isset($_SESSION['User'])) {
 		$('#frmProduto')[0].reset();
 		$('#conteudo').load("./Principal.php");
 	});
+
+    function carregarDados(id) {
+        $.ajax({
+            type: "POST",
+            data: "idProduto=" + id,
+            url: "./Procedimentos/Produtos/ObterDadosProdutos.php",
+            success: function(r) {
+                dado = jQuery.parseJSON(r);
+                $('#idProduto').val(dado['id_produto']);
+                $('#idCategoria').val(dado['categoria']);
+                $('#codigoU').val(dado['codigo']);
+                $('#descricaoU').val(dado['descricao']);
+                $('#garantiaU').val(dado['garantia']);
+                $('#precoU').val(dado['preco']);
+                $('#precoInstalacaoU').val(dado['preco_instalacao']);
+                $('#estoqueU').val(dado['estoque']);
+                $('#nfU').val(dado['nf']);
+                $('#ncmU').val(dado['ncm']);
+            }
+        });
+    }
 </script>
 <?php
 } else {

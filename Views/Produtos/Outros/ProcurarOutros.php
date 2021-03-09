@@ -26,53 +26,14 @@ if (isset($_SESSION['User'])) {
         $('#tabelaOutros').load('./Views/Produtos/Outros/TabelaOutros.php');
     });
     
-    // PREENCHER MODAL EDITAR
     function editarProdutos(idProduto) {
-        $('#conteudo').load('./Views/Produtos/EditarProdutos.php');
-        $.ajax({
-            type: "POST",
-            data: "idProduto=" + idProduto,
-            url: "./Procedimentos/Produtos/ObterDadosProdutos.php",
-            success: function(r) {
-                dado = jQuery.parseJSON(r);
-                $('#idProduto').val(dado['id_produto']);
-                $('#categoria').val(dado['categoria']);
-                $('#codigoU').val(dado['codigo']);
-                $('#descricaoU').val(dado['descricao']);
-                $('#garantiaU').val(dado['garantia']);
-                $('#precoU').val(dado['preco']);
-                $('#precoInstalacaoU').val(dado['preco_instalacao']);
-                $('#estoqueU').val(dado['estoque']);
-                $('#nfU').val(dado['nf']);
-                $('#ncmU').val(dado['ncm']);
-            }
-        });
+        $('#conteudo').load("./Views/Produtos/EditarProdutos.php"+idProduto);
     }
 
-    // PREENCHER MODAL VISUALIZAR
     function visualizarProdutos(idProduto) {
-        $('#conteudo').load('./Views/Produtos/VisualizarProdutos.php');
-        $.ajax({
-            type: "POST",
-            data: "idProduto=" + idProduto,
-            url: "./Procedimentos/Produtos/ObterDadosProdutos.php",
-            success: function(r) {
-                dado = jQuery.parseJSON(r);
-                $('#idProdutoView').val(dado['id_produto']);
-                $('#idCategoriaView').val(dado['categoria']);
-                $('#codigoView').val(dado['codigo']);
-                $('#descricaoView').val(dado['descricao']);
-                $('#garantiaView').val(dado['garantia']);
-                $('#estoqueView').val(dado['estoque']);
-                $('#precoView').val(dado['preco']);
-                $('#precoInstalacaoView').val(dado['preco_instalacao']);
-                $('#nfView').val(dado['nf']);
-                $('#ncmView').val(dado['ncm']);
-            }
-        });
+        $('#conteudo').load("./Views/Produtos/VisualizarProdutos.php"+idProduto);
     }
         
-    // EXCLUIR PRODUTO
     function excluirProduto(idProduto) {
         alertify.confirm('ATENÇÃO', 'DESEJA EXCLUIR O REGISTRO?', function() {
              $.ajax({
