@@ -56,6 +56,26 @@ class servicos{
 		return $dados;
 	}
 
+	public function obterDadosPrecoServicos($id){
+		$c = new conectar();
+		$conexao = $c -> conexao();
+
+		$sql = "SELECT id_preco_servico, descricao, garantia, valor
+		FROM preco_servicos WHERE id_preco_servico = '$id'";
+
+		$result = mysqli_query($conexao, $sql);
+		$mostrar = mysqli_fetch_row($result);
+
+		$dados = array(
+			'id_preco_servico' => $mostrar[0],
+			'descricao' => $mostrar[1],
+			'garantia' => $mostrar[2],
+			'valor' => $mostrar[3]
+		);
+
+		return $dados;
+	}
+
 	public function editarServicos($dados){
 		$c = new conectar();
 		$conexao = $c -> conexao();

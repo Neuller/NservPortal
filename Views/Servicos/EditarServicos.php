@@ -39,7 +39,7 @@ if (isset($_SESSION['User'])) {
 								</div>
 							</div>
 							<!-- TÉCNICO -->
-							<div class="col-md-8 col-sm-8 col-xs-8 itensFormulario" id="divTecnico">
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario" id="divTecnico">
 								<div id="divTecnico2">
 									<label>TÉCNICO</label>
 									<select class="form-control input-sm" id="tecnicoU" name="tecnicoU">
@@ -55,15 +55,16 @@ if (isset($_SESSION['User'])) {
 									</select>
 								</div>
 							</div>
-							<!-- FORMULÁRIO INFORMAÇÕES DO EQUIPAMENTO / SERVIÇO -->
+
+							<!-- FORMULÁRIO INFORMAÇÕES DO SERVIÇO -->
 							<div class='col-md-12 col-sm-12 col-xs-12 separador'>
 								<div class="text-left">
-									<h4><strong>INFORMAÇÕES DO EQUIPAMENTO E SERVIÇO </strong><span class="glyphicon glyphicon-wrench ml-15"></span></h4>
+									<h4><strong>INFORMAÇÕES DO SERVIÇO </strong><span class="glyphicon glyphicon-wrench ml-15"></span></h4>
 								</div>
 								<hr>
 							</div>
 							<!-- STATUS -->
-							<div class="col-md-8 col-sm-8 col-xs-8 itensFormulario">
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>STATUS DO SERVIÇO<span class="required">*</span></label>
 									<select class="form-control input-sm" id="selectStatusU" name="selectStatusU">
@@ -81,17 +82,37 @@ if (isset($_SESSION['User'])) {
 								</div>
 							</div>
 							<!-- ORDEM DE SERVIÇO -->
-							<div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>ORDEM DE SERVIÇO</label>
 									<input type="number" readonly class="form-control text-uppercase input-sm" id="ordemServicoU" name="ordemServicoU" maxlength="10">
 								</div>
 							</div>
-							<!-- SERVIÇO EXECUTADO -->
+							<!-- SERVIÇO(s) EXECUTADO -->
 							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
 								<div>
 									<label>SERVIÇO(s) EXECUTADO(s)</label>
-									<textarea type="text" class="form-control text-uppercase input-sm" id="servicoU" name="servicoU" maxlength="1000" rows="3" style="resize: none"></textarea>
+									<!-- <textarea type="text" class="form-control text-uppercase input-sm" id="servicoU" name="servicoU" maxlength="1000" rows="3" style="resize: none"></textarea> -->
+									<select class="form-control input-sm" id="servicoSelect" name="servicoSelect">
+										<option value="">SELECIONE UM SERVIÇO</option>
+										<?php
+										$sql = "SELECT id_preco_servico, descricao, garantia, valor FROM preco_servicos ORDER BY id_preco_servico DESC";
+										$result = mysqli_query($conexao, $sql);
+										while ($servico = mysqli_fetch_row($result)) :
+										?>
+											<option value="<?php echo $servico[0] ?>"><?php echo $servico[1] ?></option>
+										<?php endwhile; ?>
+                                	</select>
+									<input type="text" readonly class="form-control text-uppercase valorTotal input-sm col-md-6 col-sm-6 col-xs-6 itensFormulario" id="valorServico" name="valorServico">
+									<input type="text" readonly class="form-control text-uppercase valorTotal input-sm col-md-6 col-sm-6 col-xs-6 itensFormulario" id="garantiaServico" name="garantiaServico">
+									<!-- ADICIONAR AO CARRINHO -->
+									<div class="btnRight">
+										<span class="btn btn-success" id="btnAdicionar" title="ADICIONAR ITEM">ADICIONAR ITEM</span>
+									</div>
+									<!-- CARRINHO -->
+									<div class="tabelas" align="center">
+										<div id="servicosExecutados"></div>
+									</div>
 								</div>
 							</div>
 							<!-- VALOR DE TERCEIRO -->
@@ -109,7 +130,7 @@ if (isset($_SESSION['User'])) {
 								</div>
 							</div>
 							<!-- GARANTIA -->
-							<div class="col-md-8 col-sm-8 col-xs-8 itensFormulario">
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>GARANTIA</label>
 									<select class="form-control text-uppercase input-sm" id="garantiaU" name="garantiaU" maxlength="100">
@@ -123,7 +144,7 @@ if (isset($_SESSION['User'])) {
 								</div>
 							</div>
 							<!-- DATA DE ENTREGA -->
-							<div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>DATA DE ENTREGA</label>
 									<input type="text" class="form-control text-uppercase dataSaida input-sm" id="dataSaidaU" name="dataSaidaU" maxlength="10">
@@ -148,6 +169,7 @@ if (isset($_SESSION['User'])) {
 									<label class="btnRadio">SIM</label>
 								</div>
 							</div>
+							
 							<!-- OBSERVAÇÕES -->
 							<div class='col-md-12 col-sm-12 col-xs-12 separador'>
                                 <div class="text-left">
@@ -180,6 +202,10 @@ if (isset($_SESSION['User'])) {
 	$(document).ready(function() {
 		$('.dataSaida').mask('99/99/9999');
 		$('.dataComunicadoU').mask('99/99/9999');
+		$('#servicoSelect').select2();
+		$("#valorServico").hide();
+		$("#garantiaServico").hide();
+		$('#servicosExecutados').load('./Views/Servicos/Tabelas/ServicosExecutados.php');
 		idServico = "<?php echo @$idServico ?>";
 		carregarDados(idServico);
 
@@ -190,6 +216,44 @@ if (isset($_SESSION['User'])) {
 			}
 		}); 
 	});
+
+	$('#servicoSelect').change(function() {
+		var servico = $("#servicoSelect").val();
+		debugger;
+		$.ajax({
+            type: "POST",
+            data: servico,
+            url: "./Procedimentos/Servicos/AdicionarServicos.php",
+            success: function(r) {
+				dado = jQuery.parseJSON(r);
+				debugger;
+            }
+        });
+		$("#valorServico").show();
+		$("#garantiaServico").show();
+    });
+
+	$('#btnAdicionar').click(function() {
+        var servico = $("#servicoSelect").val();
+
+        if (servico == "") {
+            alertify.error("SELECIONE UM SERVIÇO");
+            return false;
+        }
+
+        dados = $('#frmServicoU').serialize();
+
+        $.ajax({
+            type: "POST",
+            data: dados,
+            url: "./Procedimentos/Servicos/AdicionarServicos.php",
+            success: function(r) {
+                $('#servicosExecutados').load('./Views/Servicos/Tabelas/ServicosExecutados.php');
+                $("#servicoSelect").val("").change();
+                alertify.success("ITEM ADICIONADO");
+            }
+        });
+    });
 
 	$('#btnEditar').click(function() {
 		var statusServico = $("#selectStatusU").val();
