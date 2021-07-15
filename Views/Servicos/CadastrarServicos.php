@@ -21,9 +21,9 @@ if (isset($_SESSION['User'])) {
                 </div>
             </div>
             <!-- FORMULÁRIO -->
-            <div class="divFormulario">
+            <div class="divFormulario form-group">
                 <div class="mx-auto">
-                    <form id="frmNovoServico">
+                    <form id="frmNovoServico" name="frmNovoServico">
                         <div>
                             <!-- FORMULÁRIO DADOS DO CLIENTE -->
                             <div class='col-md-12 col-sm-12 col-xs-12'>
@@ -37,8 +37,7 @@ if (isset($_SESSION['User'])) {
                                 <div>
                                     <label>CLIENTE<span class="required">*</span></label>
                                     <select class="form-control input-sm" id="clienteSelect" name="clienteSelect">
-                                        <option value="0">SELECIONE UM CLIENTE</option>
-                                        <!-- PHP -->
+                                        <option value="">SELECIONE UM CLIENTE</option>
                                         <?php
                                         $sql = "SELECT id_cliente, nome, celular FROM clientes ORDER BY id_cliente DESC";
                                         $result = mysqli_query($conexao, $sql);
@@ -57,13 +56,13 @@ if (isset($_SESSION['User'])) {
                                 </div>
                                 <hr>
                             </div>
+                            <input type="text" class="form-control input-sm text-uppercase" id="teste" name="teste">
                             <!-- TIPO DO EQUIPAMENTO -->
                             <div class="col-md-8 col-sm-8 col-xs-8 itensFormulario">
                                 <div>
                                     <label>TIPO DO EQUIPAMENTO<span class="required">*</span></label>
                                     <select class="form-control input-sm" id="tipoEquipamento" name="tipoEquipamento">
                                         <option value="">SELECIONE UM TIPO</option>
-                                        <option value="ALLINONE">ALL IN ONE</option>
                                         <option value="DESKTOP">DESKTOP</option>
                                         <option value="NETBOOK">NETBOOK</option>
                                         <option value="NOTEBOOK">NOTEBOOK</option>
@@ -78,6 +77,25 @@ if (isset($_SESSION['User'])) {
                                 <div>
                                     <label>ORDEM DE SERVIÇO</label>
                                     <input type="text" readonly class="form-control input-sm text-uppercase" id="ordem" name="ordem">
+                                </div>
+                            </div>
+                            <!-- CHECKBOX OBSERVACOES -->
+                            <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario groupCheckObservacoes" id="groupCheckObservacoes">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <label class="form-check-label" for="inlineCheckbox1">FONTE DE ALIMENTAÇÃO</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <label class="form-check-label" for="inlineCheckbox2">PERIFÉRICOS</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                    <label class="form-check-label" for="inlineCheckbox3">CABOS</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                    <label class="form-check-label" for="inlineCheckbox4">OUTROS</label>
                                 </div>
                             </div>
                             <!-- EQUIPAMENTO -->
@@ -100,10 +118,30 @@ if (isset($_SESSION['User'])) {
                                     <label>STATUS DO SERVIÇO<span class="required">*</span></label>
                                     <select class="form-control input-sm" id="StatusSelect" name="StatusSelect">
                                         <option value="">SELECIONE UM STATUS</option>
-                                        <option value="ENTRADA">AUTORIZADO</option>
+                                        <option value="AUTORIZADO">AUTORIZADO</option>
                                         <option value="ORCAMENTO">ORÇAMENTO</option>
                                         <option value="RETORNO">RETORNO</option>
                                     </select>
+                                </div>
+                            </div>
+                            <!-- TAXA DE SERVICO AUTORIZADO -->
+                            <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario" id="grouptaxaServicoAutorizado">
+                                <div>
+                                    <label>TAXA DE SERVICO AUTORIZADO<span class="required">*</span></label>
+                                    <input type="text" class="form-control input-sm text-uppercase" id="taxaServicoAutorizado" name="taxaServicoAutorizado">
+                                </div>
+                            </div>
+                            <!-- TAXA DE ORÇAMENTO RECUSADO -->
+                            <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario" id="grouptaxaOrcamentoRecusado">
+                                <div>
+                                    <label>TAXA DE ORÇAMENTO RECUSADO</label>
+                                    <input type="text" readonly class="form-control input-sm text-uppercase" id="taxaOrcamentoRecusado" name="taxaOrcamentoRecusado">
+                                </div>
+                            </div>
+                            <!-- MENSAGEM AVISO ORÇAMENTO RECUSADO -->
+                            <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario avisoOrcamentoRecusado" id="avisoOrcamentoRecusado">
+                                <div>
+                                    <span>SERÁ COBRADO UMA TAXA NO VALOR DE R$ 25,00 CASO O ORÇAMENTO SEJA RECUSADO PELO CLIENTE!</span>
                                 </div>
                             </div>
                             <!-- OBSERVAÇÕES -->
@@ -121,7 +159,7 @@ if (isset($_SESSION['User'])) {
                             <!-- BOTÕES -->
                             <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                                 <div class="btnRight">
-                                    <span class="btn btn-primary" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
+                                    <span class="btn btn-primary" id="btnCadastrar" title="CADASTRAR" type="submit">CADASTRAR</span>
                                 </div>
                             </div>
                         </div>
@@ -143,16 +181,26 @@ if (isset($_SESSION['User'])) {
             $('#clienteSelect').select2();
             ocultarCampos();
             gerarNovaOrdem();
+            //camposObrigatorios("#frmNovoServico", ["teste", "clienteSelect"], true);
+            // $("#frmNovoServico").validate({
+            //     rules: {
+            //         teste: {
+            //             required: true
+            //         },
+            //         clienteSelect: {
+            //             required: true
+            //         }
+            //     }
+            // });
         }
 
         function setEvents() {
             $('#btnCadastrar').click(function() {
-                var nomeCliente = $("#clienteSelect").val();
-                var status = $("#StatusSelect").val();
-                var equipamento = $("#equipamento").val();
-                var serialnumber = $("#serialnumber").val();
+                var validator = $("#frmNovoServico").validate();
+                validator.form();
+                var checkValidator = validator.checkForm();
 
-                if ((nomeCliente == "") || (status == "") || (equipamento == "") || (serialnumber == "")) {
+                if (checkValidator == false) {
                     alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
                     return false;
                 }
@@ -186,14 +234,33 @@ if (isset($_SESSION['User'])) {
                 var tipo = $("#tipoEquipamento").val();
                 bloquearCampos(["equipamento", "serialNumber"], false);
                 limparCampos(["equipamento", "serialNumber"]);
-                mostrarCampos(["groupEquipamento", "groupSerialNumber"]);
+                esconderCampos(["groupEquipamento", "groupSerialNumber", "groupCheckObservacoes"]);
 
                 if (tipo == "DESKTOP") {
                     $("#equipamento").val("DESKTOP");
                     $("#serialNumber").val("DESKTOP");
                     bloquearCampos(["equipamento", "serialNumber"], true);
+                    mostrarCampos(["groupEquipamento", "groupSerialNumber"]);
+                } else if (tipo != "DESKTOP" && tipo != "") {
+                    mostrarCampos(["groupEquipamento", "groupSerialNumber", "groupCheckObservacoes"]);
                 } else {
+                    esconderCampos(["groupEquipamento", "groupSerialNumber"]);
+                }
+            });
 
+            $('#StatusSelect').change(function() {
+                esconderCampos(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado"]);
+                limparCampos(["taxaOrcamentoRecusado"]);
+                var status = $("#StatusSelect").val();
+
+                if (status == "ORCAMENTO") {
+                    mostrarCampos(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado"]);
+                    $("#taxaOrcamentoRecusado").val("R$ 25,00");
+                } else if (status == "AUTORIZADO") {
+                    mostrarCampos(["grouptaxaServicoAutorizado"]);
+                } else {
+                    esconderCampos(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado"]);
+                    limparCampos(["taxaOrcamentoRecusado"]);
                 }
             });
         }
@@ -210,7 +277,7 @@ if (isset($_SESSION['User'])) {
         }
 
         function ocultarCampos() {
-            esconderCampos(["groupEquipamento", "groupSerialNumber"]);
+            esconderCampos(["groupEquipamento", "groupSerialNumber", "grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado", "groupCheckObservacoes"]);
         }
     </script>
 

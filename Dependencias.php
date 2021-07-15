@@ -12,18 +12,23 @@
 <link rel="icon" href="Img/Icone.png">
 
 <!-- REFERÊNCIAS -->
-<script src="./Lib/jquery-3.5.1.min.js"></script>
-<script src="./Lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="./Lib/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="./Lib/jquery/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-<script src="./Lib/bootstrap_bundle/js/bootstrap.bundle.min.js"></script>
-<script src="./Lib/bootstrap/js/bootstrap.js"></script>
-<script src="./Lib/alertifyjs/alertify.js"></script>
-<script src="./Lib/select2/js/select2.js"></script>
-<script src="./Lib/moment.js"></script>
-<script src="./Lib/moment-with-locales.js"></script>
-<script src="./Js/funcoes.js"></script>
+<script type="text/javascript" src="./Lib/bootstrap_bundle/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="./Lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="./Lib/alertifyjs/alertify.js"></script>
+<script type="text/javascript" src="./Lib/select2/js/select2.js"></script>
+<script type="text/javascript" src="./Lib/moment.js"></script>
+<script type="text/javascript" src="./Lib/moment-with-locales.js"></script>
+<script type="text/javascript" src="./Js/funcoes.js"></script>
+<script type="text/javascript" src="./Lib/jquery_validation/jquery.validate.js"></script>
+<script type="text/javascript" src="./Lib/jquery_validation/jquery.validate.min.js"></script>
+<script type="text/javascript" src="./Lib/jquery_validation/additional-methods.js"></script>
+<script type="text/javascript" src="./Lib/jquery_validation/additional-methods.min.js"></script>
+<script type="text/javascript" src="./Lib/jquery_validation/localization/messages_pt_BR.js"></script>
 
 <link rel="stylesheet" type="text/css" href="./Lib/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="./Lib/bootstrap_bundle/css/bootstrap.min.css">
@@ -44,4 +49,5 @@
 <link rel="stylesheet" type="text/css" href="./Css/Produtos/OrcamentoProdutos.css">
 <link rel="stylesheet" type="text/css" href="./Css/MediaQueries.css">
 <link rel="stylesheet" type="text/css" href="./Css/Principal/Menu.css">
+<link rel="stylesheet" type="text/css" href="./Css/Servicos/CadastrarServicos.css">
 

@@ -1,0 +1,11 @@
+.avisoOrcamentoRecusado {
+    text-align: center;
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.groupCheckObservacoes{
+    text-align: center;
+}
