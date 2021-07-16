@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['User'])) {
+if (isset($_SESSION["User"])) {
 ?>
     <!DOCTYPE html>
     <html>
@@ -21,12 +21,12 @@ if (isset($_SESSION['User'])) {
                 </div>
             </div>
             <!-- FORMULÁRIO -->
-            <div class="divFormulario form-group">
+            <div class="divFormulario">
                 <div class="mx-auto">
-                    <form id="frmNovoServico" name="frmNovoServico">
+                    <form id="frmNovoServico" name="frmNovoServico" data-toggle="validator" role="form">
                         <div>
                             <!-- FORMULÁRIO DADOS DO CLIENTE -->
-                            <div class='col-md-12 col-sm-12 col-xs-12'>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="text-left">
                                     <h4><strong>DADOS DO CLIENTE </strong><span class="glyphicon glyphicon-user ml-15"></span></h4>
                                 </div>
@@ -35,7 +35,7 @@ if (isset($_SESSION['User'])) {
                             <!-- CLIENTE -->
                             <div class="col-md-8 col-sm-8 col-xs-8 itensFormulario">
                                 <div>
-                                    <label>CLIENTE<span class="required">*</span></label>
+                                    <label>CLIENTE</label>
                                     <select class="form-control input-sm" id="clienteSelect" name="clienteSelect">
                                         <option value="">SELECIONE UM CLIENTE</option>
                                         <?php
@@ -50,17 +50,16 @@ if (isset($_SESSION['User'])) {
                                 </div>
                             </div>
                             <!-- FORMULÁRIO INFORMAÇÕES DO EQUIPAMENTO / SERVIÇO -->
-                            <div class='col-md-12 col-sm-12 col-xs-12 separador'>
+                            <div class="col-md-12 col-sm-12 col-xs-12 separador">
                                 <div class="text-left">
                                     <h4><strong>INFORMAÇÕES DO EQUIPAMENTO E SERVIÇO </strong><span class="glyphicon glyphicon-wrench ml-15"></span></h4>
                                 </div>
                                 <hr>
                             </div>
-                            <input type="text" class="form-control input-sm text-uppercase" id="teste" name="teste">
                             <!-- TIPO DO EQUIPAMENTO -->
                             <div class="col-md-8 col-sm-8 col-xs-8 itensFormulario">
                                 <div>
-                                    <label>TIPO DO EQUIPAMENTO<span class="required">*</span></label>
+                                    <label>TIPO DO EQUIPAMENTO</label>
                                     <select class="form-control input-sm" id="tipoEquipamento" name="tipoEquipamento">
                                         <option value="">SELECIONE UM TIPO</option>
                                         <option value="DESKTOP">DESKTOP</option>
@@ -82,40 +81,40 @@ if (isset($_SESSION['User'])) {
                             <!-- CHECKBOX OBSERVACOES -->
                             <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario groupCheckObservacoes" id="groupCheckObservacoes">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <input class="form-check-input" type="checkbox" id="chkFonte" value="FONTE">
                                     <label class="form-check-label" for="inlineCheckbox1">FONTE DE ALIMENTAÇÃO</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <input class="form-check-input" type="checkbox" id="chkPerifericos" value="PERIFERICOS">
                                     <label class="form-check-label" for="inlineCheckbox2">PERIFÉRICOS</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                    <input class="form-check-input" type="checkbox" id="chkCabos" value="CABOS">
                                     <label class="form-check-label" for="inlineCheckbox3">CABOS</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                    <input class="form-check-input" type="checkbox" id="chkOutros" name="chkOutros" value="OUTROS">
                                     <label class="form-check-label" for="inlineCheckbox4">OUTROS</label>
                                 </div>
                             </div>
                             <!-- EQUIPAMENTO -->
                             <div class="col-md-8 col-sm-8 col-xs-8 itensFormulario" id="groupEquipamento">
                                 <div>
-                                    <label>EQUIPAMENTO / MARCA / MODELO<span class="required">*</span></label>
+                                    <label>EQUIPAMENTO / MARCA / MODELO</label>
                                     <input type="text" class="form-control input-sm text-uppercase" id="equipamento" name="equipamento" maxlength="1000">
                                 </div>
                             </div>
                             <!-- NÚMERO DE SÉRIE -->
                             <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario" id="groupSerialNumber">
                                 <div>
-                                    <label>NÚMERO DE SÉRIE<span class="required">*</span></label>
+                                    <label>NÚMERO DE SÉRIE</label>
                                     <input type="text" class="form-control input-sm text-uppercase" id="serialNumber" name="serialNumber" maxlength="500">
                                 </div>
                             </div>
                             <!-- STATUS -->
                             <div class="col-md-8 col-sm-8 col-xs-8 itensFormulario">
                                 <div>
-                                    <label>STATUS DO SERVIÇO<span class="required">*</span></label>
+                                    <label>STATUS DO SERVIÇO</label>
                                     <select class="form-control input-sm" id="StatusSelect" name="StatusSelect">
                                         <option value="">SELECIONE UM STATUS</option>
                                         <option value="AUTORIZADO">AUTORIZADO</option>
@@ -127,7 +126,7 @@ if (isset($_SESSION['User'])) {
                             <!-- TAXA DE SERVICO AUTORIZADO -->
                             <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario" id="grouptaxaServicoAutorizado">
                                 <div>
-                                    <label>TAXA DE SERVICO AUTORIZADO<span class="required">*</span></label>
+                                    <label>TAXA DE SERVICO AUTORIZADO</label>
                                     <input type="text" class="form-control input-sm text-uppercase" id="taxaServicoAutorizado" name="taxaServicoAutorizado">
                                 </div>
                             </div>
@@ -145,7 +144,7 @@ if (isset($_SESSION['User'])) {
                                 </div>
                             </div>
                             <!-- OBSERVAÇÕES -->
-                            <div class='col-md-12 col-sm-12 col-xs-12 separador'>
+                            <div class="col-md-12 col-sm-12 col-xs-12 separador">
                                 <div class="text-left">
                                     <h4><strong>OBSERVAÇÕES </strong> <span class="glyphicon glyphicon-exclamation-sign ml-15"></span></h4>
                                 </div>
@@ -178,24 +177,15 @@ if (isset($_SESSION['User'])) {
         });
 
         function initForm() {
-            $('#clienteSelect').select2();
+            $("#clienteSelect").select2();
             ocultarCampos();
             gerarNovaOrdem();
-            //camposObrigatorios("#frmNovoServico", ["teste", "clienteSelect"], true);
-            // $("#frmNovoServico").validate({
-            //     rules: {
-            //         teste: {
-            //             required: true
-            //         },
-            //         clienteSelect: {
-            //             required: true
-            //         }
-            //     }
-            // });
+            validarForm("frmNovoServico");
+            camposObrigatorios(["clienteSelect", "tipoEquipamento", "StatusSelect"], true);
         }
 
         function setEvents() {
-            $('#btnCadastrar').click(function() {
+            $("#btnCadastrar").click(function() {
                 var validator = $("#frmNovoServico").validate();
                 validator.form();
                 var checkValidator = validator.checkForm();
@@ -205,7 +195,7 @@ if (isset($_SESSION['User'])) {
                     return false;
                 }
 
-                dados = $('#frmNovoServico').serialize();
+                dados = $("#frmNovoServico").serialize();
 
                 $.ajax({
                     type: "POST",
@@ -213,15 +203,15 @@ if (isset($_SESSION['User'])) {
                     url: "./Procedimentos/Servicos/CadastrarServicos.php",
                     success: function(r) {
                         if (r > 1) {
-                            $('#frmNovoServico')[0].reset();
+                            $("#frmNovoServico")[0].reset();
                             $("#clienteSelect").val("0").change();
                             alertify.success("CADASTRO REALIZADO");
                             // IMPRIMIR COMPROVANTE?
-                            alertify.confirm('ATENÇÃO', 'DESEJA IMPRIMIR ORDEM DE SERVIÇO?', function() {
+                            alertify.confirm("ATENÇÃO", "DESEJA IMPRIMIR ORDEM DE SERVIÇO?", function() {
                                 const id = r;
                                 alertify.confirm().close();
                                 window.open("./Procedimentos/Servicos/OrdemServico.php?idServ=" + id);
-                                $('#conteudo').load("./Views/Servicos/CadastrarServicos.php");
+                                $("#conteudo").load("./Views/Servicos/CadastrarServicos.php");
                             }, function() {});
                         } else {
                             alertify.error("NÃO FOI POSSÍVEL CADASTRAR");
@@ -230,7 +220,7 @@ if (isset($_SESSION['User'])) {
                 });
             });
 
-            $('#tipoEquipamento').change(function() {
+            $("#tipoEquipamento").change(function() {
                 var tipo = $("#tipoEquipamento").val();
                 bloquearCampos(["equipamento", "serialNumber"], false);
                 limparCampos(["equipamento", "serialNumber"]);
@@ -241,14 +231,20 @@ if (isset($_SESSION['User'])) {
                     $("#serialNumber").val("DESKTOP");
                     bloquearCampos(["equipamento", "serialNumber"], true);
                     mostrarCampos(["groupEquipamento", "groupSerialNumber"]);
+                    camposObrigatorios(["equipamento", "serialNumber"], false);
+                    var validator = $("#frmNovoServico").validate();
+                    validator.form();
+                    //var checkValidator = validator.checkForm();
                 } else if (tipo != "DESKTOP" && tipo != "") {
                     mostrarCampos(["groupEquipamento", "groupSerialNumber", "groupCheckObservacoes"]);
+                    camposObrigatorios(["equipamento", "serialNumber"], true);
                 } else {
                     esconderCampos(["groupEquipamento", "groupSerialNumber"]);
+                    camposObrigatorios(["equipamento", "serialNumber"], false);
                 }
             });
 
-            $('#StatusSelect').change(function() {
+            $("#StatusSelect").change(function() {
                 esconderCampos(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado"]);
                 limparCampos(["taxaOrcamentoRecusado"]);
                 var status = $("#StatusSelect").val();
@@ -263,6 +259,16 @@ if (isset($_SESSION['User'])) {
                     limparCampos(["taxaOrcamentoRecusado"]);
                 }
             });
+
+            $("#chkOutros").click(function() {
+                var check = $("#chkOutros").is(":checked");
+                if (check == true) {
+                    camposObrigatorios(["observacao"], true);
+                } else {
+                    camposObrigatorios(["observacao"], false);
+                }
+            });
+
         }
 
         function gerarNovaOrdem() {

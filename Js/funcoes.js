@@ -35,29 +35,3 @@ const limparCampos = function (nomeCampos) {
         $("#" + valor).val("");
     });
 };
-
-const camposObrigatorios = function (nomeForm, nomeCampos, bool) {
-    bool = bool !== undefined ? bool : true;
-    nomeCampos = Array.isArray(nomeCampos) ? nomeCampos : nomeCampos.split(",");
-    console.log(nomeCampos);
-
-    nomeCampos.forEach(function (valor) {
-        if (bool == true) {
-            $(nomeForm).validate({
-                rules: {
-                    valor: {
-                        required: true
-                    }
-                }
-            });
-        } else {
-            $(nomeForm).validate({
-                rules: {
-                    valor: {
-                        required: false
-                    }
-                }
-            });
-        }
-    });
-};

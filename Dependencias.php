@@ -23,12 +23,13 @@
 <script type="text/javascript" src="./Lib/select2/js/select2.js"></script>
 <script type="text/javascript" src="./Lib/moment.js"></script>
 <script type="text/javascript" src="./Lib/moment-with-locales.js"></script>
-<script type="text/javascript" src="./Js/funcoes.js"></script>
+<script type="text/javascript" src="./Js/Funcoes.js"></script>
 <script type="text/javascript" src="./Lib/jquery_validation/jquery.validate.js"></script>
 <script type="text/javascript" src="./Lib/jquery_validation/jquery.validate.min.js"></script>
 <script type="text/javascript" src="./Lib/jquery_validation/additional-methods.js"></script>
 <script type="text/javascript" src="./Lib/jquery_validation/additional-methods.min.js"></script>
 <script type="text/javascript" src="./Lib/jquery_validation/localization/messages_pt_BR.js"></script>
+<script type="text/javascript" src="./Js/Validation.js"></script>
 
 <link rel="stylesheet" type="text/css" href="./Lib/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="./Lib/bootstrap_bundle/css/bootstrap.min.css">
@@ -50,4 +51,5 @@
 <link rel="stylesheet" type="text/css" href="./Css/MediaQueries.css">
 <link rel="stylesheet" type="text/css" href="./Css/Principal/Menu.css">
 <link rel="stylesheet" type="text/css" href="./Css/Servicos/CadastrarServicos.css">
+<link rel="stylesheet" type="text/css" href="./Css/Validation.css">
 
