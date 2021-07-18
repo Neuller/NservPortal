@@ -78,25 +78,6 @@ if (isset($_SESSION["User"])) {
                                     <input type="text" readonly class="form-control input-sm text-uppercase" id="ordem" name="ordem">
                                 </div>
                             </div>
-                            <!-- CHECKBOX OBSERVACOES -->
-                            <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario groupCheckObservacoes" id="groupCheckObservacoes">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="chkFonte" value="FONTE">
-                                    <label class="form-check-label" for="inlineCheckbox1">FONTE DE ALIMENTAÇÃO</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="chkPerifericos" value="PERIFERICOS">
-                                    <label class="form-check-label" for="inlineCheckbox2">PERIFÉRICOS</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="chkCabos" value="CABOS">
-                                    <label class="form-check-label" for="inlineCheckbox3">CABOS</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="chkOutros" name="chkOutros" value="OUTROS">
-                                    <label class="form-check-label" for="inlineCheckbox4">OUTROS</label>
-                                </div>
-                            </div>
                             <!-- EQUIPAMENTO -->
                             <div class="col-md-8 col-sm-8 col-xs-8 itensFormulario" id="groupEquipamento">
                                 <div>
@@ -109,6 +90,28 @@ if (isset($_SESSION["User"])) {
                                 <div>
                                     <label>NÚMERO DE SÉRIE</label>
                                     <input type="text" class="form-control input-sm text-uppercase" id="serialNumber" name="serialNumber" maxlength="500">
+                                </div>
+                            </div>
+                            <!-- CHECKBOX OBSERVACOES -->
+                            <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario" class="groupCheckObservacoes" id="groupCheckObservacoes">
+                                <label>ITENS DEIXADOS PELO CLIENTE</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="chkFonte" name="chkFonte" value="SIM">
+                                        <label class="form-check-label" for="chkFonte">FONTE DE ALIMENTAÇÃO</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="chkPerifericos" name="chkPerifericos" value="SIM">
+                                        <label class="form-check-label" for="chkPerifericos">PERIFÉRICOS</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="chkCabos" name="chkCabos" value="SIM">
+                                        <label class="form-check-label" for="chkCabos">CABOS</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="chkOutros" name="chkOutros" value="SIM">
+                                        <label class="form-check-label" for="chkOutros">OUTROS</label>
+                                    </div>
                                 </div>
                             </div>
                             <!-- STATUS -->
@@ -127,7 +130,7 @@ if (isset($_SESSION["User"])) {
                             <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario" id="grouptaxaServicoAutorizado">
                                 <div>
                                     <label>TAXA DE SERVICO AUTORIZADO</label>
-                                    <input type="text" class="form-control input-sm text-uppercase" id="taxaServicoAutorizado" name="taxaServicoAutorizado">
+                                    <input type="number" class="form-control input-sm text-uppercase" id="taxaServicoAutorizado" name="taxaServicoAutorizado">
                                 </div>
                             </div>
                             <!-- TAXA DE ORÇAMENTO RECUSADO -->
@@ -204,13 +207,15 @@ if (isset($_SESSION["User"])) {
                     success: function(r) {
                         if (r > 1) {
                             $("#frmNovoServico")[0].reset();
-                            $("#clienteSelect").val("0").change();
+                            $("#clienteSelect").val("").change();
+                            ocultarCampos();
                             alertify.success("CADASTRO REALIZADO");
                             // IMPRIMIR COMPROVANTE?
                             alertify.confirm("ATENÇÃO", "DESEJA IMPRIMIR ORDEM DE SERVIÇO?", function() {
                                 const id = r;
+                                console.log(id);
                                 alertify.confirm().close();
-                                window.open("./Procedimentos/Servicos/OrdemServico.php?idServ=" + id);
+                                window.open("./Procedimentos/Servicos/OrdemServico/CriarOrdemServicoEntrada.php?idServ=" + id);
                                 $("#conteudo").load("./Views/Servicos/CadastrarServicos.php");
                             }, function() {});
                         } else {
@@ -260,13 +265,18 @@ if (isset($_SESSION["User"])) {
                 }
             });
 
+            $("#chkFonte").click(function() {});
+
+            $("#chkPerifericos").click(function() {
+                setObservacoes();
+            });
+
+            $("#chkCabos").click(function() {
+                setObservacoes();
+            });
+
             $("#chkOutros").click(function() {
-                var check = $("#chkOutros").is(":checked");
-                if (check == true) {
-                    camposObrigatorios(["observacao"], true);
-                } else {
-                    camposObrigatorios(["observacao"], false);
-                }
+                setObservacoes();
             });
 
         }
@@ -284,6 +294,18 @@ if (isset($_SESSION["User"])) {
 
         function ocultarCampos() {
             esconderCampos(["groupEquipamento", "groupSerialNumber", "grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado", "groupCheckObservacoes"]);
+        }
+
+        function setObservacoes() {
+            var checkPerifericos = $("#chkPerifericos").is(":checked");
+            var checkCabos = $("#chkCabos").is(":checked");
+            var checkOutros = $("#chkOutros").is(":checked");
+
+            if (checkPerifericos || checkCabos || checkOutros) {
+                camposObrigatorios(["observacao"], true);
+            } else {
+                camposObrigatorios(["observacao"], false);
+            }
         }
     </script>
 

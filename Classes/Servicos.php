@@ -7,14 +7,14 @@ class servicos{
 
 		$data = date('Y-m-d');
 
-		$sql = "INSERT INTO servicos (id_cliente, id_usuario, equipamento, observacao, serial_number, data_cadastro, status, ordem_servico) 
-		VALUES ('$dados[0]', '$dados[1]', '$dados[3]', '$dados[4]', '$dados[5]', '$data', '$dados[2]', '$dados[6]')";
+		$sql = "INSERT INTO servicos (id_cliente, id_usuario, tipo_equipamento, equipamento, observacao, serial_number, data_cadastro, status, ordem_servico, itens_cliente_fonte, taxa_servico_autorizado) 
+		VALUES ('$dados[0]', '$dados[1]', '$dados[3]', '$dados[4]', '$dados[5]', '$dados[6]', '$data', '$dados[2]', '$dados[7]', '$dados[8]', '$dados[9]')";
 
 		$r = $r + $result = mysqli_query($conexao, $sql);	
 
-		$sql = "SELECT max(id_servico) FROM servicos";
+		$sql_ultimo_servico = "SELECT max(id_servico) FROM servicos";
 
-        $result = mysqli_query($conexao, $sql);
+        $result = mysqli_query($conexao, $sql_ultimo_servico);
         $ultimoID = mysqli_fetch_row($result)[0];
 
         return $ultimoID;
