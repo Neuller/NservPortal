@@ -145,14 +145,14 @@ $ordemServ = $mostrar[13];
                 <div>
                     <?php if ($status == "ORCAMENTO") {
                         echo
-                            "
+                        "
                             <div>
                                 <span>
                                     <strong>ORDEM: ORÇAMENTO</strong>
                                 </span>
                             </div>
                             ";
-                        }
+                    }
                     ?>
                 </div>
                 <!-- EQUIPAMENTO -->
@@ -167,8 +167,16 @@ $ordemServ = $mostrar[13];
                 </div>
                 <!-- OBSERVAÇÕES -->
                 <div>
-                    <span>OBSERVAÇÕES: </span>
-                    <span><?php echo $observacoes;  ?></span>
+                    <?php if ($observacoes != "") {
+                        echo
+                        "
+                            <div>
+                                <span>OBSERVAÇÕES</span>
+                                <span><?php echo . $observacoes .  ?></span>
+                            </div>
+                            ";
+                    }
+                    ?>
                 </div>
             </div>
         </form>

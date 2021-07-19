@@ -205,7 +205,7 @@ if (isset($_SESSION["User"])) {
                     data: dados,
                     url: "./Procedimentos/Servicos/CadastrarServicos.php",
                     success: function(r) {
-                        if (r > 1) {
+                        if (r > 0) {
                             $("#frmNovoServico")[0].reset();
                             $("#clienteSelect").val("").change();
                             ocultarCampos();
@@ -238,8 +238,7 @@ if (isset($_SESSION["User"])) {
                     mostrarCampos(["groupEquipamento", "groupSerialNumber"]);
                     camposObrigatorios(["equipamento", "serialNumber"], false);
                     var validator = $("#frmNovoServico").validate();
-                    validator.form();
-                    //var checkValidator = validator.checkForm();
+                    validator.resetForm();
                 } else if (tipo != "DESKTOP" && tipo != "") {
                     mostrarCampos(["groupEquipamento", "groupSerialNumber", "groupCheckObservacoes"]);
                     camposObrigatorios(["equipamento", "serialNumber"], true);
