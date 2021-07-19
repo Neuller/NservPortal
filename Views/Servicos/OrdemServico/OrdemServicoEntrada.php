@@ -57,12 +57,17 @@ $ordemServ = $mostrar[13];
     <div class="text-center" align="center">
         <div class="tituloOrdemServico">
             <?php
-                echo "<span><strong>ORDEM DE SERVIÇO - #" . $ordemServ . "</strong></span>";
+            echo "<span><strong>ORDEM DE SERVIÇO - #" . $ordemServ . "</strong></span>";
             ?>
         </div>
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12">
-
+        <!-- DATA DE ENTRADA -->
+        <div class="text-right dataEntrada">
+            <?php
+            echo "<span>DATA DE ENTRADA: " . $objUtils->data($dataEntrada) . "</span>";
+            ?>
+        </div>
         <form class="formularioOrdemServico fonteOrdemServico">
             <!-- INFORMAÇÕES DO CLIENTE -->
             <div>
@@ -72,10 +77,10 @@ $ordemServ = $mostrar[13];
                 <hr>
             </div>
             <?php
-            $sql = "SELECT nome, cpf, cnpj, cep, bairro, uf, endereco, numero, complemento, telefone, celular, email
+            $sql_cliente = "SELECT nome, cpf, cnpj, cep, bairro, uf, endereco, numero, complemento, telefone, celular, email
             FROM clientes WHERE id_cliente = '$idCliente'";
 
-            $result = mysqli_query($conexao, $sql);
+            $result = mysqli_query($conexao, $sql_cliente);
             while ($informacoesCliente = mysqli_fetch_row($result)) {
             ?>
                 <div class="dadosCliente">
@@ -127,6 +132,7 @@ $ordemServ = $mostrar[13];
                     <span><?php echo $informacoesCliente[10]; ?></span>
                 </div>
             <?php } ?>
+
             <!-- INFORMAÇÕES DO EQUIPAMENTO E SERVIÇOS -->
             <div class="equipamentoServicos">
                 <div class="text-left">
@@ -135,53 +141,38 @@ $ordemServ = $mostrar[13];
                 <hr>
             </div>
             <div class="dadosEquipamento">
+                <!-- STATUS ORÇAMENTO -->
+                <div>
+                    <?php if ($status == "ORCAMENTO") {
+                        echo
+                            "
+                            <div>
+                                <span>
+                                    <strong>ORDEM: ORÇAMENTO</strong>
+                                </span>
+                            </div>
+                            ";
+                        }
+                    ?>
+                </div>
+                <!-- EQUIPAMENTO -->
                 <div>
                     <span>EQUIPAMENTO:</span>
                     <span><?php echo $equipamento; ?></span>
                 </div>
+                <!-- NÚMERO DE SÉRIE -->
                 <div>
                     <span>NÚMERO DE SÉRIE:</span>
                     <span><?php echo $serialNumber; ?></span>
                 </div>
-
                 <!-- OBSERVAÇÕES -->
                 <div>
                     <span>OBSERVAÇÕES: </span>
                     <span><?php echo $observacoes;  ?></span>
                 </div>
-
-                <div>
-                    <span>DATA DE ENTRADA:</span>
-                    <span><?php echo $objUtils->data($dataEntrada); ?></span>
-                </div>
-
-                <!-- DATA DE SAÍDA -->
-                <div>
-                    <span>
-                        <?php
-                        if (($dataSaida == 0) || ($dataSaida == null) || ($dataSaida == "")) {
-                            echo "";
-                        } else {
-                            echo "<span>DATA DE SAÍDA: </span>" . $dataSaida;
-                        }
-                        ?>
-                    </span>
-                </div>
-
-                <!-- VALOR TOTAL -->
-                <div>
-                    <span>
-                        <?php
-                        if (($valorTotal == 0) || ($valorTotal == null) || ($valorTotal == "")) {
-                            echo "";
-                        } else {
-                            echo "<span>VALOR TOTAL: R$ </span>" . $valorTotal;
-                        }
-                        ?>
-                    </span>
-                </div>
             </div>
         </form>
+
         <!-- CONDIÇÕES DE SERVIÇOS -->
         <div class="equipamentoServicos">
             <div class="text-center" align="center">
@@ -200,7 +191,7 @@ $ordemServ = $mostrar[13];
                     </div>
                     <div class='itensFormulario'>
                         <span>
-                            SERÁ COBRADO UMA TAXA DE R$ 25,00 PARA ORÇAMENTOS RECUSADOS.
+                            SERÁ COBRADO UMA TAXA DE R$ 25,00 PARA ORÇAMENTOS RECUSADOS PELO CLIENTE.
                         </span>
                     </div>
                     ";
