@@ -232,6 +232,10 @@ if (isset($_SESSION['User'])) {
         $("#precoServicos").click(function(e) {
             $('#conteudo').load("./Views/Servicos/PrecoServicos.php");
         });
+        // USUÁRIOS
+        $("#cadastrarUsuarios").click(function(e) {
+            $('#conteudo').load("./Views/Usuarios/CadastrarUsuarios.php");
+        });
         // VENDAS
         $("#cadastrarVendas").click(function(e) {
             moment.locale('pt-br');
