@@ -121,6 +121,7 @@ if (isset($_SESSION['User'])) {
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- SAIR -->
+                                    
                                     <li>
                                         <a style="color: red" href="./Procedimentos/Sair.php">
                                             <span class="glyphicon glyphicon-off"></span> SAIR
