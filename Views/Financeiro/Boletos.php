@@ -27,7 +27,6 @@ if (isset($_SESSION['User'])) {
                         <div>
                             <!-- FORMULÁRIO DADOS USUÁRIOS -->
 
-
                             <!-- REFERÊNCIA -->
                             <div class="col-md-3 col-sm-3 col-xs-3 itensFormulario">
                                 <div>
