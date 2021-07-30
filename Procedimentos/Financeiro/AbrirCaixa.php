@@ -15,5 +15,5 @@
 		$_POST['caixaInicial'] = strtoupper($_POST['caixaInicial'])
 	);
 
-	echo $obj-> abrirCaixa($dados);
+	echo $obj-> AbrirCaixa($dados);
 ?>

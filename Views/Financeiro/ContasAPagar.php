@@ -25,20 +25,24 @@ if (isset($_SESSION['User'])) {
                 <div class="mx-auto">
                     <form id="frmContasAPagar">
                         <div>
-                            <!-- FORMULÁRIO DADOS USUÁRIOS -->
-
-                            <!-- GRUPO -->
-                            <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
+                            <!-- TIPO -->
+                            <div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
                                 <div>
-                                    <label>GRUPO</label>
-                                    <select class="form-control input-sm" id="grupoTipo" name="tipo">
+                                    <label>TIPO</label>
+                                    <select class="form-control input-sm" id="tipo" name="tipo">
                                         <option value="">SELECIONE UM TIPO</option>
-                                        <option value="GERAL">BOLETOS</option>
-                                        <option value="ADMIM">OUTROS</option>
+                                        <option value="BOLETO">BOLETO</option>
+                                        <option value="OUTROS">OUTROS</option>
                                     </select>
                                 </div>
                             </div>
-
+                            <!-- REFERÊNCIA -->
+                            <div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+                                <div>
+                                    <label>REFERÊNCIA</label>
+                                    <input type="text" readonly class="form-control input-sm text-uppercase" id="referencia" name="referencia">
+                                </div>
+                            </div>
                             <!-- DESCRIÇÃO -->
                             <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
                                 <div>
@@ -46,37 +50,30 @@ if (isset($_SESSION['User'])) {
                                     <input type="text" class="form-control input-sm align text-uppercase" id="descricao" name="descricao" maxlenght="100">
                                 </div>
                             </div>
-                            <!-- REFERÊNCIA -->
-                            <div class="col-md-5 col-sm-5 col-xs-5 itensFormulario">
-                                <div>
-                                    <label>REFERÊNCIA</label>
-                                    <input type="text" readonly class="form-control input-sm text-uppercase" id="referencia" name="referencia">
-                                </div>
-                            </div>
                             <!-- DATA DE VENCIMENTO -->
-                            <div class="col-md-5 col-sm-5 col-xs-5 itensFormulario">
+                            <div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
                                 <div>
                                     <label>DATA DE VENCIMENTO</label>
                                     <input type="date" class="form-control input-sm text-uppercase" id="dataVencimento" name="dataVencimento">
                                 </div>
                             </div>
                             <!-- VALOR -->
-                            <div class="col-md-2 col-sm-2 col-xs-2 itensFormulario">
+                            <div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
                                 <div>
                                     <label>VALOR</label>
                                     <input type="number" class="form-control input-sm align text-uppercase" id="valor" name="valor">
                                 </div>
                             </div>
-                        </div><!-- BOTÕES -->
-                        <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
-                            <div class="btnRight">
-                                <span class="btn btn-primary" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
+                            <!-- BOTÕES -->
+                            <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
+                                <div class="btnRight">
+                                    <span class="btn btn-primary" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
+                                </div>
                             </div>
                         </div>
+                    </form>
                 </div>
-                </form>
             </div>
-        </div>
         </div>
     </body>
 
@@ -90,7 +87,7 @@ if (isset($_SESSION['User'])) {
 
         function initForm() {
             validarForm("frmContasAPagar");
-            camposObrigatorios(["grupoTipo", "referencia", "descricao", "valor", "dataVencimento"], true);
+            camposObrigatorios(["tipo", "descricao", "valor", "dataVencimento"], true);
             moment.locale('pt-br');
             var data = moment().format('DD/MM/YYYY');
             $("#referencia").val(data);

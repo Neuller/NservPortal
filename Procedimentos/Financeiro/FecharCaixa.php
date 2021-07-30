@@ -19,5 +19,5 @@
 		$_POST['acessos'] = strtoupper($_POST['acessos'])
 	);
 
-	echo $obj-> fecharCaixa($dados);
+	echo $obj-> FecharCaixa($dados);
 ?>
