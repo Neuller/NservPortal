@@ -53,7 +53,7 @@ if (isset($_SESSION['User'])) {
                                     FINANCEIRO
                                 </a>
                                 <ul class="dropdown-menu">
-                                 <li><a id="cadastrarBoletos" href="#">BOLETOS</a></li>    
+                                 <li><a id="contasAPagar" href="#">CONTAS A PAGAR</a></li>    
                                  <li><a id="fluxoCaixa" href="#">FLUXO DE CAIXA</a></li>
                                 </ul>
                             </li>
@@ -172,8 +172,8 @@ if (isset($_SESSION['User'])) {
             window.open("./Views/Documentos/DadosEmpresarial.pdf");
         });
         // FINANCEIRO
-        $("#cadastrarBoletos").click(function(e) {
-            $('#conteudo').load("./Views/Financeiro/Boletos.php");
+        $("#contasAPagar").click(function(e) {
+            $('#conteudo').load("./Views/Financeiro/ContasAPagar.php");
         });
         $("#fluxoCaixa").click(function(e) {
             $('#conteudo').load("./Views/Financeiro/FluxoCaixa.php");

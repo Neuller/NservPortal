@@ -6,11 +6,12 @@ require_once "../../Classes/Financas.php";
 $obj = new financas();
 
 $dados = array(		
-$_POST['referencia'] = strtoupper($_POST['referencia']),		
+$_POST['grupoTipo'] = strtoupper($_POST['grupoTipo']),    
 $_POST['descricao'] = strtoupper($_POST['descricao']),
-$_POST['valor'] = strtoupper($_POST['valor']),
+$_POST['referencia'] = strtoupper($_POST['referencia']),
 $_POST['dataVencimento'] = strtoupper($_POST['dataVencimento']),
+$_POST['valor'] = strtoupper($_POST['valor']),
 );
 
-echo $obj-> CadastrarBoletos($dados);
+echo $obj->contasAPagar($dados);
 ?>

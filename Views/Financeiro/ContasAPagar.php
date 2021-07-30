@@ -17,39 +17,51 @@ if (isset($_SESSION['User'])) {
             <!-- CABEÇALHO -->
             <div class="cabecalho bgGray">
                 <div class="text-center textCabecalho opacidade">
-                    <h3><strong> BOLETOS</strong></h3>
+                    <h3><strong>CONTAS A PAGAR</strong></h3>
                 </div>
             </div>
             <!-- FORMULÁRIO -->
             <div class="divFormulario">
                 <div class="mx-auto">
-                    <form id="frmBoletos">
+                    <form id="frmContasAPagar">
                         <div>
                             <!-- FORMULÁRIO DADOS USUÁRIOS -->
 
-                            <!-- REFERÊNCIA -->
-                            <div class="col-md-3 col-sm-3 col-xs-3 itensFormulario">
-                                <div>
-                                    <label>REFERÊNCIA</label>
-                                    <input type="date" class="form-control input-sm text-uppercase" id="referencia" name="referencia">
-                                </div>
-                            </div>
+                            <!-- GRUPO -->
+							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
+								<div>
+									<label>GRUPO</label>
+									<select class="form-control input-sm" id="grupoTipo" name="tipo">
+										<option value="">SELECIONE UM TIPO</option>
+										<option value="GERAL">BOLETOS</option>
+										<option value="ADMIM">OUTROS</option>
+									</select>
+								</div>
+							</div>
+                            
                             <!-- DESCRIÇÃO -->
-                            <div class="col-md-9 col-sm-9 col-xs-9 itensFormulario">
+                            <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
                                 <div>
                                     <label>DESCRIÇÃO</label>
                                     <input type="text" class="form-control input-sm align text-uppercase" id="descricao" name="descricao" maxlenght="100">
                                 </div>
                             </div>
+                            <!-- REFERÊNCIA -->
+                            <div class="col-md-5 col-sm-5 col-xs-5 itensFormulario">
+                                <div>
+                                    <label>REFERÊNCIA</label>
+                                    <input type="date" class="form-control input-sm text-uppercase" id="referencia" name="referencia">
+                                </div>
+                            </div>
                             <!-- DATA DE VENCIMENTO -->
-                            <div class="col-md-3 col-sm-3 col-xs-3 itensFormulario">
+                            <div class="col-md-5 col-sm-5 col-xs-5 itensFormulario">
                                 <div>
                                     <label>DATA DE VENCIMENTO</label>
                                     <input type="date" class="form-control input-sm text-uppercase" id="dataVencimento" name="dataVencimento">
                                 </div>
                             </div>
                             <!-- VALOR -->
-                            <div class="col-md-3 col-sm-3 col-xs-3 itensFormulario">
+                            <div class="col-md-2 col-sm-2 col-xs-2 itensFormulario">
                                 <div>
                                     <label>VALOR</label>
                                     <input type="number" class="form-control input-sm align text-uppercase" id="valor" name="valor">
@@ -77,13 +89,13 @@ if (isset($_SESSION['User'])) {
         });
 
         function initForm() {
-            validarForm("frmBoletos");
-            camposObrigatorios(["referencia", "descricao", "valor", "dataVencimento"], true);
+            validarForm("frmContasAPagar");
+            camposObrigatorios(["grupoTipo", "referencia", "descricao", "valor", "dataVencimento"], true);
         }
 
         function setEvents() {
             $("#btnCadastrar").click(function() {
-                var validator = $("#frmBoletos").validate();
+                var validator = $("#frmContasAPagar").validate();
                 validator.form();
                 var checkValidator = validator.checkForm();
 
@@ -92,15 +104,15 @@ if (isset($_SESSION['User'])) {
                     return false;
                 }
 
-                dados = $("#frmBoletos").serialize();
+                dados = $("#frmContasAPagar").serialize();
 
                 $.ajax({
                     type: "POST",
                     data: dados,
-                    url: "./Procedimentos/Financeiro/Boletos/CadastrarBoletos.php",
+                    url: "./Procedimentos/Financeiro/ContasAPagar/ContasAPagar.php",
                     success: function(r) {
                         if (r > 0) {
-                            $("#frmBoletos")[0].reset();
+                            $("#frmContasAPagar")[0].reset();
                             alertify.success("CADASTRO REALIZADO");
                         } else {
                             alertify.error("NÃO FOI POSSÍVEL CADASTRAR");

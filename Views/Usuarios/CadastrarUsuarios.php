@@ -26,31 +26,25 @@ if (isset($_SESSION['User'])) {
 					<form id="frmUsuarios">
 						<div>
 							<!-- FORMULÁRIO DADOS USUÁRIOS -->
-							<div class='col-md-12 col-sm-12 col-xs-12'>
-								<div class="text-left">
-									<h4><strong>DADOS USUÁRIOS </strong><span class="glyphicon glyphicon-user ml-15"></span></h4>
-								</div>
-								<hr>
-							</div>
 
 							<!-- NOME -->
 							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
 								<div>
-									<label>NOME COMPLETO<span class="required">*</span></label>
+									<label>NOME COMPLETO</label>
 									<input type="text" class="form-control input-sm text-uppercase" id="nome" name="nome" maxlenght="100">
 								</div>
 							</div>
 							<!-- LOGIN -->
 							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
-									<label>LOGIN<span class="required">*</span></label>
+									<label>LOGIN</label>
 									<input type="text" class="form-control input-sm text-uppercase" id="login" name="login" maxlenght="100">
 								</div>
 							</div>
 							<!-- SENHA -->
 							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
-									<label>SENHA<span class="required">*</span></label>
+									<label>SENHA</label>
 									<input type="password" class="form-control input-sm align text-uppercase" id="senha" name="senha" maxlenght="100">
 								</div>
 							</div>
