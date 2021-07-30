@@ -42,17 +42,27 @@ class financas{
         return $mostrar[0];
     }
 
+    // CONTAS A PAGAR
     public function CadastrarContasAPagar($dados) {
         $c = new conectar();
         $conexao = $c -> conexao();
 
         $idUsuario = $_SESSION['IDUser'];
 
-        $sql = "INSERT into contas_a_pagar (id_usuario, tipo, descricao, referencia, data_vencimento, valor) 
-        VALUES ('$idUsuario', '$dados[0]', '$dados[1]', '$dados[2]', '$dados[3]', '$dados[4]')";
+        $sql = "INSERT into contas_a_pagar (id_usuario, tipo, descricao, referencia, data_vencimento, valor, status) 
+        VALUES ('$idUsuario', '$dados[0]', '$dados[1]', '$dados[2]', '$dados[3]', '$dados[4]', 'PENDENTE')";
         
         return mysqli_query($conexao, $sql);
     }
+
+    public function excluirTitulo($idTitulo){
+		$c = new conectar();
+		$conexao = $c -> conexao();
+	
+		$sql = "DELETE from contas_a_pagar WHERE id_contas_a_pagar = '$idTitulo' ";
+	
+		return mysqli_query($conexao, $sql);
+	}
     
 }
 ?>

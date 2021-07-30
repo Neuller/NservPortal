@@ -52,4 +52,5 @@
 <link rel="stylesheet" type="text/css" href="./Css/Principal/Menu.css">
 <link rel="stylesheet" type="text/css" href="./Css/Servicos/CadastrarServicos.css">
 <link rel="stylesheet" type="text/css" href="./Css/Validation.css">
+<link rel="stylesheet" type="text/css" href="./Css/Tabelas.css">
 

@@ -173,7 +173,7 @@ if (isset($_SESSION['User'])) {
         });
         // FINANCEIRO
         $("#contasAPagar").click(function(e) {
-            $('#conteudo').load("./Views/Financeiro/ContasAPagar.php");
+            $('#conteudo').load("./Views/Financeiro/ContasAPagar/ContasAPagar.php");
         });
         $("#fluxoCaixa").click(function(e) {
             $('#conteudo').load("./Views/Financeiro/FluxoCaixa.php");

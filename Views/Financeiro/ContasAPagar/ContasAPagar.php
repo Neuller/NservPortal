@@ -6,7 +6,7 @@ if (isset($_SESSION['User'])) {
     <html>
 
     <head>
-        <?php require_once "../../Classes/Conexao.php";
+        <?php require_once "../../../Classes/Conexao.php";
         $c = new conectar();
         $conexao = $c->conexao();
         ?>
@@ -25,6 +25,13 @@ if (isset($_SESSION['User'])) {
                 <div class="mx-auto">
                     <form id="frmContasAPagar">
                         <div>
+                            <!-- CADASTRAR TÍTULO -->
+                            <div class='col-md-12 col-sm-12 col-xs-12'>
+                                <div class="text-left">
+                                    <h4><strong>CADASTRAR TÍTULO</strong></h4>
+                                </div>
+                                <hr>
+                            </div>
                             <!-- TIPO -->
                             <div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
                                 <div>
@@ -70,6 +77,19 @@ if (isset($_SESSION['User'])) {
                                     <span class="btn btn-primary" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
                                 </div>
                             </div>
+
+                            <!-- TÍTULOS EM ANDAMENTO -->
+                            <div class='col-md-12 col-sm-12 col-xs-12'>
+                                <div class="text-left">
+                                    <h4><strong>TÍTULOS EM ANDAMENTO</strong></h4>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 tabelas tblMt" align="center">
+                                    <div id="tblTitulos"></div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -91,6 +111,7 @@ if (isset($_SESSION['User'])) {
             moment.locale('pt-br');
             var data = moment().format('DD/MM/YYYY');
             $("#referencia").val(data);
+            $('#tblTitulos').load('./Views/Financeiro/ContasAPagar/tblTitulos.php');
         }
 
         function setEvents() {
@@ -113,6 +134,7 @@ if (isset($_SESSION['User'])) {
                     success: function(r) {
                         if (r > 0) {
                             $("#frmContasAPagar")[0].reset();
+                            $('#tblTitulos').load("./Views/Financeiro/ContasAPagar/tblTitulos.php");
                             alertify.success("CADASTRO REALIZADO");
                         } else {
                             alertify.error("NÃO FOI POSSÍVEL CADASTRAR");
@@ -120,6 +142,29 @@ if (isset($_SESSION['User'])) {
                     }
                 });
             });
+        }
+
+        function excluirTitulo(idTitulo) {
+            alertify.confirm('ATENÇÃO', 'DESEJA EXCLUIR O TÍTULO?', function() {
+                $.ajax({
+                    type: "POST",
+                    data: "idTitulo=" + idTitulo,
+                    url: "./Procedimentos/Financeiro/ContasAPagar/ExcluirTitulo.php",
+                    success: function(r) {
+                        if (r == 1) {
+                            $('#tblTitulos').load("./Views/Financeiro/ContasAPagar/tblTitulos.php");
+                            alertify.success("TÍTULO EXCLUÍDO");
+                        } else {
+                            alertify.error("NÃO FOI POSSÍVEL EXCLUIR");
+                        }
+                    }
+                });
+            }, function() {
+                // alertify.error("OPERAÇÃO CANCELADA")
+            });
+        }
+
+        function atualizarTitulo(idTitulo) {
         }
     </script>
 <?php
