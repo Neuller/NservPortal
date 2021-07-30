@@ -28,17 +28,17 @@ if (isset($_SESSION['User'])) {
                             <!-- FORMULÁRIO DADOS USUÁRIOS -->
 
                             <!-- GRUPO -->
-							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
-								<div>
-									<label>GRUPO</label>
-									<select class="form-control input-sm" id="grupoTipo" name="tipo">
-										<option value="">SELECIONE UM TIPO</option>
-										<option value="GERAL">BOLETOS</option>
-										<option value="ADMIM">OUTROS</option>
-									</select>
-								</div>
-							</div>
-                            
+                            <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
+                                <div>
+                                    <label>GRUPO</label>
+                                    <select class="form-control input-sm" id="grupoTipo" name="tipo">
+                                        <option value="">SELECIONE UM TIPO</option>
+                                        <option value="GERAL">BOLETOS</option>
+                                        <option value="ADMIM">OUTROS</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <!-- DESCRIÇÃO -->
                             <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
                                 <div>
@@ -50,7 +50,7 @@ if (isset($_SESSION['User'])) {
                             <div class="col-md-5 col-sm-5 col-xs-5 itensFormulario">
                                 <div>
                                     <label>REFERÊNCIA</label>
-                                    <input type="date" class="form-control input-sm text-uppercase" id="referencia" name="referencia">
+                                    <input type="text" readonly class="form-control input-sm text-uppercase" id="referencia" name="referencia">
                                 </div>
                             </div>
                             <!-- DATA DE VENCIMENTO -->
@@ -91,6 +91,9 @@ if (isset($_SESSION['User'])) {
         function initForm() {
             validarForm("frmContasAPagar");
             camposObrigatorios(["grupoTipo", "referencia", "descricao", "valor", "dataVencimento"], true);
+            moment.locale('pt-br');
+            var data = moment().format('DD/MM/YYYY');
+            $("#referencia").val(data);
         }
 
         function setEvents() {
