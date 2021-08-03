@@ -16,7 +16,7 @@ class servicos{
 
         $result = mysqli_query($conexao, $sql);
 
-		$ultimoId = mysqli_fetch_row($result)[0];
+		$ultimoId = $r + mysqli_fetch_row($result)[0];
         
 		return $ultimoId;
 	}
