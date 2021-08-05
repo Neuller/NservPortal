@@ -14,6 +14,7 @@ if (isset($_SESSION['User'])) {
 					<span>USUÁRIO LOGADO: <div id="usuarioLogado"></div></span>
 				</div>
 			</dv> -->
+
 			<div>
 				<!-- STATUS DO CAIXA: -->
 				<div class="text-left col-md-12 col-sm-12 col-xs-12 textCabecalho">

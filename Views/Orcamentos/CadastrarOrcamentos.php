@@ -89,7 +89,7 @@ if (isset($_SESSION["User"])) {
                             <div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
                                 <div>
                                     <label>VALOR DA UNIDADE</label>
-                                    <input type="text" readonly class="form-control input-sm text-uppercase" id="precoView" name="precoView">
+                                    <input type="number" class="form-control input-sm text-uppercase" id="precoView" name="precoView">
                                 </div>
                             </div>
                             <!-- BOTÕES -->
