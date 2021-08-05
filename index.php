@@ -88,11 +88,6 @@ if (mysqli_num_rows($result) > 0) {
 				return false;
 			}
 
-			if ((usuario == "") || (senha == "")) {
-				alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
-				return false;
-			}
-
 			dados = $('#frmLogin').serialize();
 
 			$.ajax({
