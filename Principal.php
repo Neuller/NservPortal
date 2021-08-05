@@ -98,7 +98,7 @@ if (isset($_SESSION['User'])) {
                                     USUÁRIOS
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a id="cadastrarUsuarios" href="#">CADASTRAR USUÁRIO</a></li>
+                                    <li><a id="cadastrarUsuarios" href="#">NOVO USUÁRIO</a></li>
                                     <li><a id="procurarUsuarios" href="#">PROCURAR USUÁRIO</a></li>
                                 </ul>
                             </li>

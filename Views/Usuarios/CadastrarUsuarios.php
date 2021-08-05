@@ -54,8 +54,9 @@ if (isset($_SESSION['User'])) {
 									<label>GRUPO</label>
 									<select class="form-control input-sm" id="grupoUsuario" name="grupoUsuario">
 										<option value="">SELECIONE UM GRUPO</option>
+										<option value="ADMIN">ADMIN</option>
+										<option value="ADMIN/FINAN">ADMIN/FINAN</option>
 										<option value="GERAL">GERAL</option>
-										<option value="ADMIM">ADMIM</option>
 									</select>
 								</div>
 							</div>
@@ -92,6 +93,7 @@ if (isset($_SESSION['User'])) {
 			validarForm("frmUsuarios");
 			camposObrigatorios(["nome", "login", "email", "senha", "grupoUsuario"], true);
 		}
+
 		function setEvents() {
 			$("#btnCadastrar").click(function() {
 				var validator = $("#frmUsuarios").validate();
