@@ -99,7 +99,7 @@ if (isset($_SESSION["User"])) {
                                     <!-- <span class="btn btn-warning" id="btnLimpar" title="Limpar">LIMPAR</span> -->
                                 </div>
                             </div>
-                            <!-- TABELA -->
+                            <!-- TABELA PRODUTOS -->
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div align="center">
                                     <div id="carrinhoProdutos"></div>

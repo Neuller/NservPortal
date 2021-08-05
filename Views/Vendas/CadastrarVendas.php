@@ -111,10 +111,10 @@ if (isset($_SESSION['User'])) {
                             </div>
                         </div>
 
-                        <!-- INFORMAÇÔES DO PAGAMENTO -->
+                        <!-- INFORMAÇÕES DE PAGAMENTO -->
                         <div class='col-xs-12 col-md-12 col-sm-12 separador'>
                             <div class="text-left">
-                                <h4><strong>INFORMAÇÔES DO PAGAMENTO </strong><span class="glyphicon glyphicon-bitcoin"></span></h4>
+                                <h4><strong>INFORMAÇÕES DE PAGAMENTO</strong></h4>
                             </div>
                             <hr>
                         </div>

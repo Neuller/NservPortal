@@ -2,29 +2,30 @@
 session_start();
 if (isset($_SESSION['User'])) {
 ?>
-<!DOCTYPE html>
-<html>
+	<!DOCTYPE html>
+	<html>
+
 	<head>
-		<?php require_once "../../Classes/Conexao.php"; 
+		<?php require_once "../../Classes/Conexao.php";
 		$c = new conectar();
-		$conexao = $c -> conexao();
+		$conexao = $c->conexao();
 		$idServico = $_GET["id"];
 		?>
 	</head>
 
 	<body>
-        <div class="container">
-            <!-- CABEÇALHO -->
-            <div class="cabecalho bgGray">
-                <div class="text-center textCabecalho opacidade">
-                    <h3><strong>EDITAR SERVIÇO</strong></h3>
-                </div>
+		<div class="container">
+			<!-- CABEÇALHO -->
+			<div class="cabecalho bgGray">
+				<div class="text-center textCabecalho opacidade">
+					<h3><strong>EDITAR SERVIÇO</strong></h3>
+				</div>
 			</div>
-			
+
 			<!-- FORMULÁRIO -->
 			<div class="divFormulario">
 				<div class="mx-auto">
-					<form id="frmServicoU">
+					<form id="frmAtualizarServico">
 						<div>
 							<!-- ID -->
 							<div>
@@ -33,7 +34,7 @@ if (isset($_SESSION['User'])) {
 							<!-- DIAGNÓSTICO -->
 							<div class='col-md-12 col-sm-12 col-xs-12 separador itensFormulario'>
 								<div>
-									<h4><strong>DIAGNÓSTICO TÉCNICO </strong><span class="glyphicon glyphicon-file ml-15"></span></h4>
+									<h4><strong>DIAGNÓSTICO TÉCNICO</strong></h4>
 									<hr>
 									<textarea type="text" class="form-control text-uppercase input-sm" id="diagnosticoU" name="diagnosticoU" maxlength="1000" rows="3" style="resize: none"></textarea>
 								</div>
@@ -56,77 +57,27 @@ if (isset($_SESSION['User'])) {
 								</div>
 							</div>
 
-							<!-- FORMULÁRIO INFORMAÇÕES DO SERVIÇO -->
+							<!-- INFORMAÇÕES DO SERVIÇO -->
 							<div class='col-md-12 col-sm-12 col-xs-12 separador'>
 								<div class="text-left">
-									<h4><strong>INFORMAÇÕES DO SERVIÇO </strong><span class="glyphicon glyphicon-wrench ml-15"></span></h4>
+									<h4><strong>INFORMAÇÕES DO SERVIÇO</strong></h4>
 								</div>
 								<hr>
 							</div>
 							<!-- STATUS -->
 							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
-									<label>STATUS DO SERVIÇO<span class="required">*</span></label>
+									<label>STATUS DO SERVIÇO</label>
 									<select class="form-control input-sm" id="selectStatusU" name="selectStatusU">
 										<option value="">SELECIONE UM STATUS</option>
 										<option value="A RECEBER">A RECEBER</option>
 										<option value="AGUARDANDO AUTORIZACAO DO CLIENTE">AGUARDANDO AUTORIZACAO DO CLIENTE</option>
 										<option value="DISPONIVEL PARA ENTREGA">DISPONIVEL PARA ENTREGA</option>
-										<option value="ENTRADA">ENTRADA</option>
 										<option value="ENTREGA REALIZADA">ENTREGA REALIZADA</option>
 										<option value="ENVIADO PARA TERCEIRO">ENVIADO PARA TERCEIRO</option>
 										<option value="NA BANCADA">NA BANCADA</option>
-										<option value="ORCAMENTO">ORCAMENTO</option>
 										<option value="SERVICO RECUSADO">SERVICO RECUSADO</option>
 									</select>
-								</div>
-							</div>
-							<!-- ORDEM DE SERVIÇO -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
-								<div>
-									<label>ORDEM DE SERVIÇO</label>
-									<input type="number" readonly class="form-control text-uppercase input-sm" id="ordemServicoU" name="ordemServicoU" maxlength="10">
-								</div>
-							</div>
-							<!-- SERVIÇO(s) EXECUTADO -->
-							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
-								<div>
-									<label>SERVIÇO(s) EXECUTADO(s)</label>
-									<!-- <textarea type="text" class="form-control text-uppercase input-sm" id="servicoU" name="servicoU" maxlength="1000" rows="3" style="resize: none"></textarea> -->
-									<select class="form-control input-sm" id="servicoSelect" name="servicoSelect">
-										<option value="">SELECIONE UM SERVIÇO</option>
-										<?php
-										$sql = "SELECT id_preco_servico, descricao, garantia, valor FROM preco_servicos ORDER BY id_preco_servico DESC";
-										$result = mysqli_query($conexao, $sql);
-										while ($servico = mysqli_fetch_row($result)) :
-										?>
-											<option value="<?php echo $servico[0] ?>"><?php echo $servico[1] ?></option>
-										<?php endwhile; ?>
-                                	</select>
-									<input type="text" readonly class="form-control text-uppercase valorTotal input-sm col-md-6 col-sm-6 col-xs-6 itensFormulario" id="valorServico" name="valorServico">
-									<input type="text" readonly class="form-control text-uppercase valorTotal input-sm col-md-6 col-sm-6 col-xs-6 itensFormulario" id="garantiaServico" name="garantiaServico">
-									<!-- ADICIONAR AO CARRINHO -->
-									<div class="btnRight">
-										<span class="btn btn-success" id="btnAdicionar" title="ADICIONAR ITEM">ADICIONAR ITEM</span>
-									</div>
-									<!-- CARRINHO -->
-									<div class="tabelas" align="center">
-										<div id="servicosExecutados"></div>
-									</div>
-								</div>
-							</div>
-							<!-- VALOR DE TERCEIRO -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
-								<div>
-									<label>VALOR DE TERCEIRO</label>
-									<input type="text" class="form-control text-uppercase valorTerceiro input-sm" id="valorTerceiroU" name="valorTerceiroU" maxlength="10">
-								</div>
-							</div>
-							<!-- VALOR TOTAL -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
-								<div>
-									<label>VALOR TOTAL</label>
-									<input type="text" class="form-control text-uppercase valorTotal input-sm" id="precoU" name="precoU" maxlength="10">
 								</div>
 							</div>
 							<!-- GARANTIA -->
@@ -143,6 +94,13 @@ if (isset($_SESSION['User'])) {
 									</select>
 								</div>
 							</div>
+							<!-- ORDEM DE SERVIÇO -->
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+								<div>
+									<label>ORDEM DE SERVIÇO</label>
+									<input type="number" readonly class="form-control text-uppercase input-sm" id="ordemServicoU" name="ordemServicoU" maxlength="10">
+								</div>
+							</div>
 							<!-- DATA DE ENTREGA -->
 							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
@@ -150,7 +108,7 @@ if (isset($_SESSION['User'])) {
 									<input type="text" class="form-control text-uppercase dataSaida input-sm" id="dataSaidaU" name="dataSaidaU" maxlength="10">
 								</div>
 							</div>
-							<!-- COMUNICADO AO CLIENTE -->
+							<!-- DATA DE COMUNICADO AO CLIENTE -->
 							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>DATA DE COMUNICADO AO CLIENTE</label>
@@ -169,14 +127,117 @@ if (isset($_SESSION['User'])) {
 									<label class="btnRadio">SIM</label>
 								</div>
 							</div>
-							
+							<!-- SERVIÇOS -->
+							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
+								<div>
+									<label>SERVIÇOS</label>
+									<!-- <textarea type="text" class="form-control text-uppercase input-sm" id="servicoU" name="servicoU" maxlength="1000" rows="3" style="resize: none"></textarea> -->
+									<select class="form-control input-sm" id="servicoSelect" name="servicoSelect">
+										<option value="">SELECIONE UM SERVIÇO</option>
+										<?php
+										$sql = "SELECT id_preco_servico, descricao, garantia, valor FROM preco_servicos ORDER BY id_preco_servico DESC";
+										$result = mysqli_query($conexao, $sql);
+										while ($servico = mysqli_fetch_row($result)) :
+										?>
+											<option value="<?php echo $servico[0] ?>"><?php echo $servico[1] ?></option>
+										<?php endwhile; ?>
+									</select>
+								</div>
+							</div>
+							<!-- ADICIONAR AO CARRINHO -->
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="btnRight">
+									<span class="btn btn-success btn-lg" id="btnAdicionar" title="ADICIONAR">ADICIONAR</span>
+								</div>
+							</div>
+							<!-- TABELA SERVICOS -->
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div align="center">
+									<div id="servicosExecutados"></div>
+								</div>
+							</div>
+
+							<!-- PRODUTOS -->
+							<div class='col-md-12 col-sm-12 col-xs-12 separador'>
+								<div class="text-left">
+									<h4><strong>PRODUTOS</strong></h4>
+								</div>
+								<hr>
+							</div>
+							<!-- PRODUTO -->
+							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
+								<div>
+									<label>PRODUTO</label>
+									<select class="form-control input-sm" id="produtoSelect" name="produtoSelect">
+										<option value="">SELECIONE UM PRODUTO</option>
+										<?php
+										$sql = "SELECT id_produto, codigo, descricao FROM produtos ORDER BY id_produto DESC";
+										$result = mysqli_query($conexao, $sql);
+										while ($produto = mysqli_fetch_row($result)) :
+										?>
+											<option value="<?php echo $produto[0] ?>"><?php echo $produto[1] ?> - <?php echo $produto[2] ?></option>
+										<?php endwhile; ?>
+									</select>
+								</div>
+							</div>
+							<!-- QUANTIDADE -->
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+								<div>
+									<label>QUANTIDADE</label>
+									<input type="number" class="form-control input-sm estoque text-uppercase quantidade" id="quantidade" name="quantidade" maxlenght="10">
+								</div>
+							</div>
+							<!-- VALOR DA UNIDADE -->
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+								<div>
+									<label>VALOR DA UNIDADE</label>
+									<input type="number" class="form-control input-sm text-uppercase" id="precoView" name="precoView">
+								</div>
+							</div>
+							<!-- BOTÕES -->
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="btnRight">
+									<span class="btn btn-lg btn-success" id="btnAdicionar" title="ADICIONAR">ADICIONAR</span>
+									<!-- <span class="btn btn-warning" id="btnLimpar" title="Limpar">LIMPAR</span> -->
+								</div>
+							</div>
+							<!-- TABELA PRODUTOS -->
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div align="center">
+									<div id="carrinhoProdutos"></div>
+								</div>
+							</div>
+
+
+							<!-- INFORMAÇÕES DE PAGAMENTO -->
+							<div class='col-md-12 col-sm-12 col-xs-12 separador'>
+								<div class="text-left">
+									<h4><strong>INFORMAÇÕES DE PAGAMENTO</strong></h4>
+								</div>
+								<hr>
+							</div>
+							<!-- VALOR DE TERCEIRO -->
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+								<div>
+									<label>VALOR DE TERCEIRO</label>
+									<input type="text" class="form-control text-uppercase valorTerceiro input-sm" id="valorTerceiroU" name="valorTerceiroU" maxlength="10">
+								</div>
+							</div>
+							<!-- VALOR TOTAL -->
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+								<div>
+									<label>VALOR TOTAL</label>
+									<input type="text" class="form-control text-uppercase valorTotal input-sm" id="precoU" name="precoU" maxlength="10">
+								</div>
+							</div>
+
 							<!-- OBSERVAÇÕES -->
 							<div class='col-md-12 col-sm-12 col-xs-12 separador'>
-                                <div class="text-left">
-                                    <h4><strong>OBSERVAÇÕES </strong> <span class="glyphicon glyphicon-exclamation-sign ml-15"></span></h4>
-                                </div>
-                                <hr>
-                            </div>
+								<div class="text-left">
+									<h4><strong>OBSERVAÇÕES </strong> <span class="glyphicon glyphicon-exclamation-sign ml-15"></span></h4>
+								</div>
+								<hr>
+							</div>
 							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
 								<div>
 									<label>OBSERVAÇÕES</label>
@@ -185,117 +246,131 @@ if (isset($_SESSION['User'])) {
 							</div>
 							<!-- BOTÕES -->
 							<div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
-                                <div class="btnRight">
-                                    <span class="btn btn-danger" id="btnCancelar" title="CANCELAR">CANCELAR</span>
-                                    <span class="btn btn-warning" id="btnEditar" title="EDITAR">EDITAR</span>
-                                </div>
+								<div class="btnRight">
+									<span class="btn btn-danger btn-lg" id="btnCancelar" title="CANCELAR">CANCELAR</span>
+									<span class="btn btn-warning btn-lg" id="btnEditar" title="EDITAR">EDITAR</span>
+								</div>
 							</div>
 						</div>
 					</form>
-                </div>
+				</div>
 			</div>
 		</div>
 	</body>
-</html>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.dataSaida').mask('99/99/9999');
-		$('.dataComunicadoU').mask('99/99/9999');
-		$('#servicoSelect').select2();
-		$("#valorServico").hide();
-		$("#garantiaServico").hide();
-		$('#servicosExecutados').load('./Views/Servicos/Tabelas/ServicosExecutados.php');
-		idServico = "<?php echo @$idServico ?>";
-		carregarDados(idServico);
+	</html>
 
-		$(document).keyup(function(e) { 
-			var str = e.keyCode;
-			if(str == 27){
-				cancelar();
-			}
-		}); 
-	});
+	<script type="text/javascript">
+		$(document).ready(function() {
+			initForm();
+			setEvents();
+		});
 
-	$('#servicoSelect').change(function() {
-		var servico = $("#servicoSelect").val();
-		debugger;
-		$.ajax({
-            type: "POST",
-            data: servico,
-            url: "./Procedimentos/Servicos/AdicionarServicos.php",
-            success: function(r) {
-				dado = jQuery.parseJSON(r);
-				debugger;
-            }
-        });
-		$("#valorServico").show();
-		$("#garantiaServico").show();
-    });
+		function initForm() {
+			$('.dataSaida').mask('99/99/9999');
+			$('.dataComunicadoU').mask('99/99/9999');
+			$('#servicoSelect').select2();
+			$("#valorServico").hide();
+			$("#garantiaServico").hide();
+			$('#servicosExecutados').load('./Views/Servicos/Tabelas/ServicosExecutados.php');
+			idServico = "<?php echo @$idServico ?>";
+			carregarDados(idServico);
 
-	$('#btnAdicionar').click(function() {
-        var servico = $("#servicoSelect").val();
+			$(document).keyup(function(e) {
+				var str = e.keyCode;
+				if (str == 27) {
+					cancelar();
+				}
+			});
 
-        if (servico == "") {
-            alertify.error("SELECIONE UM SERVIÇO");
-            return false;
-        }
-
-        dados = $('#frmServicoU').serialize();
-
-        $.ajax({
-            type: "POST",
-            data: dados,
-            url: "./Procedimentos/Servicos/AdicionarServicos.php",
-            success: function(r) {
-                $('#servicosExecutados').load('./Views/Servicos/Tabelas/ServicosExecutados.php');
-                $("#servicoSelect").val("").change();
-                alertify.success("ITEM ADICIONADO");
-            }
-        });
-    });
-
-	$('#btnEditar').click(function() {
-		var statusServico = $("#selectStatusU").val();
-
-		if (statusServico == "") {
-			alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
-		return false;
+			validarForm("frmAtualizarServico");
+			camposObrigatorios(["selectStatusU"], true);
 		}
 
-		dados = $('#frmServicoU').serialize();
+		function setEvents() {
+			$('#servicoSelect').change(function() {
+				var servico = $("#servicoSelect").val();
+				debugger;
+				$.ajax({
+					type: "POST",
+					data: servico,
+					url: "./Procedimentos/Servicos/AdicionarServicos.php",
+					success: function(r) {
+						dado = jQuery.parseJSON(r);
+						debugger;
+					}
+				});
+				$("#valorServico").show();
+				$("#garantiaServico").show();
+			});
 
-		$.ajax({
-			type: "POST",
-			data: dados,
-			url: "./Procedimentos/Servicos/EditarServicos.php",
-			success: function(r) {
-				if (r == 1) {
-					$('#tabelaServicosEntrada').load("./Views/Servicos/TabelaServicos.php");
-					$('#tabelaUltimosServicos').load('./Views/Inicio/tabelaUltimosServicos.php');
-					$('#conteudo').load("./Views/Servicos/ProcurarServicos.php");
-					alertify.success("REGISTRO ATUALIZADO");
-				} else {
-					alertify.error("NÃO FOI POSSÍVEL ATUALIZAR");
+			$('#btnAdicionar').click(function() {
+				var servico = $("#servicoSelect").val();
+
+				if (servico == "") {
+					alertify.error("SELECIONE UM SERVIÇO");
+					return false;
 				}
+
+				dados = $('#frmAtualizarServico').serialize();
+
+				$.ajax({
+					type: "POST",
+					data: dados,
+					url: "./Procedimentos/Servicos/AdicionarServicos.php",
+					success: function(r) {
+						$('#servicosExecutados').load('./Views/Servicos/Tabelas/ServicosExecutados.php');
+						$("#servicoSelect").val("").change();
+						alertify.success("ITEM ADICIONADO");
+					}
+				});
+			});
+
+			// EDITAR SERVIÇO
+			$('#btnEditar').click(function() {
+				var validator = $("#frmAtualizarServico").validate();
+				validator.form();
+				var checkValidator = validator.checkForm();
+
+				if (checkValidator == false) {
+					alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
+					return false;
+				}
+
+				dados = $('#frmAtualizarServico').serialize();
+
+				$.ajax({
+					type: "POST",
+					data: dados,
+					url: "./Procedimentos/Servicos/EditarServicos.php",
+					success: function(r) {
+						if (r == 1) {
+							$('#tabelaServicosEntrada').load("./Views/Servicos/TabelaServicos.php");
+							$('#tabelaUltimosServicos').load('./Views/Inicio/tabelaUltimosServicos.php');
+							$('#conteudo').load("./Views/Servicos/ProcurarServicos.php");
+							alertify.success("REGISTRO ATUALIZADO");
+						} else {
+							alertify.error("NÃO FOI POSSÍVEL ATUALIZAR");
+						}
+					}
+				});
+			});
+
+			$('#btnCancelar').click(function() {
+				cancelar();
+			});
+
+			function cancelar() {
+				alertify.confirm('ATENÇÃO', 'DESEJA CANCELAR?', function() {
+					alertify.confirm().close();
+					$('#frmAtualizarServico')[0].reset();
+					$('#conteudo').load("./Views/Servicos/ProcurarServicos.php");
+				}, function() {});
 			}
-		});
-	});
+		}
 
-	$('#btnCancelar').click(function() {
-		cancelar();
-	});
-
-	function cancelar(){
-		alertify.confirm('ATENÇÃO', 'DESEJA CANCELAR?', function(){
-            alertify.confirm().close();
-			$('#frmServicoU')[0].reset();
-			$('#conteudo').load("./Views/Servicos/ProcurarServicos.php");
-        }, function(){
-        });
-	}
-
-	function carregarDados(id) {
+		// FORA DO ESCOPO
+		function carregarDados(id) {
 			$.ajax({
 				type: "POST",
 				data: "idServico=" + id,
@@ -334,7 +409,7 @@ if (isset($_SESSION['User'])) {
 				}
 			});
 		}
-</script>
+	</script>
 <?php
 } else {
 	header("location: ./index.php");
