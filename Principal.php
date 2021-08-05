@@ -58,6 +58,16 @@ if (isset($_SESSION['User'])) {
                                 </ul>
                             </li>
 
+                            <!-- ORÇAMENTOS -->
+                            <li class="dropdown">
+                                <a class="dropdown-toggle itensMenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                ORÇAMENTOS
+                                </a>
+                                <ul class="dropdown-menu">
+                                 <li><a id="cadastrarOrcamentos" href="#">NOVO ORÇAMENTO</a></li>    
+                                </ul>
+                            </li>
+
                             <!-- PRODUTOS -->
                             <li class="dropdown">
                                 <a class="dropdown-toggle itensMenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -178,6 +188,11 @@ if (isset($_SESSION['User'])) {
         $("#fluxoCaixa").click(function(e) {
             $('#conteudo').load("./Views/Financeiro/FluxoCaixa.php");
         });
+        // ORÇAMENTOS
+        $("#cadastrarOrcamentos").click(function(e) {
+            $('#conteudo').load("./Views/Orcamentos/CadastrarOrcamentos.php");
+        });
+        cadastrarOrcamentos
         // PRODUTOS
         $("#cadastrarProdutos").click(function(e) {
             $('#conteudo').load("./Views/Produtos/CadastrarProdutos.php");
