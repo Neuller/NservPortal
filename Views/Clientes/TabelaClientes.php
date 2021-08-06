@@ -41,13 +41,13 @@ $result=mysqli_query($conexao,$sql);
 						<td>'.$mostrar[2].'</td>
 						<td>'.$mostrar[3].'</td>
 						<td>'.$mostrar[12].'</td>
-						<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarClientes" title="EDITAR" onclick="editarClientes('.$mostrar[0].')">
+						<td>'.'<span class="btn btn-warning btn-md" data-toggle="modal" data-target="#editarClientes" title="EDITAR" onclick="editarClientes('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-pencil"></span>
 						</span>'.'</td>
-						<td>'.'<span class="btn btn-default btn-sm" data-toggle="modal" data-target="#visualizarClientes" title="VISUALIZAR" onclick="visualizarClientes('.$mostrar[0].')">
+						<td>'.'<span class="btn btn-default btn-md" data-toggle="modal" data-target="#visualizarClientes" title="VISUALIZAR" onclick="visualizarClientes('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-search"></span>
 						</span>'.'</td>		
-						<td>'.'<span class="btn btn-danger btn-sm" title="EXCLUIR" onclick="excluirClientes('.$mostrar[0].')">
+						<td>'.'<span class="btn btn-danger btn-md" title="EXCLUIR" onclick="excluirClientes('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-remove"></span>
 						</span>'.'</td>
 						</tr>

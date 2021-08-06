@@ -157,7 +157,7 @@ if (isset($_SESSION['User'])) {
 							<!-- BOTÕES -->
 							<div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
 								<div class="btnRight">
-									<span class="btn btn-danger" id="btnVoltar" title="VOLTAR">VOLTAR</span>
+									<span class="btn btn-danger btn-lg" id="btnVoltar" title="VOLTAR">VOLTAR</span>
 								</div>
 							</div>
 						</div>

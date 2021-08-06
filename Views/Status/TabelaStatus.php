@@ -34,10 +34,10 @@ $result = mysqli_query($conexao, $sql);
 						'
 						<tr>
 						<td>'.$mostrar[1].'</td>
-						<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#atualizaStatus" onclick="adicionarDado('.$mostrar[0].','.$mostrar[1].')">
+						<td>'.'<span class="btn btn-warning btn-md" data-toggle="modal" data-target="#atualizaStatus" onclick="adicionarDado('.$mostrar[0].','.$mostrar[1].')">
 						<span class="glyphicon glyphicon-pencil"></span>
 						</span>'.'</td>
-						<td>'.'<span class="btn btn-danger btn-sm" onclick="eliminarStatus('.$mostrar[0].')">
+						<td>'.'<span class="btn btn-danger btn-md" onclick="eliminarStatus('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-remove"></span>
 						</span>'.'</td>
 						</tr>

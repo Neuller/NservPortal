@@ -38,10 +38,10 @@ $result=mysqli_query($conexao, $sql);
 							<td>'.$mostrar[1].'</td>
 							<td>'.$mostrar[2].'</td>
 							<td>'.$mostrar[3].'</td>
-							<td>'.'<span data-toggle="modal" data-target="#atualizaUsuarioModal" class="btn btn-warning btn-sm" title="EDITAR" onclick="adicionarDados('.$mostrar[0].')">
+							<td>'.'<span data-toggle="modal" data-target="#atualizaUsuarioModal" class="btn btn-warning btn-md" title="EDITAR" onclick="adicionarDados('.$mostrar[0].')">
 							<span class="glyphicon glyphicon-pencil"></span>
 							</span>'.'</td>
-							<td>'.'<span class="btn btn-danger btn-sm" title="EXCLUIR" onclick="eliminarUsuario('.$mostrar[0].')">
+							<td>'.'<span class="btn btn-danger btn-md" title="EXCLUIR" onclick="eliminarUsuario('.$mostrar[0].')">
 							<span class="glyphicon glyphicon-remove"></span>
 							</span>'.'</td>
 							</tr>

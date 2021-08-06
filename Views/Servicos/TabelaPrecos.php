@@ -43,11 +43,11 @@ $result = mysqli_query($conexao, $sql);
 						<!-- VALOR -->
 						<td>'.'R$ '.$mostrar[3].'</td>
 						<!-- BOTÂO EDITAR -->
-						<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editar" title="EDITAR" onclick="aDesenvolver()">
+						<td>'.'<span class="btn btn-warning btn-md" data-toggle="modal" data-target="#editar" title="EDITAR" onclick="aDesenvolver()">
 						<span class="glyphicon glyphicon-pencil"></span>
 						</span>'.'</td>
 						<!-- BOTÃO EXCLUIR -->
-                        <td>'.'<span class="btn btn-danger btn-sm" title="EXCLUIR" onclick="excluir('.$mostrar[0].')">
+                        <td>'.'<span class="btn btn-danger btn-md" title="EXCLUIR" onclick="excluir('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-remove"></span>
 						</span>'.'</td>					
 						</tr>

@@ -36,11 +36,11 @@ $result = mysqli_query($conexao, $sql);
 						<tr>
 						<td>'.$mostrar[1].'</td>
 						<td>'.$mostrar[2].'</td>
-						<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#atualizaTecnicos" onclick="adicionarDados('.$mostrar[0].')">
+						<td>'.'<span class="btn btn-warning btn-md" data-toggle="modal" data-target="#atualizaTecnicos" onclick="adicionarDados('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-pencil"></span>
 						</span>
 						'.'</td>
-						<td>'.'<span class="btn btn-danger btn-sm" onclick="eliminarTecnicos('.$mostrar[0].')">
+						<td>'.'<span class="btn btn-danger btn-md" onclick="eliminarTecnicos('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-remove"></span>
 						</span>
 						'.'</td>

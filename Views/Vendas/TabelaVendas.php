@@ -41,11 +41,11 @@ $result = mysqli_query($conexao,$sql);
 							<!-- DATA DE CADASTRO -->
 							<td>'.$data.'</td>	
 							<!-- COMPROVANTE -->
-							<td>'.'<a href="./Procedimentos/Vendas/CriarComprovante.php?idVenda='.$mostrar[0].'" target="_BLANK" class="btn btn-danger btn-sm" title="IMPRIMIR">
+							<td>'.'<a href="./Procedimentos/Vendas/CriarComprovante.php?idVenda='.$mostrar[0].'" target="_BLANK" class="btn btn-danger btn-md" title="IMPRIMIR">
 							<span class="glyphicon glyphicon-print"></span>
 							</a>'.'</td>			
 							<!-- BOTÃO VISUALIZAR -->
-							<td>'.'<span class="btn btn-default btn-sm" data-toggle="modal" data-target="#visualizarVendas" title="VISUALIZAR" onclick="aDesenvolver()">
+							<td>'.'<span class="btn btn-default btn-md" data-toggle="modal" data-target="#visualizarVendas" title="VISUALIZAR" onclick="aDesenvolver()">
 							<span class="glyphicon glyphicon-search"></span>
 							</span>'.'</td>							
 							</tr>

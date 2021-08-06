@@ -33,8 +33,8 @@ if (isset($_SESSION['User'])) {
                         <!-- BOTÕES -->
 						<div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                             <div class="btnRight">
-                                <span class="btn btn-danger" id="btnFecharCaixa" title="FECHAR CAIXA">FECHAR CAIXA</span>
-                                <span class="btn btn-success" id="btnAbrirCaixa" title="ABRIR CAIXA">ABRIR CAIXA</span>
+                                <span class="btn btn-danger btn-lg" id="btnFecharCaixa" title="FECHAR CAIXA">FECHAR CAIXA</span>
+                                <span class="btn btn-success btn-lg" id="btnAbrirCaixa" title="ABRIR CAIXA">ABRIR CAIXA</span>
                             </div>
 					    </div>
 	    			</form>

@@ -29,7 +29,7 @@ session_start();
                             <td><?php echo "R$ " . $d[2] ?></td>
                             <td><?php echo $d[5] ?></td>
                             <td>
-                                <span class="btn btn-danger btn-sm" title="REMOVER" onclick="remover('<?php echo $i; ?>')">
+                                <span class="btn btn-danger btn-md" title="REMOVER" onclick="remover('<?php echo $i; ?>')">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </span>
                             </td>
