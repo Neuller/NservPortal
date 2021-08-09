@@ -70,7 +70,8 @@ if (isset($_SESSION['User'])) {
             });
             // MENU PRINCIPAL
             $("#btnExibirMenu").click(function(e) {
-                $('#menuPrincipal').show("slow");
+                const t = 1000;
+                $('#menuPrincipal').slideToggle(t);
             });
         }
 
