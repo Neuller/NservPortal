@@ -8,7 +8,7 @@ if (isset($_SESSION['User'])) {
 		<div class="tblPreco container">
 			<div class="cabecalho bgGray">
 				<div class="text-center textCabecalho opacidade">
-					<h3><strong>TABELA DE PREÇOS</strong></h3>
+					<h3><strong>TABELA DE PREÇOS - SERVIÇOS</strong></h3>
 				</div>
 			</div>
 			<!-- TABELA -->

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['User'])) {
+if (isset($_SESSION["User"])) {
 ?>
 	<!DOCTYPE html>
 	<html>
@@ -32,7 +32,7 @@ if (isset($_SESSION['User'])) {
 								<input type="text" hidden="" id="idServico" name="idServico">
 							</div>
 							<!-- DIAGNÓSTICO -->
-							<div class='col-md-12 col-sm-12 col-xs-12 separador itensFormulario'>
+							<div class="col-md-12 col-sm-12 col-xs-12 separador itensFormulario">
 								<div>
 									<h4><strong>DIAGNÓSTICO TÉCNICO</strong></h4>
 									<hr>
@@ -58,7 +58,7 @@ if (isset($_SESSION['User'])) {
 							</div>
 
 							<!-- INFORMAÇÕES DO SERVIÇO -->
-							<div class='col-md-12 col-sm-12 col-xs-12 separador'>
+							<div class="col-md-12 col-sm-12 col-xs-12 separador">
 								<div class="text-left">
 									<h4><strong>INFORMAÇÕES DO SERVIÇO</strong></h4>
 								</div>
@@ -144,10 +144,24 @@ if (isset($_SESSION['User'])) {
 									</select>
 								</div>
 							</div>
-							<!-- ADICIONAR AO CARRINHO -->
+							<!-- QUANTIDADE -->
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+								<div>
+									<label>QUANTIDADE</label>
+									<input type="number" class="form-control input-sm estoque text-uppercase" id="qtdServico" name="qtdServico">
+								</div>
+							</div>
+							<!-- VALOR DA UNIDADE -->
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+								<div>
+									<label>VALOR DA UNIDADE</label>
+									<input type="number" class="form-control input-sm text-uppercase" id="precoServico" name="precoServico">
+								</div>
+							</div>
+							<!-- ADICIONAR AO CARRINHO - SERVICOS -->
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="btnRight">
-									<span class="btn btn-success btn-lg" id="btnAdicionar" title="ADICIONAR">ADICIONAR</span>
+									<span class="btn btn-success btn-lg" id="btnAdicionarServico" title="ADICIONAR">ADICIONAR</span>
 								</div>
 							</div>
 							<!-- TABELA SERVICOS -->
@@ -156,16 +170,23 @@ if (isset($_SESSION['User'])) {
 									<div id="servicosExecutados"></div>
 								</div>
 							</div>
+							<!-- VALOR TOTAL DE SERVIÇOS -->
+							<div class="col-xs-4 col-md-4 col-sm-4 itensFormulario">
+								<div>
+									<label>VALOR TOTAL DE SERVIÇOS</label>
+									<input readonly type="number" class="form-control input-sm text-uppercase" id="totalServicos" name="totalServicos">
+								</div>
+							</div>
 
 							<!-- PRODUTOS -->
-							<div class='col-md-12 col-sm-12 col-xs-12 separador'>
+							<div class="col-md-12 col-sm-12 col-xs-12 separador">
 								<div class="text-left">
 									<h4><strong>PRODUTOS</strong></h4>
 								</div>
 								<hr>
 							</div>
 							<!-- PRODUTO -->
-							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
+							<div class="col-md-8 col-sm-8 col-xs-8 itensFormulario">
 								<div>
 									<label>PRODUTO</label>
 									<select class="form-control input-sm" id="produtoSelect" name="produtoSelect">
@@ -180,24 +201,31 @@ if (isset($_SESSION['User'])) {
 									</select>
 								</div>
 							</div>
+							<!-- QUANTIDADE EM ESTOQUE -->
+							<div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
+								<div>
+									<label>QUANTIDADE EM ESTOQUE</label>
+									<input type="text" readonly class="form-control input-sm estoque text-uppercase" id="estoqueView" name="estoqueView">
+								</div>
+							</div>
 							<!-- QUANTIDADE -->
 							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>QUANTIDADE</label>
-									<input type="number" class="form-control input-sm estoque text-uppercase quantidade" id="quantidade" name="quantidade" maxlenght="10">
+									<input type="number" class="form-control input-sm estoque text-uppercase" id="qtdProduto" name="qtdProduto">
 								</div>
 							</div>
 							<!-- VALOR DA UNIDADE -->
 							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>VALOR DA UNIDADE</label>
-									<input type="number" class="form-control input-sm text-uppercase" id="precoView" name="precoView">
+									<input type="number" class="form-control input-sm text-uppercase" id="precoProduto" name="precoProduto">
 								</div>
 							</div>
 							<!-- BOTÕES -->
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="btnRight">
-									<span class="btn btn-lg btn-success" id="btnAdicionar" title="ADICIONAR">ADICIONAR</span>
+									<span class="btn btn-lg btn-success" id="btnAdicionarProduto" title="ADICIONAR">ADICIONAR</span>
 									<!-- <span class="btn btn-warning" id="btnLimpar" title="Limpar">LIMPAR</span> -->
 								</div>
 							</div>
@@ -207,10 +235,17 @@ if (isset($_SESSION['User'])) {
 									<div id="carrinhoProdutos"></div>
 								</div>
 							</div>
+							<!-- VALOR TOTAL DE PRODUTOS -->
+							<div class="col-xs-4 col-md-4 col-sm-4 itensFormulario">
+								<div>
+									<label>VALOR TOTAL DE PRODUTOS</label>
+									<input readonly type="number" class="form-control input-sm text-uppercase" id="totalProdutos" name="totalProdutos">
+								</div>
+							</div>
 
 
 							<!-- INFORMAÇÕES DE PAGAMENTO -->
-							<div class='col-md-12 col-sm-12 col-xs-12 separador'>
+							<div class="col-md-12 col-sm-12 col-xs-12 separador">
 								<div class="text-left">
 									<h4><strong>INFORMAÇÕES DE PAGAMENTO</strong></h4>
 								</div>
@@ -232,7 +267,7 @@ if (isset($_SESSION['User'])) {
 							</div>
 
 							<!-- OBSERVAÇÕES -->
-							<div class='col-md-12 col-sm-12 col-xs-12 separador'>
+							<div class="col-md-12 col-sm-12 col-xs-12 separador">
 								<div class="text-left">
 									<h4><strong>OBSERVAÇÕES </strong> <span class="glyphicon glyphicon-exclamation-sign ml-15"></span></h4>
 								</div>
@@ -267,12 +302,14 @@ if (isset($_SESSION['User'])) {
 		});
 
 		function initForm() {
-			$('.dataSaida').mask('99/99/9999');
-			$('.dataComunicadoU').mask('99/99/9999');
-			$('#servicoSelect').select2();
+			$(".dataSaida").mask("99/99/9999");
+			$(".dataComunicadoU").mask("99/99/9999");
+			$("#servicoSelect").select2();
+			$("#produtoSelect").select2();
 			$("#valorServico").hide();
 			$("#garantiaServico").hide();
-			$('#servicosExecutados').load('./Views/Servicos/Tabelas/ServicosExecutados.php');
+			$("#servicosExecutados").load("./Views/Servicos/Tabelas/ServicosExecutados.php");
+			$("#carrinhoProdutos").load("./Views/Servicos/Tabelas/CarrinhoProdutos.php");
 			idServico = "<?php echo @$idServico ?>";
 			carregarDados(idServico);
 
@@ -288,46 +325,9 @@ if (isset($_SESSION['User'])) {
 		}
 
 		function setEvents() {
-			$('#servicoSelect').change(function() {
-				var servico = $("#servicoSelect").val();
-				debugger;
-				$.ajax({
-					type: "POST",
-					data: servico,
-					url: "./Procedimentos/Servicos/AdicionarServicos.php",
-					success: function(r) {
-						dado = jQuery.parseJSON(r);
-						debugger;
-					}
-				});
-				$("#valorServico").show();
-				$("#garantiaServico").show();
-			});
-
-			$('#btnAdicionar').click(function() {
-				var servico = $("#servicoSelect").val();
-
-				if (servico == "") {
-					alertify.error("SELECIONE UM SERVIÇO");
-					return false;
-				}
-
-				dados = $('#frmAtualizarServico').serialize();
-
-				$.ajax({
-					type: "POST",
-					data: dados,
-					url: "./Procedimentos/Servicos/AdicionarServicos.php",
-					success: function(r) {
-						$('#servicosExecutados').load('./Views/Servicos/Tabelas/ServicosExecutados.php');
-						$("#servicoSelect").val("").change();
-						alertify.success("ITEM ADICIONADO");
-					}
-				});
-			});
-
-			// EDITAR SERVIÇO
-			$('#btnEditar').click(function() {
+			// ADICIONAR SERVICO NA TABELA
+			$("#btnAdicionarServico").click(function() {
+				camposObrigatorios(["qtdServico", "precoServico"], true);
 				var validator = $("#frmAtualizarServico").validate();
 				validator.form();
 				var checkValidator = validator.checkForm();
@@ -337,7 +337,75 @@ if (isset($_SESSION['User'])) {
 					return false;
 				}
 
-				dados = $('#frmAtualizarServico').serialize();
+				dados = $("#frmAtualizarServico").serialize();
+
+				$.ajax({
+					type: "POST",
+					data: dados,
+					url: "./Procedimentos/Servicos/AdicionarServicos.php",
+					success: function(r) {
+						$("#servicosExecutados").load("./Views/Servicos/Tabelas/ServicosExecutados.php");
+						$("#servicoSelect").val("").change();
+						$("#qtdServico").val("");
+						camposObrigatorios(["qtdServico", "precoServico"], false);
+						alertify.success("SERVIÇO ADICIONADO");
+					}
+				});
+			});
+
+			// ADICIONAR PRODUTO NA TABELA
+			$("#btnAdicionarProduto").click(function() {
+				camposObrigatorios(["produtoSelect", "qtdProduto", "precoProduto"], true);
+				var validator = $("#frmAtualizarServico").validate();
+				validator.form();
+				var checkValidator = validator.checkForm();
+
+				if (checkValidator == false) {
+					alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
+					return false;
+				}
+
+				quantidade = 0;
+				quantidadeEstoque = 0;
+				quantidade = parseInt($('#qtdProduto').val());
+				quantidadeEstoque = parseInt($('#estoqueView').val());
+
+				if ((quantidade > quantidadeEstoque) || (quantidade == 0)) {
+					alertify.error("QUANTIDADE INDISPONÍVEL");
+					quantidade = $('#qtdProduto').val("");
+					return false;
+				} else {
+					quantidadeEstoque = parseInt($('#estoqueView').val());
+				}
+
+				dados = $("#frmAtualizarServico").serialize();
+
+				$.ajax({
+					type: "POST",
+					data: dados,
+					url: "./Procedimentos/Servicos/AdicionarProdutos.php",
+					success: function(r) {
+						$("#carrinhoProdutos").load("./Views/Servicos/Tabelas/CarrinhoProdutos.php");
+						$("#produtoSelect").val("").change();
+						$("#qtdProduto").val("");
+						camposObrigatorios(["produtoSelect", "qtdProduto", "precoProduto"], false);
+						alertify.success("PRODUTO ADICIONADO");
+					}
+				});
+			});
+
+			// EDITAR SERVIÇO
+			$("#btnEditar").click(function() {
+				var validator = $("#frmAtualizarServico").validate();
+				validator.form();
+				var checkValidator = validator.checkForm();
+
+				if (checkValidator == false) {
+					alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
+					return false;
+				}
+
+				dados = $("#frmAtualizarServico").serialize();
 
 				$.ajax({
 					type: "POST",
@@ -345,9 +413,9 @@ if (isset($_SESSION['User'])) {
 					url: "./Procedimentos/Servicos/EditarServicos.php",
 					success: function(r) {
 						if (r == 1) {
-							$('#tabelaServicosEntrada').load("./Views/Servicos/TabelaServicos.php");
-							$('#tabelaUltimosServicos').load('./Views/Inicio/tabelaUltimosServicos.php');
-							$('#conteudo').load("./Views/Servicos/ProcurarServicos.php");
+							$("#tabelaServicosEntrada").load("./Views/Servicos/TabelaServicos.php");
+							$("#tabelaUltimosServicos").load("./Views/Inicio/tabelaUltimosServicos.php");
+							$("#conteudo").load("./Views/Servicos/ProcurarServicos.php");
 							alertify.success("REGISTRO ATUALIZADO");
 						} else {
 							alertify.error("NÃO FOI POSSÍVEL ATUALIZAR");
@@ -356,17 +424,44 @@ if (isset($_SESSION['User'])) {
 				});
 			});
 
-			$('#btnCancelar').click(function() {
+			$("#btnCancelar").click(function() {
 				cancelar();
 			});
 
 			function cancelar() {
-				alertify.confirm('ATENÇÃO', 'DESEJA CANCELAR?', function() {
+				alertify.confirm("ATENÇÃO", "DESEJA CANCELAR?", function() {
 					alertify.confirm().close();
-					$('#frmAtualizarServico')[0].reset();
-					$('#conteudo').load("./Views/Servicos/ProcurarServicos.php");
+					$("#frmAtualizarServico")[0].reset();
+					$("#conteudo").load("./Views/Servicos/ProcurarServicos.php");
 				}, function() {});
 			}
+
+			$("#servicoSelect").change(function() {
+				var servico = $("#servicoSelect").val();
+				$.ajax({
+					type: "POST",
+					data: "idServico=" + servico,
+					url: "./Procedimentos/Servicos/Consultas/ObterDadosServicosPrestados.php",
+					success: function(r) {
+						dado = jQuery.parseJSON(r);
+						$("#precoServico").val(dado["valor"]);
+					}
+				});
+			});
+
+			$("#produtoSelect").change(function() {
+				var produto = $("#produtoSelect").val();
+				$.ajax({
+					type: "POST",
+					data: "idProduto=" + produto,
+					url: "./Procedimentos/Vendas/ObterDadosProdutos.php",
+					success: function(r) {
+						dado = jQuery.parseJSON(r);
+						$("#estoqueView").val(dado["estoque"]);
+						$("#precoProduto").val(dado["preco"]);
+					}
+				});
+			});
 		}
 
 		// FORA DO ESCOPO
@@ -377,38 +472,40 @@ if (isset($_SESSION['User'])) {
 				url: "./Procedimentos/Servicos/ObterDadosServicos.php",
 				success: function(r) {
 					dado = jQuery.parseJSON(r);
-					$('#idServico').val(dado['id_servico']);
-					$('#selectStatusU').val(dado['status']);
-					$('#informacaoU').val(dado['observacao']);
-					$('#ordemServicoU').val(dado['ordem_servico']);
-					$('#servicoU').val(dado['servico_realizado']);
+					$("#idServico").val(dado["id_servico"]);
+					$("#selectStatusU").val(dado["status"]);
+					$("#informacaoU").val(dado["observacao"]);
+					$("#ordemServicoU").val(dado["ordem_servico"]);
+					$("#servicoU").val(dado["servico_realizado"]);
 					// VERIFICA TÉCNICO
-					var identificadorTecnico = dado['id_tecnico'];
+					var identificadorTecnico = dado["id_tecnico"];
 					if ((identificadorTecnico === "0") || (identificadorTecnico === "") || (identificadorTecnico === null)) {
 						$("#tecnicoU").val("");
 					} else {
-						$('#tecnicoU').val(identificadorTecnico);
+						$("#tecnicoU").val(identificadorTecnico);
 					}
-					$('#garantiaU').val(dado['garantia']);
-					$('#precoU').val(dado['valor_total']);
-					$('#valorTerceiroU').val(dado['valor_terceiro']);
-					$('#dataSaidaU').val(dado['data_saida']);
-					$('#diagnosticoU').val(dado['diagnostico']);
+					$("#garantiaU").val(dado["garantia"]);
+					$("#precoU").val(dado["valor_total"]);
+					$("#valorTerceiroU").val(dado["valor_terceiro"]);
+					$("#dataSaidaU").val(dado["data_saida"]);
+					$("#diagnosticoU").val(dado["diagnostico"]);
 					// VERIFICAR NF-E
-					var $radios = $('input:radio[name = nfeEmitidaU]');
-					if (dado['nf_emitida'] === "NAO") {
-						$radios.filter('[value = NAO]').prop('checked', true);
+					var $radios = $("input:radio[name = nfeEmitidaU]");
+					if (dado["nf_emitida"] === "NAO") {
+						$radios.filter("[value = NAO]").prop("checked", true);
 						console.log("NOTA FISCAL NÃO EMITIDA.");
-					} else if (dado['nf_emitida'] === "SIM") {
-						$radios.filter('[value = SIM]').prop('checked', true);
+					} else if (dado["nf_emitida"] === "SIM") {
+						$radios.filter("[value = SIM]").prop("checked", true);
 						console.log("NOTA FISCAL JÁ EMITIDA.");
 					} else {
-						$radios.filter('[value = NAO]').prop('checked', true);
+						$radios.filter("[value = NAO]").prop("checked", true);
 						console.log("NÃO FOI POSSÍVEL IDENTIFICAR EMISSÃO DE NOTA.");
 					}
 				}
 			});
 		}
+
+		removerServico
 	</script>
 <?php
 } else {

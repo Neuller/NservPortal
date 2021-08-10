@@ -218,7 +218,7 @@ if (isset($_SESSION['User'])) {
             success: function(r) {
                 dado = jQuery.parseJSON(r);
                 $('#estoqueView').val(dado['estoque']);
-                $('#precoView').val(dado['preco']);
+                $('#precoView').val(dado['valor']);
                 }
         });
     });

@@ -6,7 +6,7 @@ session_start();
 <html>
     <body>
         <div class="table-responsive">
-            <table id="servicosExecutados" class="table table-hover table-condensed table-bordered text-center table-striped">
+            <table id="carrinhoProdutos" class="table table-hover table-condensed table-bordered text-center table-striped">
                 <thead>
                     <tr>
                         <td>DESCRIÇÃO</td>
@@ -17,9 +17,9 @@ session_start();
                 </thead>
                 <?php
                 $total = 0; 
-                if (isset($_SESSION["servicosTemp"])) :
+                if (isset($_SESSION["produtosTemp"])) :
                     $i = 0;
-                    foreach (@$_SESSION["servicosTemp"] as $key) {
+                    foreach (@$_SESSION["produtosTemp"] as $key) {
                         $d = explode("||", @$key);
                         $idProduto = $d[0];
                 ?>
@@ -28,7 +28,7 @@ session_start();
                             <td><?php echo $d[2] ?></td>
                             <td><?php echo "R$ " . $d[3] ?></td>
                             <td>
-                                <span class="btn btn-danger btn-md" title="REMOVER" onclick="removerServico('<?php echo $i; ?>')">
+                                <span class="btn btn-danger btn-md" title="REMOVER" onclick="removerProduto('<?php echo $i; ?>')">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </span>
                             </td>
@@ -48,17 +48,17 @@ session_start();
 <script type="text/javascript">
     $(document).ready(function() {
         total = "<?php echo @$total ?>";
-        $("#totalServicos").val(total);
+        $("#totalProdutos").val(total);
     });
 
-    function removerServico(index) {
+    function removerProduto(index) {
         $.ajax({
             type: "POST",
             data: "index=" + index,
-            url: "./Procedimentos/Servicos/RemoverServicos.php",
+            url: "./Procedimentos/Servicos/RemoverProdutos.php",
             success: function(r) {
-                $("#servicosExecutados").load("./Views/Servicos/Tabelas/ServicosExecutados.php");
-                alertify.success("SERVIÇO REMOVIDO");
+                $("#carrinhoProdutos").load("./Views/Servicos/Tabelas/CarrinhoProdutos.php");
+                alertify.success("PRODUTO REMOVIDO");
             }
         });
     }
