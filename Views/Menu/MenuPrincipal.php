@@ -1,8 +1,8 @@
 <html>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div id="navbar" class="collapse navbar-collapse">
+    <nav class="navbar-expand navbar-light">
+        <div id="navbar">
             <ul class="nav navbar-nav">
                 <!-- CLIENTES -->
                 <li class="dropdown">

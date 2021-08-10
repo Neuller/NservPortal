@@ -36,7 +36,7 @@ if (isset($_SESSION['User'])) {
 
 
             <!-- MENU PRINCIPAL -->
-            <div id="menuPrincipal" class="bgGray"></div>
+            <div id="menuPrincipal" class="bgGray menuPrincipal"></div>
         </div>
 
         <!-- CONTEUDO -->
