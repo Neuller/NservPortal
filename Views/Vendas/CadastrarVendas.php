@@ -140,7 +140,7 @@ if (isset($_SESSION['User'])) {
                         <!-- VALOR DO PAGAMENTO -->
                         <div class="col-xs-6 col-md-6 col-sm-6 itensFormulario">
                             <div>
-                                <label>VALOR DO PAGAMENTO<span class="required">*</span></label>
+                                <label>VALOR DO PAGAMENTO</label>
                                 <input type="number" class="form-control input-sm text-uppercase" id="valorPagamento" name="valorPagamento" maxlenght="10">
                             </div>
                         </div>

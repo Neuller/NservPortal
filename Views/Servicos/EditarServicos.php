@@ -35,7 +35,7 @@ if (isset($_SESSION["User"])) {
 							<div class="col-md-12 col-sm-12 col-xs-12 separador itensFormulario">
 								<div>
 									<h4><strong>DIAGNÓSTICO TÉCNICO</strong></h4>
-									<hr>
+									<hr class="hrBlack">
 									<textarea type="text" class="form-control text-uppercase input-sm" id="diagnosticoU" name="diagnosticoU" maxlength="1000" rows="3" style="resize: none"></textarea>
 								</div>
 							</div>
@@ -62,7 +62,7 @@ if (isset($_SESSION["User"])) {
 								<div class="text-left">
 									<h4><strong>INFORMAÇÕES DO SERVIÇO</strong></h4>
 								</div>
-								<hr>
+								<hr class="hrBlack">
 							</div>
 							<!-- STATUS -->
 							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
@@ -70,12 +70,15 @@ if (isset($_SESSION["User"])) {
 									<label>STATUS DO SERVIÇO</label>
 									<select class="form-control input-sm" id="selectStatusU" name="selectStatusU">
 										<option value="">SELECIONE UM STATUS</option>
-										<option value="A RECEBER">A RECEBER</option>
 										<option value="AGUARDANDO AUTORIZACAO DO CLIENTE">AGUARDANDO AUTORIZACAO DO CLIENTE</option>
+										<option value="A RECEBER">A RECEBER</option>
+										<option value="AUTORIZADO">AUTORIZADO</option>
 										<option value="DISPONIVEL PARA ENTREGA">DISPONIVEL PARA ENTREGA</option>
 										<option value="ENTREGA REALIZADA">ENTREGA REALIZADA</option>
 										<option value="ENVIADO PARA TERCEIRO">ENVIADO PARA TERCEIRO</option>
 										<option value="NA BANCADA">NA BANCADA</option>
+										<option value="ORCAMENTO">ORÇAMENTO</option>
+										<option value="RETORNO">RETORNO</option>
 										<option value="SERVICO RECUSADO">SERVICO RECUSADO</option>
 									</select>
 								</div>
@@ -183,10 +186,10 @@ if (isset($_SESSION["User"])) {
 								<div class="text-left">
 									<h4><strong>PRODUTOS</strong></h4>
 								</div>
-								<hr>
+								<hr class="hrBlack">
 							</div>
 							<!-- PRODUTO -->
-							<div class="col-md-8 col-sm-8 col-xs-8 itensFormulario">
+							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
 								<div>
 									<label>PRODUTO</label>
 									<select class="form-control input-sm" id="produtoSelect" name="produtoSelect">
@@ -209,14 +212,14 @@ if (isset($_SESSION["User"])) {
 								</div>
 							</div>
 							<!-- QUANTIDADE -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
 								<div>
 									<label>QUANTIDADE</label>
 									<input type="number" class="form-control input-sm estoque text-uppercase" id="qtdProduto" name="qtdProduto">
 								</div>
 							</div>
 							<!-- VALOR DA UNIDADE -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
 								<div>
 									<label>VALOR DA UNIDADE</label>
 									<input type="number" class="form-control input-sm text-uppercase" id="precoProduto" name="precoProduto">
@@ -245,40 +248,11 @@ if (isset($_SESSION["User"])) {
 
 
 							<!-- INFORMAÇÕES DE PAGAMENTO -->
-							<div class="col-md-12 col-sm-12 col-xs-12 separador">
-								<div class="text-left">
-									<h4><strong>INFORMAÇÕES DE PAGAMENTO</strong></h4>
-								</div>
-								<hr>
-							</div>
-							<!-- VALOR DE TERCEIRO -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
-								<div>
-									<label>VALOR DE TERCEIRO</label>
-									<input type="text" class="form-control text-uppercase valorTerceiro input-sm" id="valorTerceiroU" name="valorTerceiroU" maxlength="10">
-								</div>
-							</div>
-							<!-- VALOR TOTAL -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
-								<div>
-									<label>VALOR TOTAL</label>
-									<input type="text" class="form-control text-uppercase valorTotal input-sm" id="precoU" name="precoU" maxlength="10">
-								</div>
-							</div>
+							<div id="infoPagamento"></div>
 
 							<!-- OBSERVAÇÕES -->
-							<div class="col-md-12 col-sm-12 col-xs-12 separador">
-								<div class="text-left">
-									<h4><strong>OBSERVAÇÕES </strong> <span class="glyphicon glyphicon-exclamation-sign ml-15"></span></h4>
-								</div>
-								<hr>
-							</div>
-							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
-								<div>
-									<label>OBSERVAÇÕES</label>
-									<textarea type="text" class="form-control input-sm text-uppercase" id="informacaoU" name="informacaoU" maxlength="100" rows="3" style="resize: none"></textarea>
-								</div>
-							</div>
+							<div id="observacoes"></div>
+
 							<!-- BOTÕES -->
 							<div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
 								<div class="btnRight">
@@ -310,6 +284,8 @@ if (isset($_SESSION["User"])) {
 			$("#garantiaServico").hide();
 			$("#servicosExecutados").load("./Views/Servicos/Tabelas/ServicosExecutados.php");
 			$("#carrinhoProdutos").load("./Views/Servicos/Tabelas/CarrinhoProdutos.php");
+			$("#infoPagamento").load("./Views/Componentes/InformacoesPagamento.php");
+			$("#observacoes").load("./Views/Componentes/Observacoes.php");
 			idServico = "<?php echo @$idServico ?>";
 			carregarDados(idServico);
 
@@ -348,6 +324,7 @@ if (isset($_SESSION["User"])) {
 						$("#servicoSelect").val("").change();
 						$("#qtdServico").val("");
 						camposObrigatorios(["qtdServico", "precoServico"], false);
+						atualizarValorTotal();
 						alertify.success("SERVIÇO ADICIONADO");
 					}
 				});
@@ -389,6 +366,7 @@ if (isset($_SESSION["User"])) {
 						$("#produtoSelect").val("").change();
 						$("#qtdProduto").val("");
 						camposObrigatorios(["produtoSelect", "qtdProduto", "precoProduto"], false);
+						atualizarValorTotal();
 						alertify.success("PRODUTO ADICIONADO");
 					}
 				});
@@ -505,7 +483,42 @@ if (isset($_SESSION["User"])) {
 			});
 		}
 
-		removerServico
+		function atualizarValorTotal() {
+			let totalServicos = parseFloat($("#totalServicos").val());
+			let totalProdutos = parseFloat($("#totalProdutos").val());
+			let valorTotalServico = 0;
+			valorTotalServico = totalServicos + totalProdutos;
+			$("#valorTotalServico").val(valorTotalServico.toFixed(2));
+			$("#valorTotal").val(valorTotalServico.toFixed(2));
+		}
+
+		function calcularValorTotal() {
+			let valorTotalServico = parseFloat($("#valorTotalServico").val());
+			let desconto = parseFloat($("#desconto").val());
+			let valorTotal = valorTotalServico - desconto;
+			$("#valorTotal").val(valorTotal.toFixed(2));
+		}
+
+		function calcularTroco() {
+			let valorPagamento = parseFloat($("#valorPagamento").val());
+			let valorTotal = parseFloat($("#valorTotal").val());
+			let troco = 0;
+
+			if (valorPagamento < valorTotal) {
+				alertify.error("VALOR INCORRETO");
+				$("#valorPagamento").val("");
+				$("#troco").val("");
+				return false;
+			} else {
+				troco = valorPagamento - valorTotal;
+				$("#troco").val(troco.toFixed(2));
+			}
+		}
+
+		function setValorPagamento() {
+			let valorTotal = parseFloat($("#valorTotal").val());
+			$("#valorPagamento").val(valorTotal.toFixed(2));
+		}
 	</script>
 <?php
 } else {
