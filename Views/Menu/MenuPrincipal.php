@@ -108,6 +108,8 @@
                         OPÇÕES
                     </a>
                     <ul class="dropdown-menu">
+                            <li><a id="configuracoes" href="#">CONFIGURAÇÕES</a></li>
+                        </ul>
                         <!-- SAIR -->
                         <li>
                             <a style="color: red" href="./Procedimentos/Sair.php">
@@ -218,6 +220,10 @@
         // USUÁRIOS
         $("#cadastrarUsuarios").click(function(e) {
             $('#conteudo').load("./Views/Usuarios/CadastrarUsuarios.php");
+        });
+        //OPCOES
+        $("#configuracoes").click(function(e) {
+            $('#conteudo').load("./Views/Opcoes/Configuracoes.php");
         });
         // VENDAS
         $("#cadastrarVendas").click(function(e) {
