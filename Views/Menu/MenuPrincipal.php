@@ -108,16 +108,11 @@
                         OPÇÕES
                     </a>
                     <ul class="dropdown-menu">
-                            <li><a id="configuracoes" href="#">CONFIGURAÇÕES</a></li>
-                        </ul>
-                        <!-- SAIR -->
-                        <li>
-                            <a style="color: red" href="./Procedimentos/Sair.php">
-                                <span class="glyphicon glyphicon-off"></span> SAIR
-                            </a>
-                        </li>
+                        <li><a id="configuracoes" href="#">CONFIGURAÇÕES</a></li>
+                        <li><a style="color: red" href="./Procedimentos/Sair.php"><span class="glyphicon glyphicon-off"></span> SAIR</a>
                     </ul>
-                </li>
+                 </ul>
+              </li>
             </ul>
         </div>
     </nav>
