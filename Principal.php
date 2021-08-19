@@ -20,11 +20,11 @@ if (isset($_SESSION['User'])) {
             <div class="container">
                 <!-- IMAGEM LOGO -->
                 <div class="navbar-header logo">
-                    <a class="navbar-brand" id="logo" href="#"><img class="img-responsive logoMenu img-thumbnail" src="./Img/NSERV.png" title="PÁGINA INICIAL" width="200px" height="150px"></a>
+                    <a class="navbar-brand" id="logo" href="#"><img class="img-responsive img-thumbnail" src="./Img/NSERV.png" title="PÁGINA INICIAL" width="200px" height="150px"></a>
                 </div>
 
                 <!-- BOTAO MENU PRINCIPAL -->
-                <div class="btnRight">
+                <div class="btnMenuPrincipal">
                     <span class="btn btn-danger btn-lg" id="btnExibirMenu" title="MENU"><span class="glyphicon glyphicon-menu-hamburger btn-lg"></span>MENU</span>
                 </div>
             </div>
@@ -34,9 +34,10 @@ if (isset($_SESSION['User'])) {
                 <img src="./Img/BANNER_2021.png" class="img-fluid imagemBanner" title="SISTEMA DE GESTÃO NSERV">
             </div>
 
-
             <!-- MENU PRINCIPAL -->
-            <div id="menuPrincipal" class="bgGray menuPrincipal"></div>
+            <div class="container">
+                <div id="menuPrincipal" class="bgGray menuPrincipal"></div>
+            </div>
         </div>
 
         <!-- CONTEUDO -->
