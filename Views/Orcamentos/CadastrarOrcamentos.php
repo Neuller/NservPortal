@@ -113,6 +113,9 @@ if (isset($_SESSION["User"])) {
                                 </div>
                             </div>
 
+                            <!-- COMPONENTE SERVIÇOS -->
+                            <div id="componenteServicos"></div>
+
                             <!-- BOTÕES -->
                             <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                                 <div class="btnRight">
@@ -135,7 +138,8 @@ if (isset($_SESSION["User"])) {
         });
 
         function initForm() {
-            $("#carrinhoProdutos").load("./Views/Orcamentos//Tabelas/CarrinhoProdutos.php");
+            $("#carrinhoProdutos").load("./Views/Orcamentos/Tabelas/CarrinhoProdutos.php");
+            $("#componenteServicos").load("./Views/Componentes/InformacoesServicos.php");
             $("#clienteSelect").select2();
             $("#produtoSelect").select2();
             validarForm("frmOrcamentos");
@@ -194,6 +198,15 @@ if (isset($_SESSION["User"])) {
                     }
                 });
             });
+        }
+
+        function atualizarValorTotal() {
+            let totalServicos = parseFloat($("#totalServicos").val());
+            let totalProdutos = parseFloat($("#totalProdutos").val());
+            let valorTotalServico = 0;
+            valorTotalServico = totalServicos + totalProdutos;
+            $("#valorTotalServico").val(valorTotalServico.toFixed(2));
+            $("#valorTotal").val(valorTotalServico.toFixed(2));
         }
     </script>
 <?php

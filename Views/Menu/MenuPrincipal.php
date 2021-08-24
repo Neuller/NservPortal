@@ -76,7 +76,7 @@
                     <ul class="dropdown-menu">
                         <li><a id="cadastrarServicos" href="#">NOVO SERVIÇO</a></li>
                         <li><a id="procurarServicos" href="#">PROCURAR SERVIÇOS</a></li>
-                        <li><a id="precoServicos" href="#">TABELA DE PREÇOS</a></li>
+                        <li><a id="precoServicos" href="#">TABELA DE SERVIÇOS</a></li>
                     </ul>
                 </li>
 
