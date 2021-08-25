@@ -42,7 +42,7 @@ $result = mysqli_query($conexao, $sql);
                                 <td>'.$mostrar[6].'</td>	
                                 <td>'.$mostrar[7].'</td>	
                                 <!-- BOTÃO ATUALIZAR -->
-                                <td>'.'<span class="btn btn-warning btn-md" data-toggle="modal" title="ATUALIZAR" data-target="#atualizarTitulo" onclick="aDesenvolver()">
+                                <td>'.'<span class="btn btn-warning btn-md" data-toggle="modal" title="ATUALIZAR" data-target="#atualizarTitulo" onclick="atualizarTitulo('.$mostrar[0].')"">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 </span>'.'</td>		
                                 <!-- BOTÃO EXCLUIR -->

@@ -28,7 +28,7 @@ if (isset($_SESSION['User'])) {
 							<!-- DESCRIÇÃO -->
 							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
 								<div>
-									<label>DESCRIÇÃO></label>
+									<label>DESCRIÇÃO</label>
 									<input type="text" class="form-control input-sm text-uppercase" id="descricao" name="descricao" maxlenght="500">
 								</div>
 							</div>

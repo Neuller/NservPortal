@@ -159,12 +159,11 @@ if (isset($_SESSION['User'])) {
                         }
                     }
                 });
-            }, function() {
-                // alertify.error("OPERAÇÃO CANCELADA")
             });
         }
 
         function atualizarTitulo(idTitulo) {
+            $('#conteudo').load("./Views/Financeiro/AtualizarTitulos.php?id=" + idTitulo);
         }
     </script>
 <?php
