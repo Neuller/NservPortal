@@ -45,10 +45,10 @@ if (isset($_SESSION['User'])) {
                                 <label class="btnRadio">SIM</label>
                             </div>
                         </div>
-                        <!-- DATA DE PAGAMENTO -->
+                        <!-- DATA DO PAGAMENTO -->
                         <div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
                             <div>
-                                <label>DATA DE PAGAMENTO</label>
+                                <label>DATA DO PAGAMENTO</label>
                                 <input type="date" class="form-control text-uppercase input-sm" id="dataPagamento" name="dataPagamento">
                             </div>
                         </div>
@@ -93,10 +93,10 @@ if (isset($_SESSION['User'])) {
                 var radios = $("input:radio[name = pagamentoRealizado]");
                 if (radios == "NAO") {
                     
-                    console.log("Nao renan");
+                    console.log("Nao");
                 } else {
                     
-                    console.log("Sim renan");
+                    console.log("Sim");
                 }
             }
 
