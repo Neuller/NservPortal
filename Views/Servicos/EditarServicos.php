@@ -172,6 +172,7 @@ if (isset($_SESSION["User"])) {
 								<div align="center">
 									<div id="servicosExecutados"></div>
 								</div>
+								<input type="hidden" class="form-control input-sm text-uppercase" id="dadosTblServicos" name="dadosTblServicos">
 							</div>
 							<!-- VALOR TOTAL DE SERVIÇOS -->
 							<div class="col-xs-4 col-md-4 col-sm-4 itensFormulario">
@@ -237,6 +238,8 @@ if (isset($_SESSION["User"])) {
 								<div align="center">
 									<div id="carrinhoProdutos"></div>
 								</div>
+
+								<input type="hidden" class="form-control input-sm text-uppercase" id="dadosTblProdutos" name="dadosTblProdutos">
 							</div>
 							<!-- VALOR TOTAL DE PRODUTOS -->
 							<div class="col-xs-4 col-md-4 col-sm-4 itensFormulario">
@@ -326,6 +329,7 @@ if (isset($_SESSION["User"])) {
 						camposObrigatorios(["qtdServico", "precoServico"], false);
 						atualizarValorTotal();
 						alertify.success("SERVIÇO ADICIONADO");
+						atualizarCampoAuxServicos();
 					}
 				});
 			});
@@ -384,6 +388,7 @@ if (isset($_SESSION["User"])) {
 				}
 
 				dados = $("#frmAtualizarServico").serialize();
+				console.log("DADOS: " + dados);
 
 				$.ajax({
 					type: "POST",

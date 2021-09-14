@@ -25,7 +25,7 @@ session_start();
                     $idProduto = $d[0];
             ?>
                     <tr>
-                        <td><?php echo $d[1] ?></td>
+                        <td class="descricao"><?php echo $d[1] ?></td>
                         <td><?php echo $d[2] ?></td>
                         <td><?php echo "R$ " . $d[3] ?></td>
                         <td>
@@ -66,4 +66,11 @@ session_start();
             }
         });
     }
+
+    function atualizarCampoAuxServicos() {
+			console.log("atualizarCampoAuxServicos");
+			var content = $("#servicosExecutados").closest('tr').find('td').text();
+			$("#dadosTblServicos").val(content);
+			console.log("content:" + content);
+		}
 </script>
