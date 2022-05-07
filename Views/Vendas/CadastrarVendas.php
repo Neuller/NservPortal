@@ -235,7 +235,7 @@ if (isset($_SESSION['User'])) {
             $("#valorPagamento").prop('disabled', true);
             $("#desconto").prop('disabled', true);
             $('#valorTotal').val("");
-            limparCamposPagamentos();
+            limparCampo(["valorPagamento", "desconto", "troco", "saldoDevedor"]);
             resetFormPagamentos();
         }
     });
@@ -305,7 +305,7 @@ if (isset($_SESSION['User'])) {
                 $("#precoView").val("");
                 $("#quantidade").val("");
                 alertify.success("PRODUTO ADICIONADO AO CARRINHO");
-                limparCamposPagamentos();
+                limparCampo(["valorPagamento", "desconto", "troco", "saldoDevedor"]);
             }
         });
     });
@@ -387,13 +387,6 @@ if (isset($_SESSION['User'])) {
             $("#saldoDevedor").val("");
         }
         $("#troco").val(totalTroco.toFixed(2));
-    }
-
-    function limparCamposPagamentos() {
-        $("#valorPagamento").val("");
-        $("#desconto").val("");
-        $("#troco").val("");
-        $("#saldoDevedor").val("");
     }
 
     function resetFormPagamentos() {

@@ -210,21 +210,7 @@ if (isset($_SESSION['User'])) {
         });
         // SERVIÇOS
         $("#cadastrarServicos").click(function(e) {
-            moment.locale('pt-br');
-            var data = moment().format('DD/MM/YYYY');
-            $.ajax({
-                type: "POST",
-                data: "data=" + data,
-                url: "./Procedimentos/Financeiro/VerificarStatusCaixa.php",
-                success: function(r) {
-                    retorno = $.parseJSON(r);
-                    if (retorno == "ABERTO") {
-                        $('#conteudo').load("./Views/Servicos/CadastrarServicos.php");
-                    } else {
-                        alertify.error("VERIFIQUE O STATUS DO CAIXA");
-                    }
-                }
-            });
+            $('#conteudo').load("./Views/Servicos/CadastrarServicos.php");
         });
         $("#procurarServicos").click(function(e) {
             $('#conteudo').load("./Views/Servicos/ProcurarServicos.php");
