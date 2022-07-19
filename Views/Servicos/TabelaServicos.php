@@ -51,15 +51,15 @@ $result = mysqli_query($conexao, $sql);
 						<!-- STATUS	-->
 						<td>'.$mostrar[8].'</td>
 						<!-- ORDEM DE SERVIÇO -->
-							<td>'.'<a href="./Procedimentos/Servicos/OrdemServico.php?idServ='.$mostrar[0].'" target="_BLANK" title="IMPRIMIR" class="btn btn-danger btn-sm">
+							<td>'.'<a href="./Procedimentos/Servicos/OrdemServico.php?idServ='.$mostrar[0].'" target="_BLANK" title="IMPRIMIR" class="btn btn-danger btn-md">
 							<span class="glyphicon glyphicon-print"></span>
 							</a>'.'</td>
 						<!-- BOTÂO EDITAR -->
-							<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarServicos" title="EDITAR" onclick="editarServicos('.$mostrar[0].')">
+							<td>'.'<span class="btn btn-warning btn-md" data-toggle="modal" data-target="#editarServicos" title="EDITAR" onclick="editarServicos('.$mostrar[0].')">
 							<span class="glyphicon glyphicon-pencil"></span>
 							</span>'.'</td>
 						<!-- BOTÃO VISUALIZAR -->
-							<td>'.'<span class="btn btn-default btn-sm" data-toggle="modal" data-target="#visualizarServicos" title="VISUALIZAR" onclick="visualizarServicos('.$mostrar[0].')">
+							<td>'.'<span class="btn btn-default btn-md" data-toggle="modal" data-target="#visualizarServicos" title="VISUALIZAR" onclick="visualizarServicos('.$mostrar[0].')">
 							<span class="glyphicon glyphicon-search"></span>
 							</span>'.'</td>							
 						</tr>

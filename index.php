@@ -23,36 +23,37 @@ if (mysqli_num_rows($result) > 0) {
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
 			<div class="panel panel-default formLogin">
-				<!-- PANEL HEADING -->
+
 				<div class="panel-heading">
 					OLÁ! ACESSE JÁ.
 				</div>
-				<!-- PANEL BODY -->
+
 				<div class="panel panel-body">
 					<!-- IMAGEM -->
 					<div class="imagemPainel">
 						<img src="Img/NSERV.png" width="100%">
 					</div>
-					<!-- FORMULÁRIO -->
 					<form id="frmLogin" class="col-md-12 col-sm-12 col-xs-12">
+						<!-- LOGIN -->
 						<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
 							<div>
-								<label>USUÁRIO<span class="required">*</span></label>
-								<input type="text" class="form-control input-sm text-uppercase" name="usuario" id="usuario" maxlenght="10">
+								<label>LOGIN</label>
+								<input type="text" class="form-control input-sm text-uppercase" name="login" id="login">
 							</div>
 						</div>
+						<!-- SENHA -->
 						<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
 							<div>
-								<label>SENHA<span class="required">*</span></label>
-								<input type="password" name="senha" id="senha" class="form-control input-sm text-uppercase" maxlenght="10">
+								<label>SENHA</label>
+								<input type="password" class="form-control input-sm text-uppercase" name="senha" id="senha">
 							</div>
 						</div>
 						<!-- BOTÕES -->
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="btnRight">
-							<?php if (!$validar) : ?>
-								<span class="btn btn-success" id="registrar" title="REGISTRAR">REGISTRAR</span>
-							<?php endif; ?>
+								<?php if (!$validar) : ?>
+									<span class="btn btn-success" id="registrar" title="REGISTRAR">REGISTRAR</span>
+								<?php endif; ?>
 								<span class="btn btn-primary" id="acessar" title="ACESSAR">ACESSAR</span>
 							</div>
 						</div>
@@ -67,41 +68,51 @@ if (mysqli_num_rows($result) > 0) {
 
 <script type="text/javascript">
 	$(document).ready(function() {
-	});	
+		initForm();
+		setEvents();
+	});
 
-	$('#acessar').click(function() {
-		var usuario = $("usuario").val();
-		var senha = $("senha").val();
+	function initForm() {
+		validarForm("frmLogin");
+		camposObrigatorios(["login", "senha"], true);
+	}
 
-		if ((usuario == "") || (senha == "")) {
-			alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
-			return false;
-		}
+	function setEvents() {
+		$('#acessar').click(function() {
+			var validator = $("#frmLogin").validate();
+			validator.form();
+			var checkValidator = validator.checkForm();
 
-		dados = $('#frmLogin').serialize();
+			if (checkValidator == false) {
+				alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
+				return false;
+			}
 
-		$.ajax({
-			type: "POST",
-			data: dados,
-			url: "./Procedimentos/Login/Login.php",
-			success: function(r) {
-				if (r == 1) {
-					window.location = "./Principal.php";
-				} else {
-					alertify.error("ACESSO NEGADO");
+			dados = $('#frmLogin').serialize();
+
+			$.ajax({
+				type: "POST",
+				data: dados,
+				url: "./Procedimentos/Login/Login.php",
+				success: function(r) {
+					if (r == 1) {
+						window.location = "./Principal.php";
+					} else {
+						alertify.error("ACESSO NEGADO");
+					}
 				}
+			});
+		});
+
+
+		$('#registrar').click(function() {
+			window.location = "./Registrar.php";
+		});
+
+		$("#senha").keypress(function(event) {
+			if (event.keyCode === 13) {
+				$("#acessar").click();
 			}
 		});
-	});
-
-
-	$('#registrar').click(function() {
-		window.location = "./Registrar.php";
-	});
-
-	$("#senha").keypress(function(event) { 
-        if (event.keyCode === 13) { 
-            $("#acessar").click(); 
-        } 
-    }); 
+	}
 </script>

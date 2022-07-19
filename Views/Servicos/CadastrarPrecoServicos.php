@@ -2,12 +2,13 @@
 session_start();
 if (isset($_SESSION['User'])) {
 ?>
-<!DOCTYPE html>
-<html>
+	<!DOCTYPE html>
+	<html>
+
 	<head>
-		<?php require_once "../../Classes/Conexao.php"; 
+		<?php require_once "../../Classes/Conexao.php";
 		$c = new conectar();
-		$conexao = $c -> conexao();
+		$conexao = $c->conexao();
 		?>
 	</head>
 
@@ -27,7 +28,7 @@ if (isset($_SESSION['User'])) {
 							<!-- DESCRIÇÃO -->
 							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
 								<div>
-									<label>DESCRIÇÃO<span class="required">*</span></label>
+									<label>DESCRIÇÃO</label>
 									<input type="text" class="form-control input-sm text-uppercase" id="descricao" name="descricao" maxlenght="500">
 								</div>
 							</div>
@@ -35,7 +36,7 @@ if (isset($_SESSION['User'])) {
 							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>GARANTIA</label>
-                                    <select class="form-control text-uppercase input-sm" id="garantia" name="garantia" maxlength="100">
+									<select class="form-control text-uppercase input-sm" id="garantia" name="garantia" maxlength="100">
 										<option value="">SELECIONE UMA GARANTIA</option>
 										<option value="FUNCIONAL">FUNCIONAL</option>
 										<option value="30 DIAS">30 DIAS</option>
@@ -44,17 +45,17 @@ if (isset($_SESSION['User'])) {
 								</div>
 							</div>
 							<!-- VALOR -->
-                            <div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
-									<label>VALOR<span class="required">*</span></label>
+									<label>VALOR</label>
 									<input type="number" class="form-control text-uppercase valorTotal input-sm" id="valor" name="valor" maxlength="10">
 								</div>
 							</div>
 							<!-- BOTÕES -->
 							<div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
 								<div class="btnRight">
-									<span class="btn btn-danger" id="btnVoltar" title="VOLTAR">VOLTAR</span>
-									<span class="btn btn-primary" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
+									<span class="btn btn-danger btn-lg" id="btnVoltar" title="VOLTAR">VOLTAR</span>
+									<span class="btn btn-primary btn-lg" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
 								</div>
 							</div>
 						</div>
@@ -63,48 +64,59 @@ if (isset($_SESSION['User'])) {
 			</div>
 		</div>
 	</body>
-</html>
 
-<script type="text/javascript">
-	$(document).ready(function($) {
-    });
+	</html>
 
-	$('#btnCadastrar').click(function() {
-        var descricao = $("#descricao").val();
-        var garantia = $("#garantia").val();
-        var valor = $("#valor").val();
+	<script type="text/javascript">
+		$(document).ready(function() {
+			initForm();
+			setEvents();
+		});
 
-        if ((descricao == "") || (valor == "")) {
-            alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
-            return false;
-        }
+		function initForm() {
+			validarForm("frmPrecoServicos");
+			camposObrigatorios(["descricao", "valor"], true);
+		}
 
-        if (garantia == ""){
-            $("#garantia").val("FUNCIONAL");
-        }
+		function setEvents() {
+			$('#btnCadastrar').click(function() {
+				var validator = $("#frmPrecoServicos").validate();
+				validator.form();
+				var checkValidator = validator.checkForm();
 
-        dados = $('#frmPrecoServicos').serialize();
+				if (checkValidator == false) {
+					alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
+					return false;
+				}
+				var garantia = $("#garantia").val();
 
-        $.ajax({
-            type: "POST",
-            data: dados,
-            url: "./Procedimentos/Servicos/CadastrarPrecoServicos.php",
-            success: function(r) {
-                if (r == 1) {
-                    $('#frmPrecoServicos')[0].reset();
-                    alertify.success("CADASTRO REALIZADO");
-                } else {
-                    alertify.error("NÃO FOI POSSÍVEL CADASTRAR");
-                }
-            }
-        });
-	});
+				if (garantia == "") {
+					$("#garantia").val("FUNCIONAL");
+				}
 
-	$('#btnVoltar').click(function() {
-		$('#frmPrecoServicos')[0].reset();
-		$('#conteudo').load("./Views/Servicos/PrecoServicos.php");
-	});
-</script>
+				dados = $('#frmPrecoServicos').serialize();
+
+				$.ajax({
+					type: "POST",
+					data: dados,
+					url: "./Procedimentos/Servicos/CadastrarPrecoServicos.php",
+					success: function(r) {
+						if (r == 1) {
+							$('#frmPrecoServicos')[0].reset();
+							alertify.success("SUCESSO");
+						} else {
+							alertify.error("ERRO");
+						}
+					}
+				});
+			});
+
+			$('#btnVoltar').click(function() {
+				$('#frmPrecoServicos')[0].reset();
+				$('#conteudo').load("./Views/Servicos/PrecoServicos.php");
+			});
+		}
+	</script>
 <?php
 } else {
 	header("location:./index.php");

@@ -4,12 +4,8 @@
 
 .textCabecalho {
     font-family: Arial, Helvetica, sans-serif;
-    color: black;
+    color: #000000;
     padding: 1%;
-}
-
-.tabelas {
-    margin-bottom: 50px !important;
 }
 
 .form-check-label {

@@ -2,12 +2,13 @@
 session_start();
 if (isset($_SESSION['User'])) {
 ?>
-<!DOCTYPE html>
-<html>
+	<!DOCTYPE html>
+	<html>
+
 	<head>
-		<?php require_once "../../Classes/Conexao.php"; 
+		<?php require_once "../../Classes/Conexao.php";
 		$c = new conectar();
-		$conexao = $c -> conexao();
+		$conexao = $c->conexao();
 		?>
 	</head>
 
@@ -34,7 +35,7 @@ if (isset($_SESSION['User'])) {
 							<!-- NOME -->
 							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
 								<div>
-									<label>NOME COMPLETO<span class="required">*</span></label>
+									<label>NOME COMPLETO</label>
 									<input type="text" class="form-control input-sm text-uppercase" id="nome" name="nome" maxlenght="100">
 								</div>
 							</div>
@@ -127,7 +128,7 @@ if (isset($_SESSION['User'])) {
 							<!-- CELULAR -->
 							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
-									<label>CELULAR<span class="required">*</span></label>
+									<label>CELULAR</label>
 									<input type="text" class="form-control input-sm align celular text-uppercase" placeholder="(##) # ####-####" id="celular" name="celular" maxlenght="100">
 								</div>
 							</div>
@@ -148,7 +149,7 @@ if (isset($_SESSION['User'])) {
 							<!-- BOTÕES -->
 							<div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
 								<div class="btnRight">
-									<span class="btn btn-primary" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
+									<span class="btn btn-primary btn-lg" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
 								</div>
 							</div>
 						</div>
@@ -157,10 +158,16 @@ if (isset($_SESSION['User'])) {
 			</div>
 		</div>
 	</body>
-</html>
 
-<script type="text/javascript">
+	</html>
+
+	<script type="text/javascript">
 		$(document).ready(function($) {
+			initForm();
+			setEvents();
+		});
+
+		function initForm() {
 			$('.cpf').mask('999.999.999-99');
 			$('.cnpj').mask('99.999.999/9999-99');
 			$('.cep').mask('99999-999');
@@ -169,47 +176,60 @@ if (isset($_SESSION['User'])) {
 			$('.celular').mask('(99) 9 9999-9999');
 			$('.celular2').mask('(99) 9 9999-9999');
 
-			$(".cep").change(function(){
+			$(".cep").change(function() {
 				var cep = $("#cep").val();
-				var urlPesquisaCep = "https://viacep.com.br/ws/"+cep+"/json";
-				
+				var urlPesquisaCep = "https://viacep.com.br/ws/" + cep + "/json";
+
 				$.ajax({
 					type: "GET",
 					dataType: "JSON",
 					url: urlPesquisaCep,
-					success:function(r){
+					success: function(r) {
 						$("#bairro").val(r.bairro);
 						$("#endereco").val(r.logradouro);
 						$("#complemento").val(r.complemento);
 						$("#uf").val(r.uf);
 					},
-					error:function(){
+					error: function() {
 						alertify.error("CEP INVÁLIDO");
 						$("#cep").val("");
 						return false;
 					}
 				});
 			});
-		});
 
-		$('#btnCadastrar').click(function() {
-				var nome = $("#nome").val();
+			validarForm("frmClientes");
+			camposObrigatorios(["nome", "celular"], true);
+		}
+
+		function setEvents() {
+			$("#btnCadastrar").click(function() {
 				var cpf = $("#cpf").val();
 				var cnpj = $("#cnpj").val();
-				var celular = $("#celular").val();
 				var tabela = "clientes";
 
-				if ((nome == "") || (celular == "")) {
-					alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
+				var validator = $("#frmClientes").validate();
+				validator.form();
+				var checkValidator = validator.checkForm();
+
+				if (checkValidator == false) {
+					alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
 					return false;
 				}
 
-				if ((cpf != "") || (cnpj != "")){
-					$.ajax({ 
+				if ((cpf != "") || (cnpj != "")) {
+
+					dados = $("#frmClientes").serialize();
+
+					$.ajax({
 						type: 'POST',
-						data:{"CPF" : cpf, "CNPJ" : cnpj, "TABELA" : tabela},
-						url: './Procedimentos/Verificacoes/Verificar_CPF_CNPJ.php', 
-						success: function(r) { 
+						data: {
+							"CPF": cpf,
+							"CNPJ": cnpj,
+							"TABELA": tabela
+						},
+						url: './Procedimentos/Verificacoes/Verificar_CPF_CNPJ.php',
+						success: function(r) {
 							data = $.parseJSON(r);
 							if (data == 0) {
 								dados = $('#frmClientes').serialize();
@@ -220,18 +240,18 @@ if (isset($_SESSION['User'])) {
 									success: function(r) {
 										if (r == 1) {
 											$('#frmClientes')[0].reset();
-											alertify.success("CADASTRO REALIZADO");
+											alertify.success("SUCESSO");
 										} else {
-											alertify.error("NÃO FOI POSSÍVEL CADASTRAR");
+											alertify.error("ERRO");
 										}
 									}
 								});
-							}else{
+							} else {
 								alertify.error("CPF OU CNPJ JÁ CADASTRADO");
 							}
-						} 
+						}
 					})
-				}else{
+				} else {
 					dados = $('#frmClientes').serialize();
 					$.ajax({
 						type: "POST",
@@ -240,15 +260,16 @@ if (isset($_SESSION['User'])) {
 						success: function(r) {
 							if (r == 1) {
 								$('#frmClientes')[0].reset();
-								alertify.success("CADASTRO REALIZADO");
+								alertify.success("SUCESSO");
 							} else {
-								alertify.error("NÃO FOI POSSÍVEL CADASTRAR");
+								alertify.error("ERRO");
 							}
 						}
 					});
 				}
 			});
-</script>
+		}
+	</script>
 <?php
 } else {
 	header("location:./index.php");

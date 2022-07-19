@@ -1,21 +1,6 @@
 <?php 
 class financas{
-    public function cadastrarFinanca($dados) {
-        $c = new conectar();
-        $conexao = $c -> conexao();
-
-        $idUsuario = $_SESSION['IDUser'];
-        date_default_timezone_set('America/Sao_Paulo');
-        $dataHora = date('Y-m-d H:i:s');
-        $dataReferencia = $dados[3];
-
-        $sql = "INSERT into financas (id_usuario, descricao, tipo_financa, valor, data_hora, data_referencia) 
-        VALUES ('$idUsuario','$dados[0]', '$dados[1]','$dados[2]', '$dataHora', '$dataReferencia')";
-        
-        return mysqli_query($conexao, $sql);
-    }
-
-    public function abrirCaixa($dados) {
+    public function AbrirCaixa($dados) {
         $c = new conectar();
         $conexao = $c -> conexao();
 
@@ -28,7 +13,7 @@ class financas{
         return mysqli_query($conexao, $sql);
     }
 
-    public function fecharCaixa($dados) {
+    public function FecharCaixa($dados) {
         $c = new conectar();
         $conexao = $c -> conexao();
 
@@ -56,5 +41,28 @@ class financas{
 
         return $mostrar[0];
     }
+
+    // CONTAS A PAGAR
+    public function CadastrarContasAPagar($dados) {
+        $c = new conectar();
+        $conexao = $c -> conexao();
+
+        $idUsuario = $_SESSION['IDUser'];
+
+        $sql = "INSERT into contas_a_pagar (id_usuario, tipo, descricao, referencia, data_vencimento, valor, status) 
+        VALUES ('$idUsuario', '$dados[0]', '$dados[1]', '$dados[2]', '$dados[3]', '$dados[4]', 'PENDENTE')";
+        
+        return mysqli_query($conexao, $sql);
+    }
+
+    public function excluirTitulo($idTitulo){
+		$c = new conectar();
+		$conexao = $c -> conexao();
+	
+		$sql = "DELETE from contas_a_pagar WHERE id_contas_a_pagar = '$idTitulo' ";
+	
+		return mysqli_query($conexao, $sql);
+	}
+    
 }
 ?>

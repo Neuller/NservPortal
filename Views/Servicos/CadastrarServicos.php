@@ -92,26 +92,15 @@ if (isset($_SESSION["User"])) {
                                     <input type="text" class="form-control input-sm text-uppercase" id="serialNumber" name="serialNumber" maxlength="500">
                                 </div>
                             </div>
-                            <!-- CHECKBOX OBSERVACOES -->
-                            <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario" class="groupCheckObservacoes" id="groupCheckObservacoes">
-                                <label>ITENS DEIXADOS PELO CLIENTE</label>
+                            <!-- FONTE DE ALIMENTAÇÃO -->
+                            <div class="col-md-8 col-sm-8 col-xs-8 itensFormulario" id="groupCheckFonte">
                                 <div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="chkFonte" name="chkFonte" value="SIM">
-                                        <label class="form-check-label" for="chkFonte">FONTE DE ALIMENTAÇÃO</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="chkPerifericos" name="chkPerifericos" value="SIM">
-                                        <label class="form-check-label" for="chkPerifericos">PERIFÉRICOS</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="chkCabos" name="chkCabos" value="SIM">
-                                        <label class="form-check-label" for="chkCabos">CABOS</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="chkOutros" name="chkOutros" value="SIM">
-                                        <label class="form-check-label" for="chkOutros">OUTROS</label>
-                                    </div>
+                                    <label>FONTE DE ALIMENTAÇÃO</label>
+                                    <select class="form-control input-sm" id="chkFonte" name="chkFonte">
+                                        <option value="">SELECIONE UMA OPÇÃO</option>
+                                        <option value="SIM">SIM</option>
+                                        <option value="NAO">NAO</option>
+                                    </select>
                                 </div>
                             </div>
                             <!-- STATUS -->
@@ -175,24 +164,31 @@ if (isset($_SESSION["User"])) {
 
     <script type="text/javascript">
         $(document).ready(function() {
+            initForm();
+            setEvents();
+        });
+
+        function initForm() {
             $("#clienteSelect").select2();
             ocultarCampos();
             gerarNovaOrdem();
             validarForm("frmNovoServico");
             camposObrigatorios(["clienteSelect", "tipoEquipamento", "StatusSelect"], true);
-        });
+        }
 
+        function setEvents() {
             $("#btnCadastrar").click(function() {
                 var validator = $("#frmNovoServico").validate();
                 validator.form();
                 var checkValidator = validator.checkForm();
 
                 if (checkValidator == false) {
-                    alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
+                    alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
                     return false;
                 }
 
-                dados = $("#frmNovoServico").serialize();
+                var disableInput = getDisableInput("frmNovoServico");
+                dados = $("#frmNovoServico").serialize() + disableInput;
 
                 $.ajax({
                     type: "POST",
@@ -211,9 +207,16 @@ if (isset($_SESSION["User"])) {
                                 alertify.confirm().close();
                                 window.open("./Procedimentos/Servicos/OrdemServico/CriarOrdemServicoEntrada.php?idServ=" + id);
                                 $("#conteudo").load("./Views/Servicos/CadastrarServicos.php");
-                            }, function() {});
+                            }, function() {}).set({
+                                labels: {
+                                    ok: "SIM",
+                                    cancel: "NÃO"
+                                }
+                            });
+                            $("#conteudo").load("./Views/Servicos/CadastrarServicos.php");
                         } else {
-                            alertify.error("ERRO, CONTATE O ADMINISTRADOR");
+                            $("#conteudo").load("./Views/Servicos/CadastrarServicos.php");
+                            alertify.error("ERRO");
                         }
                     }
                 });
@@ -221,57 +224,43 @@ if (isset($_SESSION["User"])) {
 
             $("#tipoEquipamento").change(function() {
                 var tipo = $("#tipoEquipamento").val();
-                bloquearCampo(["equipamento", "serialNumber"], false);
-                limparCampo(["equipamento", "serialNumber"]);
-                mostrarCampo(["groupEquipamento", "groupSerialNumber", "groupCheckObservacoes"], false);
+                bloquearCampos(["equipamento", "serialNumber"], false);
+                limparCampos(["equipamento", "serialNumber"]);
+                esconderCampos(["groupEquipamento", "groupSerialNumber", "groupCheckFonte"]);
 
                 if (tipo == "DESKTOP") {
-                    $("#equipamento").val("DESKTOP");
-                    $("#serialNumber").val("DESKTOP");
-                    bloquearCampo(["equipamento", "serialNumber"], true);
-                    mostrarCampo(["groupEquipamento", "groupSerialNumber"]);
+                    $("#equipamento").val("DESKTOP").change();
+                    $("#serialNumber").val("DESKTOP").change();
+                    bloquearCampos(["equipamento", "serialNumber"], true);
+                    mostrarCampos(["groupEquipamento", "groupSerialNumber"]);
                     camposObrigatorios(["equipamento", "serialNumber"], false);
                     var validator = $("#frmNovoServico").validate();
                     validator.resetForm();
                 } else if (tipo != "DESKTOP" && tipo != "") {
-                    mostrarCampo(["groupEquipamento", "groupSerialNumber", "groupCheckObservacoes"]);
-                    camposObrigatorios(["equipamento", "serialNumber"], true);
+                    mostrarCampos(["groupEquipamento", "groupSerialNumber", "groupCheckFonte"]);
+                    camposObrigatorios(["equipamento", "serialNumber", "chkFonte"], true);
                 } else {
-                    mostrarCampo(["groupEquipamento", "groupSerialNumber"], false);
+                    esconderCampos(["groupEquipamento", "groupSerialNumber"]);
                     camposObrigatorios(["equipamento", "serialNumber"], false);
                 }
             });
 
             $("#StatusSelect").change(function() {
-                mostrarCampo(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado"], false);
-                limparCampo(["taxaOrcamentoRecusado"]);
+                esconderCampos(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado"]);
+                limparCampos(["taxaOrcamentoRecusado"]);
                 var status = $("#StatusSelect").val();
 
                 if (status == "ORCAMENTO") {
-                    mostrarCampo(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado"]);
+                    mostrarCampos(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado"]);
                     $("#taxaOrcamentoRecusado").val("R$ 25,00");
                 } else if (status == "AUTORIZADO") {
-                    mostrarCampo(["grouptaxaServicoAutorizado"]);
+                    mostrarCampos(["grouptaxaServicoAutorizado"]);
                 } else {
-                    mostrarCampo(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado"], false);
-                    limparCampo(["taxaOrcamentoRecusado"]);
+                    esconderCampos(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado"]);
+                    limparCampos(["taxaOrcamentoRecusado"]);
                 }
             });
-
-            $("#chkFonte").click(function() {});
-
-            $("#chkPerifericos").click(function() {
-                setObservacoes();
-            });
-
-            $("#chkCabos").click(function() {
-                setObservacoes();
-            });
-
-            $("#chkOutros").click(function() {
-                setObservacoes();
-            });
-
+        }
 
         function gerarNovaOrdem() {
             $.ajax({
@@ -285,19 +274,7 @@ if (isset($_SESSION["User"])) {
         }
 
         function ocultarCampos() {
-            mostrarCampo(["groupEquipamento", "groupSerialNumber", "grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado", "groupCheckObservacoes"], false);
-        }
-
-        function setObservacoes() {
-            var checkPerifericos = $("#chkPerifericos").is(":checked");
-            var checkCabos = $("#chkCabos").is(":checked");
-            var checkOutros = $("#chkOutros").is(":checked");
-
-            if (checkPerifericos || checkCabos || checkOutros) {
-                camposObrigatorios(["observacao"], true);
-            } else {
-                camposObrigatorios(["observacao"], false);
-            }
+            esconderCampos(["groupEquipamento", "groupSerialNumber", "grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado", "groupCheckFonte"]);
         }
     </script>
 

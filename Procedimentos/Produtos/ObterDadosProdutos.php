@@ -1,6 +1,4 @@
 <?php 
-session_start();
-
 require_once "../../Classes/Conexao.php";
 require_once "../../Classes/Produtos.php";
 

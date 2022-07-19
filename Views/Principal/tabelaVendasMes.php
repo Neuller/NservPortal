@@ -6,11 +6,12 @@ $c = new conectar();
 $conexao = $c -> conexao();
 $objUtils = new utilitarios();
 
-$dataAtual = date('m');
+$mesAtual = date("m");
+$anoAtual = date("Y");
 
 $sql = "SELECT id_venda, id_cliente, id_produto, id_usuario, valor_total, data_venda
 FROM vendas 
-where MONTH(data_venda) = ".$dataAtual."
+WHERE MONTH(data_venda) = ".$mesAtual." AND YEAR(data_venda) = ".$anoAtual."
 GROUP BY id_venda
 ORDER BY data_venda DESC";
 
@@ -43,11 +44,11 @@ $result = mysqli_query($conexao, $sql);
 							<!-- DATA DE CADASTRO -->
 							<td>'.$data.'</td>	
 							<!-- COMPROVANTE -->
-							<td>'.'<a href="./Procedimentos/Vendas/CriarComprovante.php?idVenda='.$mostrar[0].'" target="_BLANK" class="btn btn-danger btn-sm" title="IMPRIMIR">
+							<td>'.'<a href="./Procedimentos/Vendas/CriarComprovante.php?idVenda='.$mostrar[0].'" target="_BLANK" class="btn btn-danger btn-md" title="IMPRIMIR">
 							<span class="glyphicon glyphicon-print"></span>
 							</a>'.'</td>			
 							<!-- BOTÃO VISUALIZAR -->
-							<td>'.'<span class="btn btn-default btn-sm" data-toggle="modal" title="VISUALIZAR" data-target="#visualizarVendas" onclick="aDesenvolver()">
+							<td>'.'<span class="btn btn-default btn-md" data-toggle="modal" title="VISUALIZAR" data-target="#visualizarVendas" onclick="aDesenvolver()">
 							<span class="glyphicon glyphicon-search"></span>
 							</span>'.'</td>							
 							</tr>

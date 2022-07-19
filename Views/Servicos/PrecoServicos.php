@@ -8,7 +8,7 @@ if (isset($_SESSION['User'])) {
 		<div class="tblPreco container">
 			<div class="cabecalho bgGray">
 				<div class="text-center textCabecalho opacidade">
-					<h3><strong>TABELA DE PREÇOS</strong></h3>
+					<h3><strong>TABELA DE PREÇOS - SERVIÇOS</strong></h3>
 				</div>
 			</div>
 			<!-- TABELA -->
@@ -20,7 +20,7 @@ if (isset($_SESSION['User'])) {
 			<!-- BOTÕES -->
 			<div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                 <div class="btnRight">
-                    <span class="btn btn-success" id="btnNovo" title="NOVO">NOVO</span>
+                    <span class="btn btn-success btn-lg" id="btnNovo" title="NOVO">NOVO</span>
                 </div>
 			</div>
 		</div>

@@ -8,11 +8,12 @@ $conexao = $c -> conexao();
 $obj = new servicos();
 $objUtils = new utilitarios();
 
-$dataAtual = date('m');
+$mesAtual = date("m");
+$anoAtual = date("Y");
 
 $sql = "SELECT id_servico, id_cliente, equipamento, observacao, serial_number, valor_total, data_cadastro, data_saida, status 
 FROM servicos 
-where MONTH(data_cadastro) = ".$dataAtual." AND YEAR(data_cadastro) = '2021'
+WHERE MONTH(data_cadastro) = ".$mesAtual." AND YEAR(data_cadastro) = ".$anoAtual."
 ORDER BY data_cadastro DESC";
 
 $result = mysqli_query($conexao, $sql);
@@ -38,34 +39,34 @@ $result = mysqli_query($conexao, $sql);
 				<?php
 					while($mostrar=mysqli_fetch_array($result))
 					{
-						$data = date('d/m/Y', strtotime($mostrar[6]));
+						$data = date("d/m/Y", strtotime($mostrar[6]));
 						echo 
-						'
+						"
 						<tr>
 						<!-- CLIENTE -->
-						<td>'.$objUtils -> nomeCliente($mostrar[1]).'</td>
+						<td>".$objUtils -> nomeCliente($mostrar[1])."</td>
 						<!-- CELULAR -->
-						<td>'.$objUtils -> celularCliente($mostrar[1]).'</td>
+						<td>".$objUtils -> celularCliente($mostrar[1])."</td>
 						<!-- NÚMERO DE SERIAL -->
-						<td>'.$mostrar[4].'</td>
+						<td>".$mostrar[4]."</td>
 						<!-- DATA DE ENTRADA -->
-						<td>'.$data.'</td>
+						<td>".$data."</td>
 						<!-- STATUS	-->
-						<td>'.$mostrar[8].'</td>
+						<td>".$mostrar[8]."</td>
 						<!-- ORDEM DE SERVIÇO -->
-						<td>'.'<a href="./Procedimentos/Servicos/OrdemServico.php?idServ='.$mostrar[0].'" target="_BLANK" class="btn btn-danger btn-sm" title="IMPRIMIR">
-						<span class="glyphicon glyphicon-print"></span>
-						</a>'.'</td>
+						<td>"."<a href='./Procedimentos/Servicos/OrdemServico.php?idServ='.$mostrar[0].' target='_BLANK' class='btn btn-danger btn-md' title='IMPRIMIR'>
+						<span class='glyphicon glyphicon-print'></span>
+						</a>"."</td>
 						<!-- BOTÂO EDITAR -->
-						<td>'.'<span class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarServicos" title="EDITAR" onclick="editarServicos('.$mostrar[0].')">
-						<span class="glyphicon glyphicon-pencil"></span>
-						</span>'.'</td>
+						<td>"."<span class='btn btn-warning btn-md' data-toggle='modal' data-target='#editarServicos' title='EDITAR' onclick='editarServicos(".$mostrar[0].")'>
+						<span class='glyphicon glyphicon-pencil'></span>
+						</span>"."</td>
 						<!-- BOTÃO VISUALIZAR -->
-						<td>'.'<span class="btn btn-default btn-sm" data-toggle="modal" data-target="#visualizarServicos" title="VISUALIZAR" onclick="visualizarServicos('.$mostrar[0].')">
-						<span class="glyphicon glyphicon-search"></span>
-						</span>'.'</td>							
+						<td>"."<span class='btn btn-default btn-md' data-toggle='modal' data-target='#visualizarServicos' title='VISUALIZAR' onclick='visualizarServicos(".$mostrar[0].")'>
+						<span class='glyphicon glyphicon-search'></span>
+						</span>"."</td>							
 						</tr>
-						';
+						";
 					}
 				?>
 			</tbody>

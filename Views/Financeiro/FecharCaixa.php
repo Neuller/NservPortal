@@ -189,7 +189,7 @@ if (isset($_SESSION['User'])) {
                         <!-- BOTÕES -->
                         <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                             <div class="btnRight">
-                                <span class="btn btn-success" id="btnAvancar1" title="AVANÇAR">AVANÇAR</span>
+                                <span class="btn btn-success btn-lg" id="btnAvancar1" title="AVANÇAR">AVANÇAR</span>
                             </div>
                         </div>
 					</form>
@@ -324,7 +324,7 @@ if (isset($_SESSION['User'])) {
                         <!-- BOTÕES -->
                         <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                             <div class="btnRight">
-							    <span class="btn btn-success" id="btnAvancar2" title="AVANÇAR">AVANÇAR</span>
+							    <span class="btn btn-success btn-lg" id="btnAvancar2" title="AVANÇAR">AVANÇAR</span>
 						    </div>
                         </div>
 					</form>
@@ -410,8 +410,8 @@ if (isset($_SESSION['User'])) {
                         <!-- BOTÕES -->
                         <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                             <div class="btnRight">
-                                <span class="btn btn-danger" id="btnCancelar" title="CANCELAR">CANCELAR</span>
-                                <span class="btn btn-success" id="btnFecharCaixa" title="FECHAR CAIXA">FECHAR CAIXA</span>
+                                <span class="btn btn-danger btn-lg" id="btnCancelar" title="CANCELAR">CANCELAR</span>
+                                <span class="btn btn-success btn-lg" id="btnFecharCaixa" title="FECHAR CAIXA">FECHAR CAIXA</span>
 						    </div>
                         </div>
 					</form>
@@ -619,7 +619,7 @@ if (isset($_SESSION['User'])) {
         var retirada = $("#retirada").val();
 
         if (retirada == ""){
-            alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
+            alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
 			return false;
         }
 

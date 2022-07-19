@@ -24,7 +24,7 @@ if (isset($_SESSION['User'])) {
 							</div>
 						</div>
                         <!-- STATUS -->
-                        <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
+                        <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario" id="groupStatus">
                             <div>
                                 <label>STATUS</label>
                                 <input type="text" readonly class="form-control input-sm text-uppercase" id="status" name="status">
@@ -33,8 +33,8 @@ if (isset($_SESSION['User'])) {
                         <!-- BOTÕES -->
 						<div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                             <div class="btnRight">
-                                <span class="btn btn-danger" id="btnFecharCaixa" title="FECHAR CAIXA">FECHAR CAIXA</span>
-                                <span class="btn btn-success" id="btnAbrirCaixa" title="ABRIR CAIXA">ABRIR CAIXA</span>
+                                <span class="btn btn-danger btn-lg" id="btnFecharCaixa" title="FECHAR CAIXA">FECHAR CAIXA</span>
+                                <span class="btn btn-success btn-lg" id="btnAbrirCaixa" title="ABRIR CAIXA">ABRIR CAIXA</span>
                             </div>
 					    </div>
 	    			</form>
@@ -61,6 +61,7 @@ if (isset($_SESSION['User'])) {
             success: function(r) {
                 retorno = $.parseJSON(r);
                 $("#status").val(retorno);
+                debugger;
                 if (retorno == "ABERTO") {
                     $("#btnAbrirCaixa").hide();
                     $("#btnFecharCaixa").show();
@@ -70,6 +71,7 @@ if (isset($_SESSION['User'])) {
                 } else {
                     $("#btnAbrirCaixa").show();
                     $("#btnFecharCaixa").hide();
+                    esconderCampos(["groupStatus"]);
                 }
             }
 		});

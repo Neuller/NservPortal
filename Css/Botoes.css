@@ -36,3 +36,16 @@
 .btnRadio {
     margin: 05px;
 }
+
+.btnMenuPrincipal {
+    margin: 15px;
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#btnSalvar {}
+
+.btnGroupConfiguracoes {
+    margin-bottom: 15px;
+}

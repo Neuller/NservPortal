@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['User'])) {
+if (isset($_SESSION["User"])) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@ if (isset($_SESSION['User'])) {
 				<div class="mx-auto">
 					<form id="frmVendas">
                         <!-- INFORMAÇÕES DO CLIENTE -->
-                        <div class='col-md-12 col-sm-12 col-xs-12'>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="text-left">
                                 <h4><strong>INFORMAÇÕES DO CLIENTE </strong> <span class="glyphicon glyphicon-user ml-15"></span></h4>
                             </div>
@@ -48,7 +48,7 @@ if (isset($_SESSION['User'])) {
                             </div>
                         </div>
                         <!-- INFORMAÇÕES DO PRODUTO -->
-                        <div class='col-md-12 col-sm-12 col-xs-12 separador'>
+                        <div class="col-md-12 col-sm-12 col-xs-12 separador">
                             <div class="text-left">
                                 <h4><strong>INFORMAÇÕES DO PRODUTO </strong><span class="glyphicon glyphicon-hdd ml-15"></span></h4>
                             </div>
@@ -94,7 +94,7 @@ if (isset($_SESSION['User'])) {
                         <!-- BOTÕES -->
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="btnRight">
-                                <span class="btn btn-success" id="btnAdicionar" title="ADICIONAR">ADICIONAR <span class="fas fa-shopping-cart ml-15"></span></span>
+                                <span class="btn btn-success btn-lg" id="btnAdicionar" title="ADICIONAR">ADICIONAR <span class="fas fa-shopping-cart ml-15"></span></span>
                                 <!-- <span class="btn btn-warning" id="btnLimpar" title="Limpar">LIMPAR</span> -->
                             </div>
                         </div>
@@ -111,10 +111,10 @@ if (isset($_SESSION['User'])) {
                             </div>
                         </div>
 
-                        <!-- INFORMAÇÔES DO PAGAMENTO -->
-                        <div class='col-xs-12 col-md-12 col-sm-12 separador'>
+                        <!-- INFORMAÇÕES DE PAGAMENTO -->
+                        <div class="col-xs-12 col-md-12 col-sm-12 separador">
                             <div class="text-left">
-                                <h4><strong>INFORMAÇÔES DO PAGAMENTO </strong><span class="glyphicon glyphicon-bitcoin"></span></h4>
+                                <h4><strong>INFORMAÇÕES DE PAGAMENTO</strong></h4>
                             </div>
                             <hr>
                         </div>
@@ -127,6 +127,8 @@ if (isset($_SESSION['User'])) {
                                     <option value="CREDITO">CARTÃO DE CREDITO</option>
                                     <option value="DEBITO">CARTÃO DE DÉBITO</option>
                                     <option value="DINHEIRO">DINHEIRO</option>
+                                    <option value="PIX">PIX</option>
+                                    <option value="TRANSFERENCIA">TRANSFERÊNCIA</option>
                                 </select>
                             </div>
                         </div>
@@ -140,7 +142,7 @@ if (isset($_SESSION['User'])) {
                         <!-- VALOR DO PAGAMENTO -->
                         <div class="col-xs-6 col-md-6 col-sm-6 itensFormulario">
                             <div>
-                                <label>VALOR DO PAGAMENTO<span class="required">*</span></label>
+                                <label>VALOR DO PAGAMENTO</label>
                                 <input type="number" class="form-control input-sm text-uppercase" id="valorPagamento" name="valorPagamento" maxlenght="10">
                             </div>
                         </div>
@@ -173,7 +175,7 @@ if (isset($_SESSION['User'])) {
                             </div>
                         </div>
                         <!-- OBSERVAÇÕES -->
-                        <div class='col-md-12 col-sm-12 col-xs-12 separador'>
+                        <div class="col-md-12 col-sm-12 col-xs-12 separador">
                             <div class="text-left">
                                 <h4><strong>OBSERVAÇÕES </strong> <span class="glyphicon glyphicon-exclamation-sign ml-15"></span></h4>
                             </div>
@@ -189,7 +191,7 @@ if (isset($_SESSION['User'])) {
                         <!-- BOTÕES -->
                         <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                             <div class="btnRight">
-                                <span class="btn btn-primary" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
+                                <span class="btn btn-primary btn-lg" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
                             </div>
                         </div>
                     </form>
@@ -201,15 +203,15 @@ if (isset($_SESSION['User'])) {
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#carrinhoVendas').load('./Views/Vendas/CarrinhoVendas.php');
-        $('#clienteSelect').select2();
-        $('#produtoSelect').select2();
-        $("#desconto").prop('disabled', true);
-        $("#valorPagamento").prop('disabled', true);
+        $("#carrinhoVendas").load("./Views/Vendas/CarrinhoVendas.php");
+        $("#clienteSelect").select2();
+        $("#produtoSelect").select2();
+        $("#desconto").prop("disabled", true);
+        $("#valorPagamento").prop("disabled", true);
         $(".saldoDevedor").hide();
     });
 
-    $('#produtoSelect').change(function() {
+    $("#produtoSelect").change(function() {
         var produto = $("#produtoSelect").val();
         $.ajax({
             type: "POST",
@@ -217,44 +219,44 @@ if (isset($_SESSION['User'])) {
             url: "./Procedimentos/Vendas/ObterDadosProdutos.php",
             success: function(r) {
                 dado = jQuery.parseJSON(r);
-                $('#estoqueView').val(dado['estoque']);
-                $('#precoView').val(dado['preco']);
+                $("#estoqueView").val(dado["estoque"]);
+                $("#precoView").val(dado["preco"]);
                 }
         });
     });
 
-    $('#formaPagamento').change(function() {
+    $("#formaPagamento").change(function() {
         var total = $("#total").val();
         var formaPagamento = $("#formaPagamento").val();
         if(formaPagamento != ""){
-            $("#valorPagamento").prop('disabled', false);
-            $("#desconto").prop('disabled', false);
-            $('#valorPagamento').val(total);
+            $("#valorPagamento").prop("disabled", false);
+            $("#desconto").prop("disabled", false);
+            $("#valorPagamento").val(total);
             calculaTotal();
         }else{
-            $("#valorPagamento").prop('disabled', true);
-            $("#desconto").prop('disabled', true);
-            $('#valorTotal').val("");
-            limparCampo(["valorPagamento", "desconto", "troco", "saldoDevedor"]);
+            $("#valorPagamento").prop("disabled", true);
+            $("#desconto").prop("disabled", true);
+            $("#valorTotal").val("");
+            limparCamposPagamentos();
             resetFormPagamentos();
         }
     });
 
-    $('#total').change(function() {
-        $("#valorPagamento").prop('disabled', false);
-        $('#formaPagamento').val("");
+    $("#total").change(function() {
+        $("#valorPagamento").prop("disabled", false);
+        $("#formaPagamento").val("");
         calculaTotal();
     });
 
-    $('#valorPagamento').change(function() {
+    $("#valorPagamento").change(function() {
         var valorPagamento = $("#valorPagamento").val();
         var total = $("#total").val();
         if(valorPagamento != ""){
-            $("#desconto").prop('disabled', false);
+            $("#desconto").prop("disabled", false);
             $("#desconto").val("");
             calculaTotal();
         }else{
-            $("#desconto").prop('disabled', true);
+            $("#desconto").prop("disabled", true);
             $("#desconto").val("");
             $("#troco").val("");
             $("#total").val(total);
@@ -266,70 +268,70 @@ if (isset($_SESSION['User'])) {
         
     });
 
-    $('#desconto').change(function() {
+    $("#desconto").change(function() {
         calculaTotal();
     });
 
-    $('#btnAdicionar').click(function() {
+    $("#btnAdicionar").click(function() {
         var produto = $("#produtoSelect").val();
         var quantidade = $("#quantidade").val();
 
         if ((produto == "") || (quantidade == "")) {
-            alertify.error("PREENCHA OS CAMPOS OBRIGATÓRIOS");
+            alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
             return false;
         }
 
         quantidade = 0;
         quantidadeEstoque = 0;
-        quantidade = parseInt($('#quantidade').val());
-        quantidadeEstoque = parseInt($('#estoqueView').val());
+        quantidade = parseInt($("#quantidade").val());
+        quantidadeEstoque = parseInt($("#estoqueView").val());
 
         if ((quantidade > quantidadeEstoque) || (quantidade == 0)) {
             alertify.error("QUANTIDADE INDISPONÍVEL");
-            quantidade = $('#quantidade').val("");
+            quantidade = $("#quantidade").val("");
             return false;
         } else {
-            quantidadeEstoque = parseInt($('#estoqueView').val());
+            quantidadeEstoque = parseInt($("#estoqueView").val());
         }
 
-        dados = $('#frmVendas').serialize();
+        dados = $("#frmVendas").serialize();
 
         $.ajax({
             type: "POST",
             data: dados,
             url: "./Procedimentos/Vendas/AdicionarProdutos.php",
             success: function(r) {
-                $('#carrinhoVendas').load('./Views/Vendas/CarrinhoVendas.php');
+                $("#carrinhoVendas").load("./Views/Vendas/CarrinhoVendas.php");
                 $("#produtoSelect").val("").change();
                 $("#estoqueView").val("");
                 $("#precoView").val("");
                 $("#quantidade").val("");
                 alertify.success("PRODUTO ADICIONADO AO CARRINHO");
-                limparCampo(["valorPagamento", "desconto", "troco", "saldoDevedor"]);
+                limparCamposPagamentos();
             }
         });
     });
 
-    $('#btnLimpar').click(function() {
+    $("#btnLimpar").click(function() {
         $.ajax({
             url: "../../Procedimentos/Vendas/LimparTabelaVendasTemporaria.php",
             success: function(r) {
-                $('#carrinhoVendas').load('./Views/Vendas/CarrinhoVendas.php');
+                $("#carrinhoVendas").load("./Views/Vendas/CarrinhoVendas.php");
             }
         });
     });
 
-    $('#btnCadastrar').click(function() {
+    $("#btnCadastrar").click(function() {
         var cliente = $("#clienteSelect").val();
         var valorPagamento = $("#valorPagamento").val();
         var formaPagamento = $("#formaPagamento").val();
 
         if ((cliente == "") || (valorPagamento == "") || (formaPagamento == "")) {
-            alertify.error("PREENCHA OS CAMPOS OBRIGATÓRIOS");
+            alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
             return false;
         }
 
-        dados = $('#frmVendas').serialize();
+        dados = $("#frmVendas").serialize();
 
         $.ajax({
             type: "POST",
@@ -337,21 +339,25 @@ if (isset($_SESSION['User'])) {
             url: "./Procedimentos/Vendas/CadastrarVendas.php",
             success: function(r) {
                 if (r > 0) {
-                    $('#carrinhoVendas').load('./Views/Vendas/CarrinhoVendas.php');
+                    $("#carrinhoVendas").load("./Views/Vendas/CarrinhoVendas.php");
                     $("#clienteSelect").val("").change();
-                    $('#frmVendas')[0].reset();
-                    alertify.success("VENDA REALIZADA");
+                    $("#frmVendas")[0].reset();
+                    alertify.success("SUCESSO");
                     // IMPRIMIR COMPROVANTE?
-                    alertify.confirm('ATENÇÃO', 'DESEJA IMPRIMIR CUPOM FISCAL?', function(){
+                    alertify.confirm("ATENÇÃO", "DESEJA IMPRIMIR COMPROVANTE DE VENDA?", function(){
                         const id = r;
                         alertify.confirm().close();
                         window.open("./Procedimentos/Vendas/CriarComprovante.php?idVenda=" + id);
-                    }, function(){
+                    }, function() {}).set({
+                        labels: {
+                            ok: "SIM",
+                            cancel: "NÃO"
+                        }
                     });
                 } else if (r == 0) {
                     alertify.alert("ATENÇÃO", "CARRINHO VAZIO");
                 } else {
-                    alertify.error("VENDA NÃO REALIZADA");
+                    alertify.error("ERRO");
                 }
             }
         });
@@ -389,8 +395,15 @@ if (isset($_SESSION['User'])) {
         $("#troco").val(totalTroco.toFixed(2));
     }
 
+    function limparCamposPagamentos() {
+        $("#valorPagamento").val("");
+        $("#desconto").val("");
+        $("#troco").val("");
+        $("#saldoDevedor").val("");
+    }
+
     function resetFormPagamentos() {
-        $("#desconto").prop('disabled', true);
+        $("#desconto").prop("disabled", true);
         $(".saldoDevedor").hide();
         $(".desconto").show();
         $(".troco").show();

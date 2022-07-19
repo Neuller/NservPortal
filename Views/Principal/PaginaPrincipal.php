@@ -14,6 +14,7 @@ if (isset($_SESSION['User'])) {
 					<span>USUÁRIO LOGADO: <div id="usuarioLogado"></div></span>
 				</div>
 			</dv> -->
+
 			<div>
 				<!-- STATUS DO CAIXA: -->
 				<div class="text-left col-md-12 col-sm-12 col-xs-12 textCabecalho">
@@ -37,7 +38,7 @@ if (isset($_SESSION['User'])) {
 						<div class="text-center">
 							<section class="conteudoContatos">
 								<div class="text-center">
-									<p class="h5 textContatos">(31) 9 9165-4448</p>
+									<p class="h5 textContatos">(31) 9 9273-1661</p>
 									<p class="h5 textContatos">(31) 9 9246-6484</p>
 								</div>
 							</section>
@@ -167,7 +168,7 @@ if (isset($_SESSION['User'])) {
 				success: function(r) {
 					retorno = $.parseJSON(r);
 					if (retorno == null) {
-						$("#statusCaixa").text("STATUS DO CAIXA: ");
+						$("#statusCaixa").text("STATUS DO CAIXA: FECHADO");
 					} else {
 						$("#statusCaixa").text("STATUS DO CAIXA: " + retorno);
 					}

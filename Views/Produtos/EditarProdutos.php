@@ -99,8 +99,8 @@ if (isset($_SESSION['User'])) {
                             <!-- BOTÕES -->
                             <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
                                 <div class="btnRight">
-                                    <span class="btn btn-danger" id="btnCancelar" title="CANCELAR">CANCELAR</span>
-                                    <span class="btn btn-warning" id="btnEditar" title="EDITAR">EDITAR</span>
+                                    <span class="btn btn-danger btn-lg" id="btnCancelar" title="CANCELAR">CANCELAR</span>
+                                    <span class="btn btn-warning btn-lg" id="btnEditar" title="EDITAR">EDITAR</span>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@ if (isset($_SESSION['User'])) {
         var garantia = $("#garantiaU").val();
 
         if ((descricao == "") || (preco == "") || (estoque == "") || (codigo == "")) {
-            alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
+            alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
             return false;
         }
 
@@ -145,7 +145,7 @@ if (isset($_SESSION['User'])) {
                     $('#conteudo').load("./Principal.php");
                     alertify.success("REGISTRO ATUALIZADO");
                 } else {
-                    alertify.error("NÃO FOI POSSÍVEL ATUALIZAR");
+                    alertify.error("ERRO");
                 }
             }
         });

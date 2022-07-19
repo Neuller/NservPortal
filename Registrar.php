@@ -97,7 +97,7 @@ if (mysqli_num_rows($result) > 0) {
 		var senha = $("#senha").val();
 
 		if ((nome == "") || (usuario == "") || (senha == "")) {
-			alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
+			alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
 			return false;
 		}
 
@@ -111,9 +111,9 @@ if (mysqli_num_rows($result) > 0) {
 				if (r == 1) {
 					$('#frmRegistro')[0].reset();
 					window.location = "./index.php";
-					alertify.success("CADASTRO REALIZADO");
+					alertify.success("SUCESSO");
 				} else {
-					alertify.error("NÃO FOI POSSÍVEL CADASTRAR");
+					alertify.error("ERRO");
 				}
 			}
 		});

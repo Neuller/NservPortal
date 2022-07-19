@@ -65,7 +65,7 @@ session_start();
             success: function(r) {
                 $('#carrinhoVendasTemp').load('./Views/Vendas/CarrinhoVendas.php');
                 alertify.success("PRODUTO REMOVIDO DO CARRINHO");
-                limparCampo(["valorPagamento", "desconto", "troco", "saldoDevedor"]);
+                limparCamposPagamentos();
                 var total = $('#total').val("");
                 $('#valorTotal').val(total);
             }

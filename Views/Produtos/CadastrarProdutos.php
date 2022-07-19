@@ -1,15 +1,16 @@
 <?php
 session_start();
-if (isset($_SESSION['User'])) {
+if (isset($_SESSION["User"])) {
 ?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<?php require_once "../../Classes/Conexao.php"; 
-		$c = new conectar();
-		$conexao = $c -> conexao();
-		?>
-	</head>
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <?php require_once "../../Classes/Conexao.php";
+        $c = new conectar();
+        $conexao = $c->conexao();
+        ?>
+    </head>
 
     <body>
         <div class="container">
@@ -19,14 +20,14 @@ if (isset($_SESSION['User'])) {
                 </div>
             </div>
             <!-- FORMULÁRIO -->
-			<div class="divFormulario">
-				<div class="mx-auto">
+            <div class="divFormulario">
+                <div class="mx-auto">
                     <form id="frmProdutos">
                         <div>
                             <!-- CATEGORIA -->
                             <div class="col-md-8 col-sm-8 col-xs-8 itensFormulario">
                                 <div>
-                                    <label>CATEGORIA<span class="required">*</span></label>
+                                    <label>CATEGORIA</label>
                                     <select class="form-control input-sm" id="categoria" name="categoria">
                                         <option value="">SELECIONE UMA CATEGORIA</option>
                                         <option value="HARD DISK">HARD DISK</option>
@@ -44,14 +45,14 @@ if (isset($_SESSION['User'])) {
                             <!-- CÓDIGO -->
                             <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
                                 <div>
-                                    <label>CÓDIGO<span class="required">*</span></label>
+                                    <label>CÓDIGO</label>
                                     <input type="text" class="form-control input-sm codigo text-uppercase" id="codigo" name="codigo" maxlenght="10">
                                 </div>
                             </div>
                             <!-- DESCRIÇÃO -->
                             <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
                                 <div>
-                                    <label>DESCRIÇÃO<span class="required">*</span></label>
+                                    <label>DESCRIÇÃO</label>
                                     <textarea type="text" class="form-control input-sm text-uppercase" id="descricao" name="descricao" maxlength="1000" rows="3" style="resize: none"></textarea>
                                 </div>
                             </div>
@@ -72,14 +73,14 @@ if (isset($_SESSION['User'])) {
                             <!-- ESTOQUE -->
                             <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
                                 <div>
-                                    <label>ESTOQUE<span class="required">*</span></label>
+                                    <label>ESTOQUE</label>
                                     <input type="number" class="form-control input-sm estoque text-uppercase" id="estoque" name="estoque" maxlenght="10">
                                 </div>
                             </div>
                             <!-- VALOR UNIDADE -->
                             <div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
                                 <div>
-                                    <label>VALOR UNIDADE<span class="required">*</span></label>
+                                    <label>VALOR UNIDADE</label>
                                     <input type="number" class="form-control input-sm text-uppercase" id="preco" name="preco" maxlenght="10">
                                 </div>
                             </div>
@@ -106,78 +107,99 @@ if (isset($_SESSION['User'])) {
                             </div>
                             <!-- BOTÂO CADASTRAR -->
                             <div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
-								<div class="btnRight">
-                                    <span class="btn btn-primary" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
+                                <div class="btnRight">
+                                    <span class="btn btn-primary btn-lg" id="btnCadastrar" title="CADASTRAR">CADASTRAR</span>
                                 </div>
-							</div>
+                            </div>
                         </div>
                     </form>
                 </div>
-			</div>
-		</div>
-	</body>
-</html>
+            </div>
+        </div>
+    </body>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.codigo').mask('9999999999');
-        $('.estoque').mask('9999999999');
-        $('.nf').mask('9999999999');
-        $('.ncm').mask('9999999999');
-    });
+    </html>
 
-    $('#codigo').change(function() {
-        var codProduto = $("#codigo").val();
-        $.ajax({ 
-            type: 'POST',
-            data: {"codProduto" : codProduto},
-            url: './Procedimentos/Verificacoes/ValidarCodProduto.php',
-                success: function(r) {
-                data = $.parseJSON(r);
-                if (data == 0) {
-                    
-                }else{
-                    alertify.error("CÓDIGO EXISTENTE");
-                    $("#codigo").val("");
-                }
-            } 
-		});
-    });
-
-    $('#btnCadastrar').click(function() {
-        var descricao = $("#descricao").val();
-        var preco = $("#preco").val();
-        var categoria = $("#categoria").val();
-        var estoque = $("#estoque").val();
-        var codigo = $("#codigo").val();
-        var garantia = $("#garantia").val();
-
-        if ((descricao == "") || (preco == "") || (categoria == "") || (estoque == "") || (codigo == "")) {
-            alertify.error("PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS");
-            return false;
-        }
-
-        if(garantia == ""){
-            $("#garantia").val("FUNCIONAL");
-        }
-
-        dados = $('#frmProdutos').serialize();
-        
-        $.ajax({
-            type: "POST",
-            data: dados,
-            url: "./Procedimentos/Produtos/CadastrarProdutos.php",
-            success: function(r) {
-                if (r == 1) {
-                    $('#frmProdutos')[0].reset();
-                    alertify.success("CADASTRO REALIZADO");
-                } else {
-                    alertify.error("NÃO FOI POSSÍVEL CADASTRAR");
-                }
-            }
+    <script type="text/javascript">
+        $(document).ready(function() {
+            initForm();
+            setEvents();
         });
-    });
-</script>
+
+        function initForm() {
+            $(".codigo").mask("9999999999");
+            $(".estoque").mask("9999999999");
+            $(".nf").mask("9999999999");
+            $(".ncm").mask("9999999999");
+
+            $("#codigo").change(function() {
+                var codProduto = $("#codigo").val();
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        "codProduto": codProduto
+                    },
+                    url: "./Procedimentos/Verificacoes/ValidarCodProduto.php",
+                    success: function(r) {
+                        data = $.parseJSON(r);
+                        if (data == 0) {
+
+                        } else {
+                            alertify.error("CÓDIGO EXISTENTE");
+                            $("#codigo").val("");
+                        }
+                    }
+                });
+            });
+            validarForm("frmProdutos");
+            camposObrigatorios(["categoria", "codigo", "preco", "descricao", "estoque"], true);
+        }
+
+        function setEvents() {
+            $("#btnCadastrar").click(function() {
+                var descricao = $("#descricao").val();
+                var preco = $("#preco").val();
+                var categoria = $("#categoria").val();
+                var estoque = $("#estoque").val();
+                var codigo = $("#codigo").val();
+                var garantia = $("#garantia").val();
+                var tabela = "produtos"
+
+                var validator = $("#frmProdutos").validate();
+                validator.form();
+                var checkValidator = validator.checkForm();
+
+                if (checkValidator == false) {
+                    alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
+                    return false;
+                }
+                if ((descricao == "") || (preco == "") || (categoria == "") || (estoque == "") || (codigo == "")) {
+                    alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
+                    return false;
+                }
+
+                if (garantia == "") {
+                    $("#garantia").val("FUNCIONAL");
+                }
+
+                dados = $("#frmProdutos").serialize();
+
+                $.ajax({
+                    type: "POST",
+                    data: dados,
+                    url: "./Procedimentos/Produtos/CadastrarProdutos.php",
+                    success: function(r) {
+                        if (r == 1) {
+                            $("#frmProdutos")[0].reset();
+                            alertify.success("SUCESSO");
+                        } else {
+                            alertify.error("ERRO");
+                        }
+                    }
+                });
+            });
+        }
+    </script>
 <?php
 } else {
     header("location: ./index.php");
