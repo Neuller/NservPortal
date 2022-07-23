@@ -178,8 +178,8 @@ function setEvents() {
     });
     // VENDAS
     $("#cadastrarVendas").click(function(e) {
-        moment.locale('pt-br');
-        var data = moment().format('DD/MM/YYYY');
+        moment.locale("pt-br");
+        var data = moment().format("DD/MM/YYYY");
         $.ajax({
             type: "POST",
             data: "data=" + data,

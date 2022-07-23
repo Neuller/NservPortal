@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['User'])) {
+if (isset($_SESSION["User"])) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,31 +29,34 @@ if (isset($_SESSION['User'])) {
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#tabelaPrecos').load('./Views/Servicos/TabelaPrecos.php');
+		$("#tabelaPrecos").load("./Views/Servicos/TabelaPrecos.php");
 	});
 	
-	$('#btnNovo').click(function() {
-		$('#conteudo').load("./Views/Servicos/CadastrarPrecoServicos.php");
+	$("#btnNovo").click(function() {
+		$("#conteudo").load("./Views/Servicos/CadastrarPrecoServicos.php");
 	});
 
 	function excluir(id) {
-		alertify.confirm('ATENÇÃO', 'DESEJA EXCLUIR O REGISTRO?', function() {
+		alertify.confirm("ATENÇÃO", "DESEJA EXCLUIR O REGISTRO?", function() {
 			$.ajax({
 				type: "POST",
 				data: "id=" + id,
 				url: "./Procedimentos/Servicos/ExcluirPrecoServicos.php",
 				success: function(r) {
 					if (r == 1) {
-						$('#tabelaPrecos').load('./Views/Servicos/TabelaPrecos.php');
-						alertify.success("EXCLUÍDO");
+						$("#tabelaPrecos").load("./Views/Servicos/TabelaPrecos.php");
+						alertify.success("SUCESSO");
 					} else {
-						alertify.error("NÃO FOI POSSÍVEL EXCLUIR");
+						alertify.error("ERRO");
 					}
 				}
 			});
-		}, function() {
-			// alertify.error('OPERAÇÃO CANCELADA')
-		});
+		}, function() {}).set({
+            labels: {
+				ok: "SIM",
+				cancel: "NÃO"
+            }
+        });
 	}
 </script>
 

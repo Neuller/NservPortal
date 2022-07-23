@@ -39,7 +39,7 @@ class financas{
         $result = mysqli_query($conexao, $sql);
         $mostrar = mysqli_fetch_row($result);
 
-        return $mostrar[0];
+        return $mostrar;
     }
 
     // CONTAS A PAGAR

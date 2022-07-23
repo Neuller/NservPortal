@@ -25,7 +25,6 @@ $result = mysqli_query($conexao, $sql);
 					<td>DESCRIÇÃO</td>
                     <td>GARANTIA</td>
 					<td>VALOR</td>
-                    <td>EDITAR</td>
                     <td>EXCLUIR</td>
 				</tr>
 			</thead> 
@@ -42,10 +41,6 @@ $result = mysqli_query($conexao, $sql);
 						<td>'.$mostrar[2].'</td>
 						<!-- VALOR -->
 						<td>'.'R$ '.$mostrar[3].'</td>
-						<!-- BOTÂO EDITAR -->
-						<td>'.'<span class="btn btn-warning btn-md" data-toggle="modal" data-target="#editar" title="EDITAR" onclick="aDesenvolver()">
-						<span class="glyphicon glyphicon-pencil"></span>
-						</span>'.'</td>
 						<!-- BOTÃO EXCLUIR -->
                         <td>'.'<span class="btn btn-danger btn-md" title="EXCLUIR" onclick="excluir('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-remove"></span>

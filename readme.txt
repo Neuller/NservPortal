@@ -1,0 +1,1 @@
+ESTRUTURA SQL DO BANCO DE DADOS -- ARQUIVO 'database_nserv_struc' 
