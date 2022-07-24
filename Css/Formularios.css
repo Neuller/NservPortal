@@ -6,8 +6,8 @@
     margin-bottom: 50px;
 }
 
-.tituloFormulario {
-    margin-top: 25px;
+.titulo-formulario {
+    color: #404e78;
 }
 
 .itensFormulario {
@@ -21,4 +21,18 @@
     color: white;
     border-radius: 05px;
     padding: 10px;
+}
+
+.separador {
+    margin-top: 25px;
+}
+
+.textCabecalho {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+    padding: 1%;
+}
+
+.form-check-label {
+    font-weight: normal !important;
 }

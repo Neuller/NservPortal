@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['User'])) {
+if (isset($_SESSION["User"])) {
 ?>
 	<!DOCTYPE html>
 	<html>
@@ -26,8 +26,8 @@ if (isset($_SESSION['User'])) {
 					<form id="frmClientes">
 						<div>
 							<!-- FORMULÁRIO DADOS PESSOAIS -->
-							<div class='col-md-12 col-sm-12 col-xs-12'>
-								<div class="text-left">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="text-left titulo-formulario">
 									<h4><strong>DADOS PESSOAIS </strong><span class="glyphicon glyphicon-user ml-15"></span></h4>
 								</div>
 								<hr>
@@ -62,7 +62,7 @@ if (isset($_SESSION['User'])) {
 							</div>
 
 							<!-- FORMULÁRIO ENDEREÇO -->
-							<div class='separador col-md-12 col-sm-12 col-xs-12'>
+							<div class="separador col-md-12 col-sm-12 col-xs-12 titulo-formulario">
 								<div class="text-left">
 									<h4><strong>ENDEREÇO </strong><span class="glyphicon glyphicon-home ml-15"></span></h4>
 								</div>
@@ -112,7 +112,7 @@ if (isset($_SESSION['User'])) {
 							</div>
 
 							<!-- FORMULÁRIO TELEFONES -->
-							<div class='separador col-md-12 col-sm-12 col-xs-12'>
+							<div class="separador col-md-12 col-sm-12 col-xs-12 titulo-formulario">
 								<div class="text-left">
 									<h4><strong>TELEFONES </strong><span class="glyphicon glyphicon-phone-alt ml-15"></span></h4>
 								</div>
@@ -168,13 +168,13 @@ if (isset($_SESSION['User'])) {
 		});
 
 		function initForm() {
-			$('.cpf').mask('999.999.999-99');
-			$('.cnpj').mask('99.999.999/9999-99');
-			$('.cep').mask('99999-999');
-			$('.telefone').mask('(99) 9999-9999');
-			$('.telefone2').mask('(99) 9999-9999');
-			$('.celular').mask('(99) 9 9999-9999');
-			$('.celular2').mask('(99) 9 9999-9999');
+			$(".cpf").mask("999.999.999-99");
+			$(".cnpj").mask("99.999.999/9999-99");
+			$(".cep").mask("99999-999");
+			$(".telefone").mask("(99) 9999-9999");
+			$(".telefone2").mask("(99) 9999-9999");
+			$(".celular").mask("(99) 9 9999-9999");
+			$(".celular2").mask("(99) 9 9999-9999");
 
 			$(".cep").change(function() {
 				var cep = $("#cep").val();
@@ -222,24 +222,24 @@ if (isset($_SESSION['User'])) {
 					dados = $("#frmClientes").serialize();
 
 					$.ajax({
-						type: 'POST',
+						type: "POST",
 						data: {
 							"CPF": cpf,
 							"CNPJ": cnpj,
 							"TABELA": tabela
 						},
-						url: './Procedimentos/Verificacoes/Verificar_CPF_CNPJ.php',
+						url: "./Procedimentos/Verificacoes/Verificar_CPF_CNPJ.php",
 						success: function(r) {
 							data = $.parseJSON(r);
 							if (data == 0) {
-								dados = $('#frmClientes').serialize();
+								dados = $("#frmClientes").serialize();
 								$.ajax({
 									type: "POST",
 									data: dados,
 									url: "./Procedimentos/Clientes/CadastrarClientes.php",
 									success: function(r) {
 										if (r == 1) {
-											$('#frmClientes')[0].reset();
+											$("#frmClientes")[0].reset();
 											alertify.success("SUCESSO");
 										} else {
 											alertify.error("ERRO");
@@ -252,14 +252,14 @@ if (isset($_SESSION['User'])) {
 						}
 					})
 				} else {
-					dados = $('#frmClientes').serialize();
+					dados = $("#frmClientes").serialize();
 					$.ajax({
 						type: "POST",
 						data: dados,
 						url: "./Procedimentos/Clientes/CadastrarClientes.php",
 						success: function(r) {
 							if (r == 1) {
-								$('#frmClientes')[0].reset();
+								$("#frmClientes")[0].reset();
 								alertify.success("SUCESSO");
 							} else {
 								alertify.error("ERRO");
