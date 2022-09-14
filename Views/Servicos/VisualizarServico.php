@@ -205,8 +205,19 @@
 					if (r == 1) {
 						$("#tabelaServicosEntrada").load("./Views/Servicos/TabelaServicos.php");
 						$("#tabelaUltimosServicos").load("./Views/Inicio/tabelaUltimosServicos.php");
-						$("#conteudo").load("./Views/Servicos/ProcurarServicos.php");
 						alertify.success("SUCESSO");
+						// IMPRIMIR COMPROVANTE?
+						alertify.confirm("ATENÇÃO", "DESEJA IMPRIMIR ORDEM DE SERVIÇO?", function() {
+                            const id = r;
+                            alertify.confirm().close();
+                            window.open("./Procedimentos/Servicos/OrdemServico/CriarOrdemServicoEntrada.php?idServ=" + id);
+                        }, function() {}).set({
+                            labels: {
+                                ok: "SIM",
+                                cancel: "NÃO"
+                            }
+                        });
+						$("#conteudo").load("./Views/Servicos/ProcurarServicos.php");
 					} else {
 						alertify.error("ERRO");
 					}
