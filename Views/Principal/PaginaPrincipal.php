@@ -131,7 +131,7 @@ if (isset($_SESSION["User"])) {
 			moment.locale("pt-br");
 			var data = moment().format("DD/MM/YYYY");
 			getStatusCaixa(data);
-			getDadosUsuario();
+			getDadosUsuarioLogado();
 		});
 
 		// function editarServicos(idServico) {
@@ -142,14 +142,14 @@ if (isset($_SESSION["User"])) {
 			$("#conteudo").load("./Views/Servicos/VisualizarServico.php?id=" + idServico);
 		}
 
-		function getDadosUsuario() {
+		function getDadosUsuarioLogado() {
 			$.ajax({
 				type: "POST",
 				url: "./Procedimentos/Usuarios/ObterDadosUsuario.php",
 				success: function(r) {
 					retorno = $.parseJSON(r);
-					if(retorno != null || retorno != undefined) {
-						$("#nomeUsuario").text("OLÁ! SEJA BEM VINDO, " + retorno.nome + ".");
+					if(retorno != null && retorno != undefined) {
+						$("#nomeUsuario").text("SEJA BEM VINDO, " + retorno.nome + "!");
 					}
 				}
 			});

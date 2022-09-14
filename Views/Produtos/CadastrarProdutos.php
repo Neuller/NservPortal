@@ -30,14 +30,15 @@ if (isset($_SESSION["User"])) {
                                     <label>CATEGORIA</label>
                                     <select class="form-control input-sm" id="categoria" name="categoria">
                                         <option value="">SELECIONE UMA CATEGORIA</option>
+                                        <option value="CEM">C&M INFO</option>
+                                        <option value="GABINETE">GABINETE</option>
                                         <option value="HARD DISK">HARD DISK</option>
+                                        <option value="IMPRESSORA">IMPRESSORA</option>
                                         <option value="MEMORIA">MEMORIA</option>
+                                        <option value="MONITOR">MONITOR</option>
                                         <option value="PLACA DE VIDEO">PLACA DE VIDEO</option>
                                         <option value="PLACA MAE">PLACA MAE</option>
                                         <option value="PROCESSADOR">PROCESSADOR</option>
-                                        <option value="GABINETE">GABINETE</option>
-                                        <option value="MONITOR">MONITOR</option>
-                                        <option value="IMPRESSORA">IMPRESSORA</option>
                                         <option value="OUTROS">OUTROS</option>
                                     </select>
                                 </div>
