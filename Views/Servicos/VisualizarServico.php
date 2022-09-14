@@ -142,10 +142,10 @@
 									<label class="btnRadio">SIM</label>
 								</div>
 							</div>
-							<!-- OBSERVACOES -->
+							<!-- OBSERVAÇÕES -->
 							<div class="col-md-12 col-sm-12 col-xs-12 separador">
 								<div class="text-left">
-									<h4><strong>OBSERVAÇÕES</strong></h4>
+									<h4><strong>OBSERVAÇÕES </strong> <span class="glyphicon glyphicon-exclamation-sign ml-15"></span></h4>
 								</div>
 								<hr>
 							</div>

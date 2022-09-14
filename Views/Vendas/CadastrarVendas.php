@@ -183,7 +183,6 @@ if (isset($_SESSION["User"])) {
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
                             <div>
-                                <label>OBSERVAÇÕES</label>
                                 <textarea type="text" class="form-control input-sm text-uppercase" id="observacao" name="observacao" maxlength="1000" 
                                 rows="3" style="resize: none"></textarea>
                             </div>
