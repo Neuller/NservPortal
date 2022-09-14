@@ -14,5 +14,5 @@ $_POST['email'] = strtoupper($_POST['email']),
 $senha
 );
 
-echo $obj-> CadastrarUsuarios($dados);
+echo $obj-> CadastrarUsuario($dados);
 ?>

@@ -4,7 +4,7 @@ session_start();
 require_once "../../Classes/Conexao.php";
 require_once "../../Classes/Servicos.php";
 
-$idUsuario = $_SESSION["IDUser"];
+$idUsuario = $_SESSION["id_usuario"];
 $idCliente = $_POST["clienteSelect"];
 $status = $_POST["StatusSelect"];
 

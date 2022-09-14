@@ -5,7 +5,7 @@ require_once "../../Classes/Clientes.php";
 
 $obj = new clientes();
 
-$idUsuario = $_SESSION['IDUser'];
+$idUsuario = $_SESSION["id_usuario"];
 
 $dados = array(
 $idUsuario,

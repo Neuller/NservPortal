@@ -1,26 +1,20 @@
 <?php
 session_start();
-if (isset($_SESSION['User'])) {
+if (isset($_SESSION["User"])) {
 ?>
-
-	<!DOCTYPE html>
-	<html>
-
+<!DOCTYPE html>
+<html>
 	<body>
 		<div class="container">
-			<!-- <div> -->
-			<!-- USUÁRIO LOGADO -->
-			<!-- <div class="text-left">
-					<span>USUÁRIO LOGADO: <div id="usuarioLogado"></div></span>
-				</div>
-			</dv> -->
-
 			<div>
-				<!-- STATUS DO CAIXA: -->
+				<!-- USUÁRIO LOGADO -->
+				<div class="text-left col-md-12 col-sm-12 col-xs-12 textCabecalho">
+						<div id="nomeUsuario"></div>
+				</div>
+				<!-- STATUS DO CAIXA -->
 				<div class="text-left col-md-12 col-sm-12 col-xs-12 textCabecalho">
 					<div id="statusCaixa"></div>
 				</div>
-				</dv>
 				<!-- FALE CONOSCO -->
 				<div class="cabecalho bgGray">
 					<div class="text-center textCabecalho opacidade">
@@ -97,7 +91,6 @@ if (isset($_SESSION['User'])) {
 						</div>
 					</article>
 				</div>
-
 				<!-- SERVIÇOS DO MES -->
 				<div>
 					<div class="servicosMes bgGray">
@@ -112,7 +105,6 @@ if (isset($_SESSION['User'])) {
 						</div>
 					</div>
 				</div>
-
 				<!-- VENDAS DO MES -->
 				<div>
 					<div class="vendasMes bgGray">
@@ -128,39 +120,42 @@ if (isset($_SESSION['User'])) {
 					</div>
 				</div>
 			</div>
+		</div>
 	</body>
-
-	</html>
+</html>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('#tabelaServicosMes').load('./Views/Principal/tabelaServicosMes.php');
-			$('#tabelaVendasMes').load('./Views/Principal/tabelaVendasMes.php');
-			moment.locale('pt-br');
-			var data = moment().format('DD/MM/YYYY');
-			setStatusCaixa(data);
+			$("#tabelaServicosMes").load("./Views/Principal/tabelaServicosMes.php");
+			$("#tabelaVendasMes").load("./Views/Principal/tabelaVendasMes.php");
+			moment.locale("pt-br");
+			var data = moment().format("DD/MM/YYYY");
+			getStatusCaixa(data);
+			getDadosUsuario();
 		});
 
-		function editarServicos(idServico) {
-			$('#conteudo').load("./Views/Servicos/EditarServicos.php?id=" + idServico);
+		// function editarServicos(idServico) {
+		// 	$("#conteudo").load("./Views/Servicos/EditarServicos.php?id=" + idServico);
+		// }
+
+		function VisualizarServico(idServico) {
+			$("#conteudo").load("./Views/Servicos/VisualizarServico.php?id=" + idServico);
 		}
 
-		function visualizarServicos(idServico) {
-			$('#conteudo').load("./Views/Servicos/VisualizarServicos.php?id=" + idServico);
-		}
-
-		function verificarUsuario() {
+		function getDadosUsuario() {
 			$.ajax({
 				type: "POST",
-				url: "./Procedimentos/Verificacoes/VerificarUsuarioLogado.php",
+				url: "./Procedimentos/Usuarios/ObterDadosUsuario.php",
 				success: function(r) {
 					retorno = $.parseJSON(r);
-					$('#usuarioLogado').val(retorno);
+					if(retorno != null || retorno != undefined) {
+						$("#nomeUsuario").text("OLÁ! SEJA BEM VINDO, " + retorno.nome + ".");
+					}
 				}
 			});
 		}
 
-		function setStatusCaixa(data) {
+		function getStatusCaixa(data) {
 			$.ajax({
 				type: "POST",
 				data: "data=" + data,

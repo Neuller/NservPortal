@@ -7,8 +7,8 @@ require_once "../../Classes/Usuarios.php";
 $obj = new usuarios();
 
 $dados = array(
-$_POST['login'],
-$_POST['senha']
+$_POST["login"],
+$_POST["senha"]
 );
 
 echo $obj -> login($dados);

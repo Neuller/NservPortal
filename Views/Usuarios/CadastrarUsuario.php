@@ -8,7 +8,7 @@ if (isset($_SESSION['User'])) {
 	<head>
 		<?php require_once "../../Classes/Conexao.php";
 		$c = new conectar();
-		$conexao = $c->conexao();
+		$conexao = $c -> conexao();
 		?>
 	</head>
 
@@ -55,8 +55,7 @@ if (isset($_SESSION['User'])) {
 									<select class="form-control input-sm" id="grupoUsuario" name="grupoUsuario">
 										<option value="">SELECIONE UM GRUPO</option>
 										<option value="ADMIN">ADMIN</option>
-										<option value="ADMIN/FINAN">ADMIN/FINAN</option>
-										<option value="GERAL">GERAL</option>
+										<option value="OUTROS">OUTROS</option>
 									</select>
 								</div>
 							</div>
@@ -85,14 +84,10 @@ if (isset($_SESSION['User'])) {
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			initForm();
-			setEvents();
-		});
-
-		function initForm() {
 			validarForm("frmUsuarios");
 			camposObrigatorios(["nome", "login", "email", "senha", "grupoUsuario"], true);
-		}
+			setEvents();
+		});
 
 		function setEvents() {
 			$("#btnCadastrar").click(function() {
@@ -101,7 +96,7 @@ if (isset($_SESSION['User'])) {
 				var checkValidator = validator.checkForm();
 
 				if (checkValidator == false) {
-					alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
+					alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
 					return false;
 				}
 
@@ -110,7 +105,7 @@ if (isset($_SESSION['User'])) {
 				$.ajax({
 					type: "POST",
 					data: dados,
-					url: "./Procedimentos/Usuarios/CadastrarUsuarios.php",
+					url: "./Procedimentos/Usuarios/CadastrarUsuario.php",
 					success: function(r) {
 						if (r > 0) {
 							$("#frmUsuarios")[0].reset();

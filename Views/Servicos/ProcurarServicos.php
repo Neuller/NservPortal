@@ -26,12 +26,12 @@ if (isset($_SESSION['User'])) {
 		$('#tabelaServicos').load('./Views/Servicos/TabelaServicos.php');
 	});
 
-	function editarServicos(idServico) {
-		$('#conteudo').load("./Views/Servicos/EditarServicos.php?id="+idServico);
-	}
+	// function editarServicos(idServico) {
+	// 	$('#conteudo').load("./Views/Servicos/EditarServicos.php?id="+idServico);
+	// }
 
-	function visualizarServicos(idServico) {
-		$('#conteudo').load("./Views/Servicos/VisualizarServicos.php?id="+idServico);
+	function visualizarServico(idServico) {
+		$('#conteudo').load("./Views/Servicos/VisualizarServico.php?id="+idServico);
 	}
 </script>
 <?php

@@ -6,7 +6,7 @@ class vendas{
         $data = date('Y-m-d');
         $idVenda = self :: criarComprovante();
         $carrinho = $_SESSION['vendasTemp'];
-        $idUsuario = $_SESSION['IDUser'];
+        $idUsuario = $_SESSION["id_usuario"];
         $r = 0;
 
         for ($i = 0; $i < count($carrinho); $i++) { 

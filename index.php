@@ -2,9 +2,9 @@
 require_once "./Classes/Conexao.php";
 
 $obj = new conectar();
-$conexao = $obj->Conexao();
+$conexao = $obj -> conexao();
 
-$sql = "SELECT * from usuarios WHERE grupo_usuario = 'admin' or 'ADMIN' ";
+$sql = "SELECT * FROM usuarios WHERE grupo_usuario = 'admin' OR 'ADMIN' ";
 $result = mysqli_query($conexao, $sql);
 
 $validar = 0;
@@ -68,27 +68,23 @@ if (mysqli_num_rows($result) > 0) {
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		initForm();
+		validarForm("frmLogin");
+		camposObrigatorios(["login", "senha"], true);
 		setEvents();
 	});
 
-	function initForm() {
-		validarForm("frmLogin");
-		camposObrigatorios(["login", "senha"], true);
-	}
-
 	function setEvents() {
-		$('#acessar').click(function() {
+		$("#acessar").click(function() {
 			var validator = $("#frmLogin").validate();
 			validator.form();
 			var checkValidator = validator.checkForm();
 
 			if (checkValidator == false) {
-				alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
+				alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
 				return false;
 			}
 
-			dados = $('#frmLogin').serialize();
+			dados = $("#frmLogin").serialize();
 
 			$.ajax({
 				type: "POST",
@@ -104,8 +100,7 @@ if (mysqli_num_rows($result) > 0) {
 			});
 		});
 
-
-		$('#registrar').click(function() {
+		$("#registrar").click(function() {
 			window.location = "./Registrar.php";
 		});
 

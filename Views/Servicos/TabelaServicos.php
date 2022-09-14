@@ -28,7 +28,6 @@ $result = mysqli_query($conexao, $sql);
 					<td>DATA DE ENTRADA</td>
 					<td>STATUS</td>
 					<td>ORDEM DE SERVIÇO</td>
-					<td>EDITAR</td>
 					<td>VISUALIZAR</td>
 				</tr>
 			</thead> 
@@ -54,12 +53,8 @@ $result = mysqli_query($conexao, $sql);
 							<td>'.'<a href="./Procedimentos/Servicos/OrdemServico.php?idServ='.$mostrar[0].'" target="_BLANK" title="IMPRIMIR" class="btn btn-danger btn-md">
 							<span class="glyphicon glyphicon-print"></span>
 							</a>'.'</td>
-						<!-- BOTÂO EDITAR -->
-							<td>'.'<span class="btn btn-warning btn-md" data-toggle="modal" data-target="#editarServicos" title="EDITAR" onclick="editarServicos('.$mostrar[0].')">
-							<span class="glyphicon glyphicon-pencil"></span>
-							</span>'.'</td>
 						<!-- BOTÃO VISUALIZAR -->
-							<td>'.'<span class="btn btn-default btn-md" data-toggle="modal" data-target="#visualizarServicos" title="VISUALIZAR" onclick="visualizarServicos('.$mostrar[0].')">
+							<td>'.'<span class="btn btn-default btn-md" data-toggle="modal" data-target="#visualizarServico" title="VISUALIZAR" onclick="visualizarServico('.$mostrar[0].')">
 							<span class="glyphicon glyphicon-search"></span>
 							</span>'.'</td>							
 						</tr>

@@ -11,7 +11,7 @@ if (isset($_SESSION["User"])) {
         <?php require_once "./Classes/Conexao.php";
         $c = new conectar();
         $conexao = $c->conexao();
-        $idUsuario = $_SESSION["IDUser"];
+        $idUsuario = $_SESSION["id_usuario"];
         ?>
     </head>
 

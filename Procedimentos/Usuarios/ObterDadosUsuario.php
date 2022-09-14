@@ -1,12 +1,13 @@
 <?php
+session_start();
 require_once "../../Classes/Conexao.php";
-require_once "../../Classes/Utilitarios.php";
+require_once "../../Classes/Usuarios.php";
 
 $c = new conectar();
 $conexao = $c -> conexao();
-$obj = utilitarios();
+$obj = new usuarios();
 
 $idUsuario = $_SESSION["id_usuario"];
 
-echo $obj -> nomeUsuario($idUsuario);
+echo json_encode($obj -> obterDadosUsuario($idUsuario));
 ?>

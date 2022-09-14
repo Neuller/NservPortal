@@ -1,11 +1,11 @@
 <?php 
 class usuarios{
-	public function CadastrarUsuarios($dados) {
+	public function CadastrarUsuario($dados) {
 		$c = new conectar();
 		$conexao = $c -> conexao();
 
-		$data = date('Y-m-d');
-		$sql = "INSERT into usuarios (grupo_usuario, nome, usuario, email, senha, data_cadastro) 
+		$data = date("Y-m-d");
+		$sql = "INSERT INTO usuarios (grupo_usuario, nome, usuario, email, senha, data_cadastro) 
 		VALUES ('$dados[0]','$dados[1]', '$dados[2]', '$dados[3]', '$dados[4]', '$data')";
 
 		return mysqli_query($conexao, $sql);
@@ -17,10 +17,13 @@ class usuarios{
 
 		$senha = sha1($dados[1]);
 
-		$_SESSION['User'] = $dados[0];
-		$_SESSION['IDUser'] = self::trazerID($dados);
+		$_SESSION["User"] = $dados[0];
+		$_SESSION["id_usuario"] = self::obterID($dados);
+		$_SESSION["grupo"] = self::obterGrupo($dados);
+		$_SESSION["nome_usuario"] = self::obterNome($dados);
 
-		$sql = "SELECT * from usuarios 
+		$sql = "SELECT * 
+		FROM usuarios 
 		WHERE usuario = '$dados[0]' and senha = '$senha' ";
 
 		$result = mysqli_query($conexao, $sql);
@@ -32,37 +35,68 @@ class usuarios{
 		}
 	}
 
-	public function trazerID($dados) {
+	public function obterID($dados) {
 		$c = new conectar();
 		$conexao = $c -> conexao();
 
 		$senha = sha1($dados[1]);
 
-		$sql = "SELECT id_usuario from usuarios
-		WHERE usuario = '$dados[0]' and senha = '$senha' ";
+		$sql = "SELECT id_usuario 
+		FROM usuarios
+		WHERE usuario = '$dados[0]' AND senha = '$senha' ";
 
 		$result = mysqli_query($conexao, $sql);
 
 		return mysqli_fetch_row($result)[0];
 	}
 
-	public function obterDados($idusuario) {
+	public function obterGrupo($dados) {
 		$c = new conectar();
+		$conexao = $c -> conexao();
 
-		$conexao=$c->conexao();
+		$senha = sha1($dados[1]);
 
-		$sql="SELECT ID, usuario, nome, email FROM usuarios 
-		WHERE ID='$idusuario'";
+		$sql = "SELECT grupo_usuario 
+		FROM usuarios
+		WHERE usuario = '$dados[0]' AND senha = '$senha' ";
 
-		$result=mysqli_query($conexao,$sql);
+		$result = mysqli_query($conexao, $sql);
 
-		$mostrar=mysqli_fetch_row($result);
+		return mysqli_fetch_row($result)[0];
+	}
 
-		$dados=array(
-		'ID' => $mostrar[0],
-		'usuario' => $mostrar[1],
-		'nome' => $mostrar[2],
-		'email' => $mostrar[3]
+	public function obterNome($dados) {
+		$c = new conectar();
+		$conexao = $c -> conexao();
+
+		$senha = sha1($dados[1]);
+
+		$sql = "SELECT nome
+		FROM usuarios
+		WHERE usuario = '$dados[0]' AND senha = '$senha' ";
+
+		$result = mysqli_query($conexao, $sql);
+
+		return mysqli_fetch_row($result)[0];
+	}
+
+	public function obterDadosUsuario($idUsuario) {
+		$c = new conectar();
+		$conexao = $c -> conexao();
+
+		$sql="SELECT id_usuario, grupo_usuario, nome, usuario, email
+		FROM usuarios 
+		WHERE id_usuario = '$idUsuario'";
+
+		$result = mysqli_query($conexao,$sql);
+		$mostrar = mysqli_fetch_row($result);
+
+		$dados = array(
+		"id" => $mostrar[0],
+		"grupo" => $mostrar[1],
+		"nome" => $mostrar[2],
+		"login" => $mostrar[3],
+		"email" => $mostrar[3]
 		);
 
 		return $dados;

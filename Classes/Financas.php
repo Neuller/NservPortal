@@ -4,7 +4,7 @@ class financas{
         $c = new conectar();
         $conexao = $c -> conexao();
 
-        $idUsuario = $_SESSION['IDUser'];
+        $idUsuario = $_SESSION["id_usuario"];
 
         $sql = "INSERT into fluxo_caixa (id_usuario_entrada, qtd_notas_entrada, valor_total_notas_entrada, qtd_moedas_entrada, 
         valor_total_moedas_entrada, data_referencia, valor_total_inicial, status) 
@@ -17,7 +17,7 @@ class financas{
         $c = new conectar();
         $conexao = $c -> conexao();
 
-        $idUsuario = $_SESSION['IDUser'];
+        $idUsuario = $_SESSION["id_usuario"];
 
         $sql = "UPDATE fluxo_caixa 
         SET qtd_notas_saida = '$dados[0]', valor_total_notas_saida = '$dados[1]', qtd_moedas_saida = '$dados[2]', 
@@ -47,7 +47,7 @@ class financas{
         $c = new conectar();
         $conexao = $c -> conexao();
 
-        $idUsuario = $_SESSION['IDUser'];
+        $idUsuario = $_SESSION["id_usuario"];
 
         $sql = "INSERT into contas_a_pagar (id_usuario, tipo, descricao, referencia, data_vencimento, valor, status) 
         VALUES ('$idUsuario', '$dados[0]', '$dados[1]', '$dados[2]', '$dados[3]', '$dados[4]', 'PENDENTE')";

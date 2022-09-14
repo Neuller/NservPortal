@@ -5,7 +5,7 @@ require_once "../../Classes/Conexao.php";
 require_once "../../Classes/Status.php";
 
 $data = date("Y-m-d");
-$idusuario = $_SESSION['IDUser'];
+$idusuario = $_SESSION["id_usuario"];
 $descricao = $_POST['descricao'];
 
 $obj = new status();
