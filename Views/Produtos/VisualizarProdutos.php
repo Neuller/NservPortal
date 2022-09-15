@@ -36,7 +36,7 @@ if (isset($_SESSION["User"])) {
                             <div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
                                 <div>
                                     <label>CÓDIGO<span class="required">*</span></label>
-                                    <input type="text" class="form-control input-sm codigo text-uppercase" id="codigoU" name="codigoU" maxlenght="10">
+                                    <input type="text" readonly class="form-control input-sm codigo text-uppercase" id="codigoU" name="codigoU" maxlenght="10">
                                 </div>
                             </div>
                             <!-- DESCRIÇÃO -->
@@ -123,7 +123,7 @@ if (isset($_SESSION["User"])) {
         var garantia = $("#garantiaU").val();
 
         if ((descricao == "") || (preco == "") || (estoque == "") || (codigo == "")) {
-            alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
+            alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
             return false;
         }
 
@@ -141,7 +141,7 @@ if (isset($_SESSION["User"])) {
                 debugger;
                 if (r == 1) {
                     $("#conteudo").load("./Principal.php");
-                    alertify.success("REGISTRO ATUALIZADO");
+                    alertify.success("SUCESSO");
                 } else {
                     alertify.error("ERRO");
                 }
@@ -154,7 +154,11 @@ if (isset($_SESSION["User"])) {
             alertify.confirm().close();
 			$("#frmProduto")[0].reset();
             $("#conteudo").load("./Principal.php");
-        }, function(){
+        }, function() {}).set({
+            labels: {
+                ok: "SIM",
+                cancel: "NÃO"
+            }
         });
 	});
 

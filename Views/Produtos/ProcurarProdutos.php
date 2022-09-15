@@ -21,15 +21,16 @@ if (isset($_SESSION["User"])) {
                                 <label>SELECIONE UMA CATEGORIA</label>
                                 <select class="form-control input-sm" id="categoria" name="categoria">
                                     <option value=""></option>
-                                    <option value="hardDisk">HARD DISK (HD)</option>
-                                    <option value="memoria">MEMÓRIA</option>
-                                    <option value="placaVideo">PLACA DE VÍDEO</option>
-                                    <option value="placaMae">PLACA MÃE</option>
-                                    <option value="processador">PROCESSADOR</option>
-                                    <option value="gabinete">GABINETE</option>
-                                    <option value="monitor">MONITOR</option>
-                                    <option value="impressora">IMPRESSORA</option>
-                                    <option value="outros">OUTROS</option>
+                                    <option value="CEM">C&M INFO</option>
+                                    <option value="GABINETE">GABINETE</option>
+                                    <option value="HARD DISK">HARD DISK</option>
+                                    <option value="IMPRESSORA">IMPRESSORA</option>
+                                    <option value="MEMORIA">MEMORIA</option>
+                                    <option value="MONITOR">MONITOR</option>
+                                    <option value="PLACA DE VIDEO">PLACA DE VIDEO</option>
+                                    <option value="PLACA MAE">PLACA MAE</option>
+                                    <option value="PROCESSADOR">PROCESSADOR</option>
+                                    <option value="OUTROS">OUTROS</option>
                                 </select>
                             </div>
                     </form>
@@ -46,21 +47,21 @@ if (isset($_SESSION["User"])) {
 
     </html>
 
-    <script type="text/javascript">
-        $(document).ready(function($) {
-            atualizarTabela();
-        });
+<script type="text/javascript">
+    $(document).ready(function($) {
+        atualizarTabela();
+    });
 
-        $("#categoria").change(function() {
-            atualizarTabela();
-        });
+    $("#categoria").change(function() {
+        atualizarTabela();
+    });
 
-        function visualizarProdutos(idProduto) {
+    function visualizarProdutos(idProduto) {
         $("#conteudo").load("./Views/Produtos/VisualizarProdutos.php?id="+idProduto);
     }
         
     function excluirProduto(idProduto) {
-        alertify.confirm("ATENÇÃO", "DESEJA EXCLUIR O PRODUTO?", function() {
+        alertify.confirm("ATENÇÃO", "DESEJA EXCLUIR O REGISTRO?", function() {
              $.ajax({
                 type: "POST",
                 data: "idProduto=" + idProduto,
@@ -68,10 +69,10 @@ if (isset($_SESSION["User"])) {
                 success: function(r) {
                     if (r == 1) {
                         atualizarTabela();
-                        alertify.success("PRODUTO EXCLUÍDO");
+                        alertify.success("SUCESSO");
                         } else {
                             atualizarTabela();
-                            alertify.error("NÃO FOI POSSÍVEL O PRODUTO");
+                            alertify.error("ERRO");
                         }
                     }
                 });
@@ -81,13 +82,13 @@ if (isset($_SESSION["User"])) {
                 cancel: "NÃO"
             }
         });
-        }
+    }
 
-        function atualizarTabela(){
-            let categoria = $("#categoria").val();
-            $("#tabelaProdutos").load("./Views/Produtos/TabelaProdutos.php?categoria=" + categoria);
-        }
-    </script>
+    function atualizarTabela(){
+        let categoria = $("#categoria").val();
+        $("#tabelaProdutos").load("./Views/Produtos/TabelaProdutos.php?categoria=" + categoria);
+    }
+</script>
 <?php
 } else {
     header("location:./index.php");

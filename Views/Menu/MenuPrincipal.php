@@ -131,7 +131,7 @@ function setEvents() {
     });
     // DOCUMENTOS
     $("#dadosEmpresa").click(function(e) {
-        window.open("./Views/Documentos/DadosEmpresarial.pdf");
+        window.open("./Views/Documentos/dados_nserv.pdf");
     });
     // FINANCEIRO
     $("#contasAPagar").click(function(e) {
