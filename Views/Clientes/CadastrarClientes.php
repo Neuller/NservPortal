@@ -2,13 +2,12 @@
 session_start();
 if (isset($_SESSION["User"])) {
 ?>
-	<!DOCTYPE html>
-	<html>
-
+<!DOCTYPE html>
+<html>
 	<head>
 		<?php require_once "../../Classes/Conexao.php";
 		$c = new conectar();
-		$conexao = $c->conexao();
+		$conexao = $c -> conexao();
 		?>
 	</head>
 
@@ -158,17 +157,11 @@ if (isset($_SESSION["User"])) {
 			</div>
 		</div>
 	</body>
+</html>
 
-	</html>
-
-	<script type="text/javascript">
-		$(document).ready(function($) {
-			initForm();
-			setEvents();
-		});
-
-		function initForm() {
-			$(".cpf").mask("999.999.999-99");
+<script type="text/javascript">
+	$(document).ready(function($) {
+		$(".cpf").mask("999.999.999-99");
 			$(".cnpj").mask("99.999.999/9999-99");
 			$(".cep").mask("99999-999");
 			$(".telefone").mask("(99) 9999-9999");
@@ -200,76 +193,75 @@ if (isset($_SESSION["User"])) {
 
 			validarForm("frmClientes");
 			camposObrigatorios(["nome", "celular"], true);
-		}
+		setEvents();
+	});
 
-		function setEvents() {
-			$("#btnCadastrar").click(function() {
-				var cpf = $("#cpf").val();
-				var cnpj = $("#cnpj").val();
-				var tabela = "clientes";
+	function setEvents() {
+		$("#btnCadastrar").click(function() {
+			var cpf = $("#cpf").val();
+			var cnpj = $("#cnpj").val();
+			var tabela = "clientes";
 
-				var validator = $("#frmClientes").validate();
-				validator.form();
-				var checkValidator = validator.checkForm();
+			var validator = $("#frmClientes").validate();
+			validator.form();
+			var checkValidator = validator.checkForm();
 
-				if (checkValidator == false) {
-					alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
-					return false;
-				}
+			if (checkValidator == false) {
+				alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
+				return false;
+			}
 
-				if ((cpf != "") || (cnpj != "")) {
-
-					dados = $("#frmClientes").serialize();
-
-					$.ajax({
-						type: "POST",
-						data: {
-							"CPF": cpf,
-							"CNPJ": cnpj,
-							"TABELA": tabela
-						},
-						url: "./Procedimentos/Verificacoes/Verificar_CPF_CNPJ.php",
-						success: function(r) {
-							data = $.parseJSON(r);
-							if (data == 0) {
-								dados = $("#frmClientes").serialize();
-								$.ajax({
-									type: "POST",
-									data: dados,
-									url: "./Procedimentos/Clientes/CadastrarClientes.php",
-									success: function(r) {
-										if (r == 1) {
-											$("#frmClientes")[0].reset();
-											alertify.success("SUCESSO");
-										} else {
-											alertify.error("ERRO");
-										}
+			if ((cpf != "") || (cnpj != "")) {
+				dados = $("#frmClientes").serialize();
+				$.ajax({
+					type: "POST",
+					data: {
+						"CPF": cpf,
+						"CNPJ": cnpj,
+						"TABELA": tabela
+					},
+					url: "./Procedimentos/Verificacoes/Verificar_CPF_CNPJ.php",
+					success: function(r) {
+						data = $.parseJSON(r);
+						if (data == 0) {
+							dados = $("#frmClientes").serialize();
+							$.ajax({
+								type: "POST",
+								data: dados,
+								url: "./Procedimentos/Clientes/CadastrarClientes.php",
+								success: function(r) {
+									if (r == 1) {
+										$("#frmClientes")[0].reset();
+										alertify.success("SUCESSO");
+									} else {
+										alertify.error("ERRO");
 									}
-								});
-							} else {
-								alertify.error("CPF OU CNPJ JÁ CADASTRADO");
-							}
+								}
+							});
+						} else {
+							alertify.error("CPF OU CNPJ JÁ CADASTRADO");
 						}
-					})
-				} else {
-					dados = $("#frmClientes").serialize();
-					$.ajax({
-						type: "POST",
-						data: dados,
-						url: "./Procedimentos/Clientes/CadastrarClientes.php",
-						success: function(r) {
-							if (r == 1) {
-								$("#frmClientes")[0].reset();
-								alertify.success("SUCESSO");
-							} else {
-								alertify.error("ERRO");
-							}
+					}
+				})
+			} else {
+				dados = $("#frmClientes").serialize();
+				$.ajax({
+					type: "POST",
+					data: dados,
+					url: "./Procedimentos/Clientes/CadastrarClientes.php",
+					success: function(r) {
+						if (r == 1) {
+							$("#frmClientes")[0].reset();
+							alertify.success("SUCESSO");
+						} else {
+							alertify.error("ERRO");
 						}
-					});
-				}
-			});
-		}
-	</script>
+					}
+				});
+			}
+		});
+	}
+</script>
 <?php
 } else {
 	header("location:./index.php");

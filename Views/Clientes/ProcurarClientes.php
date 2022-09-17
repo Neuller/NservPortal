@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['User'])) {
+if (isset($_SESSION["User"])) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,35 +23,34 @@ if (isset($_SESSION['User'])) {
 
 <script type="text/javascript">
 	$(document).ready(function($) {
-		$('#tabelaClientes').load('./Views/Clientes/TabelaClientes.php');
+		$("#tabelaClientes").load("./Views/Clientes/TabelaClientes.php");
 	});
 
-	function editarClientes(idCliente) {
-		$('#conteudo').load("./Views/Clientes/EditarClientes.php?id="+idCliente);
-	}
-
-	function visualizarClientes(idCliente) {
-		$('#conteudo').load("./Views/Clientes/VisualizarCliente.php?id="+idCliente);
+	function visualizarCliente(idCliente) {
+		$("#conteudo").load("./Views/Clientes/VisualizarCliente.php?id="+idCliente);
 	}
 
 	function excluirClientes(idCliente) {
-		alertify.confirm('ATENÇÃO', 'DESEJA EXCLUIR O REGISTRO?', function() {
+		alertify.confirm("ATENÇÃO", "DESEJA EXCLUIR O REGISTRO?", function() {
 			$.ajax({
 				type: "POST",
 				data: "idCliente=" + idCliente,
 				url: "./Procedimentos/Clientes/ExcluirClientes.php",
 				success: function(r) {
 					if (r == 1) {
-						$('#tabelaClientes').load("./Views/Clientes/TabelaClientes.php");
-						alertify.success("EXCLUÍDO");
+						$("#tabelaClientes").load("./Views/Clientes/TabelaClientes.php");
+						alertify.success("SUCESSO");
 					} else {
-						alertify.error("NÃO FOI POSSÍVEL EXCLUIR");
+						alertify.error("ERRO");
 					}
 				}
 			});
-		}, function() {
-			// alertify.error('OPERAÇÃO CANCELADA')
-		});
+		}, function() {}).set({
+            labels: {
+                ok: "SIM",
+               cancel: "NÃO"
+           }
+       });
 	}
 </script>
 <?php

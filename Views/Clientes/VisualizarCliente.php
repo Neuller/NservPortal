@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['User'])) {
+if (isset($_SESSION["User"])) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,17 +17,16 @@ if (isset($_SESSION['User'])) {
 			<!-- CABEÇALHO -->
 			<div class="cabecalho bgGray">
 				<div class="text-center textCabecalho opacidade">
-					<h3><strong>VISUALIZAR CLIENTE</strong></h3>
+					<h3><strong>EDITAR CLIENTE</strong></h3>
 				</div>
 			</div>
-
 			<!-- FORMULÁRIO -->
 			<div class="divFormulario">
 				<div class="mx-auto">
-					<form id="frmClientesView">
+					<form id="frmClientesU">
 						<div>
 							<!-- FORMULÁRIO DADOS PESSOAIS -->
-							<div class='col-md-12 col-sm-12 col-xs-12'>
+							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="text-left">
 									<h4><strong>DADOS PESSOAIS </strong><span class="glyphicon glyphicon-user ml-15"></span></h4>
 								</div>
@@ -35,129 +34,130 @@ if (isset($_SESSION['User'])) {
 							</div>
 							<!-- ID CLIENTE -->
 							<div>
-								<input type="text" hidden="" id="idClienteV" name="idClienteV">
+								<input type="text" hidden="" id="idClienteU" name="idClienteU">
 							</div>
 							<!-- NOME -->
-							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
+							<div class="mb-20px col-md-12 col-sm-12 col-xs-12 itensFormulario">
 								<div>
 									<label>NOME COMPLETO</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="nomeV" name="nomeV">
+										<input type="text" class="form-control input-sm align text-uppercase" id="nomeU" name="nomeU" maxlenght="50">
 								</div>
 							</div>
 							<!-- CPF -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="mb-20px col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>CPF</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="cpfV" name="cpfV">
+									<input type="text" class="form-control input-sm align cpf text-uppercase" id="cpfU" name="cpfU">
 								</div>
 							</div>
 							<!-- CNPJ -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="mb-20px col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>CNPJ</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="cnpjV" name="cnpjV">
+									<input type="text" class="form-control input-sm align cnpj text-uppercase" id="cnpjU" name="cnpjU">
 								</div>
 							</div>
 							<!-- E-MAIL -->
-							<div class="col-md-12 col-sm-12 col-xs-12 itensFormulario">
+							<div class="mb-20px col-md-12 col-sm-12 col-xs-12 itensFormulario">
 								<div>
 									<label>E-MAIL</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="emailV" name="emailV">
+									<input type="text" class="form-control input-sm align text-uppercase" placeholder="exemplo@exemplo.com" id="emailU" name="emailU">
 								</div>
 							</div>
 
 							<!-- FORMULÁRIO ENDEREÇO -->
-							<div class='separador col-md-12 col-sm-12 col-xs-12'>
+							<div class="separador col-md-12 col-sm-12 col-xs-12">
 								<div class="text-left">
 									<h4><strong>ENDEREÇO </strong><span class="glyphicon glyphicon-home ml-15"></span></h4>
 								</div>
 								<hr>
 							</div>
 							<!-- CEP -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="mb-20px col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>CEP</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="cepV" name="cepV">
+											<input type="text" class="form-control input-sm align cep text-uppercase" placeholder="#####-###" id="cepU" name="cepU">
 								</div>
 							</div>
 							<!-- BAIRRO -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="mb-20px col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>BAIRRO</label>
-								<input readonly type="text" class="form-control input-sm align text-uppercase" id="bairroV" name="bairroV">
-							</div>
+									<input type="text" class="form-control input-sm align text-uppercase" id="bairroU" name="bairroU">
+								</div>
 							</div>
 							<!-- ENDEREÇO -->
-							<div class="col-md-8 col-sm-8 col-xs-8 itensFormulario">
+							<div class="mb-20px col-md-8 col-sm-8 col-xs-8 itensFormulario">
 								<div>
 									<label>ENDEREÇO</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="enderecoV" name="enderecoV">
+									<input type="text" class="form-control input-sm align text-uppercase" id="enderecoU" name="enderecoU">
 								</div>
 							</div>
 							<!-- UF -->
-							<div class="col-md-4 col-sm-4 col-xs-4 itensFormulario">
+							<div class="mb-20px col-md-4 col-sm-4 col-xs-4 itensFormulario">
 								<div>
 									<label>UF</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="ufV" name="ufV">
+									<input type="text" class="form-control input-sm align text-uppercase" id="ufU" name="ufU">
 								</div>
 							</div>
 							<!-- NÚMERO -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="mb-20px col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>NÚMERO</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="numeroV" name="numeroV">
+									<input type="text" class="form-control input-sm align text-uppercase" id="numeroU" name="numeroU">
 								</div>
 							</div>
 							<!-- COMPLEMENTO -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="mb-20px col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>COMPLEMENTO</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="complementoV" name="complementoV">
+									<input type="text" class="form-control input-sm align text-uppercase" id="complementoU" name="complementoU">
 								</div>
 							</div>
 
 							<!-- FORMULÁRIO TELEFONES -->
-							<div class='separador col-md-12 col-sm-12 col-xs-12'>
+							<div class="separador col-md-12 col-sm-12 col-xs-12">
 								<div class="text-left">
 									<h4><strong>TELEFONES </strong><span class="glyphicon glyphicon-phone-alt ml-15"></span></h4>
 								</div>
 								<hr>
 							</div>
 							<!-- TELEFONE -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="mb-20px col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>TELEFONE</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="telefoneV" name="telefoneV">
+										<input type="text" class="form-control input-sm align telefone text-uppercase" placeholder="(##) ####-####" id="telefoneU" name="telefoneU">
 								</div>
 							</div>
 							<!-- CELULAR -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
-								<div>
-									<label>CELULAR</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="celularV" name="celularV">
+							<div class="mb-20px col-md-6 col-sm-6 col-xs-6 itensFormulario">
+									<div>
+									<label>CELULAR<span class="required">*</span></label>
+									<input type="text" class="form-control input-sm align celular text-uppercase" placeholder="(##) # ####-####" id="celularU" name="celularU">
 								</div>
-							</div>		
+							</div>
 							<!-- TELEFONE ALTERNATIVO -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="mb-20px col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>TELEFONE ALTERNATIVO</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="telefone2V" name="telefone2V">
+									<input type="text" class="form-control input-sm align telefone text-uppercase" placeholder="(##) ####-####" id="telefone2U" name="telefone2U">
 								</div>
 							</div>
 							<!-- CELULAR ALTERNATIVO -->
-							<div class="col-md-6 col-sm-6 col-xs-6 itensFormulario">
+							<div class="mb-20px col-md-6 col-sm-6 col-xs-6 itensFormulario">
 								<div>
 									<label>CELULAR ALTERNATIVO</label>
-									<input readonly type="text" class="form-control input-sm align text-uppercase" id="celular2V" name="celular2V">
+									<input type="text" class="form-control input-sm align celular text-uppercase" placeholder="(##) # ####-####" id="celular2U" name="celular2U">
 								</div>
-							</div>	
+							</div>
 							<!-- BOTÕES -->
 							<div class="col-md-12 col-sm-12 col-xs-12 cabecalho bgGray">
 								<div class="btnRight">
-									<span class="btn btn-danger btn-lg" id="btnVoltar" title="VOLTAR">VOLTAR</span>
+									<span class="btn btn-danger btn-lg" id="btnCancelar" title="CANCELAR">CANCELAR</span>
+									<span class="btn btn-warning btn-lg" id="btnEditar" title="EDITAR">EDITAR</span>
 								</div>
 							</div>
-						</div>		
+						</div>
 					</form>
 				</div>
 			</div>
@@ -167,13 +167,108 @@ if (isset($_SESSION['User'])) {
 
 <script type="text/javascript">
 	$(document).ready(function($) {
+		$(".cpf").mask("999.999.999-99");
+		$(".cnpj").mask("99.999.999/9999-99");
+		$(".cep").mask("99999-999");
+		$(".telefone").mask("(99) 9999-9999");
+		$(".celular").mask("(99) 9 9999-9999");
 		idCliente = "<?php echo @$idCliente ?>";
 		carregarDados(idCliente);
 	});
 
-	$('#btnVoltar').click(function() {
-		$('#frmClientesView')[0].reset();
-		$('#conteudo').load("./Views/Clientes/ProcurarClientes.php");
+	
+	$(".cep").change(function(){
+		var cep = $("#cepU").val();
+		var urlPesquisaCep = "https://viacep.com.br/ws/"+cep+"/json";
+				
+		$.ajax({
+			type: "GET",
+			dataType: "JSON",
+			url: urlPesquisaCep,
+			success:function(r){
+				$("#bairroU").val(r.bairro);
+				$("#enderecoU").val(r.logradouro);
+				$("#complementoU").val(r.complemento);
+				$("#ufU").val(r.uf);
+				},
+				error:function(){
+					alertify.error("CEP INVÁLIDO");
+					$("#cepU").val("");
+					return false;
+			}
+		});
+	});
+
+	$("#btnEditar").click(function() {
+		var nome = $("#nome").val();
+		var cpf = $("#cpfU").val();
+		var cnpj = $("#cnpjU").val();
+		var celular = $("#celularU").val();
+		var tabela = "clientes";
+
+		if ((nome == "") || (celular == "")) {
+			alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
+			return false;
+		}
+
+		if ((cpf != "") || (cnpj != "")){
+			$.ajax({
+				type: "POST",
+				data:{"CPF" : cpf, "CNPJ" : cnpj, "TABELA" : tabela},
+				url: "./Procedimentos/Verificacoes/Verificar_CPF_CNPJ.php", 
+				success: function(r) { 
+					data = $.parseJSON(r);
+					if (data == 0) {
+						dados = $("#frmClientesU").serialize();
+							$.ajax({
+							type: "POST",
+							data: dados,
+							url: "./Procedimentos/Clientes/EditarCliente.php",
+							success: function(r) {
+								if (r == 1) {
+									$("#frmClientesU")[0].reset();
+									$("#conteudo").load("./Views/Clientes/ProcurarClientes.php");
+									alertify.success("SUCESSO");
+								} else {
+									alertify.error("ERRO");
+								}
+							}
+						});
+					}else{
+						alertify.error("CPF OU CNPJ JÁ CADASTRADO");
+					}
+				} 
+			}); 
+		}else{
+			dados = $("#frmClientesU").serialize();
+			$.ajax({
+				type: "POST",
+				data: dados,
+				url: "./Procedimentos/Clientes/EditarCliente.php",
+				success: function(r) {
+					if (r == 1) {
+						$("#frmClientesU")[0].reset();
+						$("#conteudo").load("./Views/Clientes/ProcurarClientes.php");
+						alertify.success("SUCESSO");
+					} else {
+						alertify.error("ERRO");
+					}
+				}
+			});
+		}
+	});
+
+	$("#btnCancelar").click(function() {
+		alertify.confirm("ATENÇÃO", "DESEJA CANCELAR?", function(){
+            alertify.confirm().close();
+			$("#frmClientesU")[0].reset();
+            $("#conteudo").load("./Views/Clientes/ProcurarClientes.php");
+        }, function() {}).set({
+               labels: {
+                   ok: "SIM",
+                   cancel: "NÃO"
+               }
+           });
 	});
 
 	function carregarDados(id) {
@@ -183,21 +278,21 @@ if (isset($_SESSION['User'])) {
 			url: "./Procedimentos/Clientes/ObterDadosCliente.php",
 			success: function(r) {
 				dado = jQuery.parseJSON(r);
-				$('#idClienteV').val(dado['id_cliente']);
-				$('#nomeV').val(dado['nome']);
-				$('#cpfV').val(dado['cpf']);
-				$('#cnpjV').val(dado['cnpj']);
-				$('#cepV').val(dado['cep']);
-				$('#bairroV').val(dado['bairro']);
-				$('#ufV').val(dado['uf']);
-				$('#enderecoV').val(dado['endereco']);
-				$('#numeroV').val(dado['numero']);
-				$('#complementoV').val(dado['complemento']);
-				$('#telefoneV').val(dado['telefone']);
-				$('#telefone2V').val(dado['telefone2']);
-				$('#celularV').val(dado['celular']);
-				$('#celular2V').val(dado['celular2']);
-				$('#emailV').val(dado['email']);
+				$("#idClienteU").val(dado["id_cliente"]);
+				$("#nomeU").val(dado["nome"]);
+				$("#cpfU").val(dado["cpf"]);
+				$("#cnpjU").val(dado["cnpj"]);
+				$("#cepU").val(dado["cep"]);
+				$("#bairroU").val(dado["bairro"]);
+				$("#ufU").val(dado["uf"]);
+				$("#enderecoU").val(dado["endereco"]);
+				$("#numeroU").val(dado["numero"]);
+				$("#complementoU").val(dado["complemento"]);
+				$("#telefoneU").val(dado["telefone"]);
+				$("#telefone2U").val(dado["telefone2"]);
+				$("#celularU").val(dado["celular"]);
+				$("#celular2U").val(dado["celular2"]);
+				$("#emailU").val(dado["email"]);
 			}
 		});
 	}
