@@ -12,7 +12,8 @@ $idServico = $_GET['idServ'];
 
 $sql = "SELECT id_servico, id_cliente, equipamento, observacao, servico_realizado, id_tecnico, serial_number, garantia, 
 valor_total, data_cadastro, data_saida, diagnostico, status, ordem_servico
-FROM servicos WHERE id_servico = '$idServico'";
+FROM servicos 
+WHERE id_servico = '$idServico'";
 
 $result = mysqli_query($conexao, $sql);
 
@@ -49,7 +50,7 @@ $ordemServ = $mostrar[13];
         <!-- CABEÇALHO -->
         <div class="cabecalho">
             <div class="logo">
-                <img src="../../Img/Documentos/BannerOrcamento.png" width="600" widht="600">
+                <img src="../../Img/banner.png" width="600" widht="600">
             </div>
         </div>
     </div>
@@ -59,11 +60,18 @@ $ordemServ = $mostrar[13];
     <!-- ORDEM DE SERVIÇO -->
     <div class="text-center" align="center">
         <div class="tituloOrdemServico">
-            <span><strong>ORDEM DE SERVIÇO</strong></span>
+                <?php
+                echo "<span><strong>ORDEM DE SERVIÇO - #" . $ordemServ . "</strong></span>";
+                ?>
+            </div>
         </div>
-    </div>
     <div class="col-md-12 col-sm-12 col-xs-12">
-
+        <!-- DATA DE ENTRADA -->
+        <div class="text-right dataEntrada">
+            <?php
+            echo "<span>DATA DE ENTRADA: " . $objUtils -> data($dataEntrada) . "</span>";
+            ?>
+        </div>
         <form class="formularioOrdemServico fonteOrdemServico">
             <!-- INFORMAÇÕES DO CLIENTE -->
             <div>
@@ -246,7 +254,7 @@ $ordemServ = $mostrar[13];
                     </div>
                     <div class='itensFormulario'>
                         <span>
-                            SERÁ COBRADO UMA TAXA DE R$ 25,00 PARA ORÇAMENTOS RECUSADOS.
+                            SERÁ COBRADO UMA TAXA DE R$ 25,00 PARA ORÇAMENTOS RECUSADOS PELO CLIENTE.
                         </span>
                     </div>
                     ";   

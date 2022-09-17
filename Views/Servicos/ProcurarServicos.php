@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['User'])) {
+if (isset($_SESSION["User"])) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,15 +23,11 @@ if (isset($_SESSION['User'])) {
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#tabelaServicos').load('./Views/Servicos/TabelaServicos.php');
+		$("#tabelaServicos").load("./Views/Servicos/TabelaServicos.php");
 	});
 
-	// function editarServicos(idServico) {
-	// 	$('#conteudo').load("./Views/Servicos/EditarServicos.php?id="+idServico);
-	// }
-
 	function visualizarServico(idServico) {
-		$('#conteudo').load("./Views/Servicos/VisualizarServico.php?id="+idServico);
+		$("#conteudo").load("./Views/Servicos/VisualizarServico.php?id="+idServico);
 	}
 </script>
 <?php
