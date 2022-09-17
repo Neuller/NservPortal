@@ -56,8 +56,8 @@ if (isset($_SESSION["User"])) {
         atualizarTabela();
     });
 
-    function visualizarProdutos(idProduto) {
-        $("#conteudo").load("./Views/Produtos/VisualizarProdutos.php?id="+idProduto);
+    function visualizarProduto(idProduto) {
+        $("#conteudo").load("./Views/Produtos/VisualizarProduto.php?id="+idProduto);
     }
         
     function excluirProduto(idProduto) {

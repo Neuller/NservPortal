@@ -146,7 +146,7 @@ if (isset($_SESSION["User"])) {
                         if (data == 0) {
 
                         } else {
-                            alertify.error("CÓDIGO EXISTENTE");
+                            alertify.error("CODIGO EXISTENTE");
                             $("#codigo").val("");
                         }
                     }
@@ -171,11 +171,11 @@ if (isset($_SESSION["User"])) {
                 var checkValidator = validator.checkForm();
 
                 if (checkValidator == false) {
-                    alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
+                    alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
                     return false;
                 }
                 if ((descricao == "") || (preco == "") || (categoria == "") || (estoque == "") || (codigo == "")) {
-                    alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
+                    alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
                     return false;
                 }
 

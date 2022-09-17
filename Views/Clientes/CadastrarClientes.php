@@ -239,7 +239,7 @@ if (isset($_SESSION["User"])) {
 								}
 							});
 						} else {
-							alertify.error("CPF OU CNPJ JÁ CADASTRADO");
+							alertify.error("CPF OU CNPJ EXISTENTE");
 						}
 					}
 				})

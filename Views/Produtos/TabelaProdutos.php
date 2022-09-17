@@ -39,7 +39,7 @@ $result = mysqli_query($conexao, $sql);
 						<td>' . $mostrar[3] . '</td>
 						<td>' . 'R$ '. $mostrar[4] . '</td>
 						<!-- BOTÃO VISUALIZAR -->
-						<td>' . '<span class="btn btn-default btn-lg" data-toggle="modal" data-target="#visualizarProduto" title="VISUALIZAR" onclick="visualizarProdutos('.$mostrar[0].')">
+						<td>' . '<span class="btn btn-default btn-lg" data-toggle="modal" data-target="#visualizarProduto" title="VISUALIZAR" onclick="visualizarProduto('.$mostrar[0].')">
 						<span class="glyphicon glyphicon-search"></span>
 						</span>' . '</td>
 						<!-- BOTÃO EXCLUIR -->
