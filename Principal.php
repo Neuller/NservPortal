@@ -31,7 +31,7 @@ if (isset($_SESSION["User"])) {
 
             <!-- BANNER PRINCIPAL -->
             <div class="bannerPrincipal">
-                <img src="./Img/BANNER_2021.png" class="img-fluid imagemBanner" title="SISTEMA DE GESTÃO NSERV">
+                <img src="./Img/BANNER_2021.png" class="img-fluid imagemBanner" title="PORTAL NSERV">
             </div>
 
             <!-- MENU PRINCIPAL --> 

@@ -71,8 +71,8 @@
 							<!-- BOTÕES -->
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="btnRight">
-									<span class="btn btn-danger" id="voltar" title="VOLTAR">VOLTAR</span>
-									<span class="btn btn-primary" id="registrar" title="REGISTRAR">REGISTRAR</span>
+									<span class="btn btn-danger btn-lg" id="voltar" title="VOLTAR">VOLTAR</span>
+									<span class="btn btn-primary btn-lg" id="registrar" title="REGISTRAR">REGISTRAR</span>
 								</div>
 							</div>
 						</form>

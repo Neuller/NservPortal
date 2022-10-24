@@ -52,9 +52,9 @@ if (mysqli_num_rows($result) > 0) {
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="btnRight">
 								<?php if (!$validar) : ?>
-									<span class="btn btn-success" id="registrar" title="REGISTRAR">REGISTRAR</span>
+									<span class="btn btn-success btn-lg" id="registrar" title="REGISTRAR">REGISTRAR</span>
 								<?php endif; ?>
-								<span class="btn btn-primary" id="acessar" title="ACESSAR">ACESSAR</span>
+								<span class="btn btn-primary btn-lg" id="acessar" title="ACESSAR">ACESSAR</span>
 							</div>
 						</div>
 					</form>
