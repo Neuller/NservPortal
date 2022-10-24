@@ -18,7 +18,7 @@ function file_get_contents_curl($url) {
     return $dados;
 }
 
-$html = file_get_contents("http://localhost/NservPortal/Views/Vendas/ComprovanteVenda.php?idVenda=".$id);
+$html = file_get_contents("http://localhost/portal_nserv/Views/Vendas/ComprovanteVenda.php?idVenda=".$id);
 
 // Instanciamos um objeto da classe DOMPDF.
 $pdf = new DOMPDF();

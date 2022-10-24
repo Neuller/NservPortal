@@ -6,9 +6,9 @@ require_once "../../../Classes/Utilitarios.php";
 $objUtils = new utilitarios();
 
 $c = new conectar();
-$conexao = $c->conexao();
+$conexao = $c -> conexao();
 
-$idServico = $_GET['idServ'];
+$idServico = $_GET["idServ"];
 
 $sql = "SELECT id_servico, id_cliente, equipamento, observacao, servico_realizado, id_tecnico, serial_number, garantia, 
 valor_total, data_cadastro, data_saida, diagnostico, status, ordem_servico
@@ -46,7 +46,7 @@ $ordemServ = $mostrar[13];
         <!-- CABEÇALHO -->
         <div class="cabecalho">
             <div class="logo">
-                <img src="../../../Img/Documentos/BannerOrcamento.png" width="600" widht="600">
+                <img src="../../../Img/banner.png" width="600" widht="600">
             </div>
         </div>
     </div>

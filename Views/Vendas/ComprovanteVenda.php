@@ -5,9 +5,9 @@ require_once "../../Classes/Utilitarios.php";
 $objUtils = new utilitarios();
 
 $c = new conectar();
-$conexao = $c-> conexao();
+$conexao = $c -> conexao();
 
-$idVenda = $_GET['idVenda'];
+$idVenda = $_GET["idVenda"];
 
 $sql = "SELECT id_venda, id_cliente, id_produto, id_usuario, valor_total, data_venda, total, forma_pagamento, valor_pagamento, 
 desconto, troco, saldo_devedor, observacao, quantidade, valor_unitario
@@ -46,7 +46,7 @@ $troco = $mostrar[10];
         <div class="cabecalho">
             <div class="logo">
                 <!-- LOGO -->
-                <img src="../../Img/Documentos/BannerOrcamento.png" width="600" widht="600">
+                <img src="../../Img/banner.png" width="600" widht="600">
             </div>
         </div>
     </div>
