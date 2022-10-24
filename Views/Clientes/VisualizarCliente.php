@@ -246,7 +246,7 @@ $("#btnEditar").click(function() {
             "TELEFONE": telefone,
             "CELULAR": celular
         },
-        url: "./Procedimentos/Clientes/ValidarCadastroCliente.php",
+        url: "./Procedimentos/Clientes/ValidarCadastrarCliente.php",
         success: function(r) {
             data = $.parseJSON(r);
             if (data == 0) {
