@@ -7,9 +7,9 @@ if (isset($_SESSION["User"])) {
 
 <head>
     <?php require_once "../../Classes/Conexao.php";
-		$c = new conectar();
-		$conexao = $c -> conexao();
-		?>
+        $c = new conectar();
+        $conexao = $c->conexao();
+        ?>
 </head>
 
 <body>
@@ -209,15 +209,18 @@ $(document).ready(function($) {
             }
         });
     });
-
-    validarForm("frmClientes");
-    camposObrigatorios(["nome", "celular"], true);
+    setFormulario();
 });
 
 $("#btnCadastrar").click(function() {
     let cpf = $("#cpf").val();
     let cnpj = $("#cnpj").val();
     let celular = $("#celular").val();
+    let telefone = $("#telefone").val();
+
+    if (telefone != "") {
+        camposObrigatorios(["celular"], false);
+    }
 
     let validator = $("#frmClientes").validate();
     validator.form();
@@ -234,6 +237,7 @@ $("#btnCadastrar").click(function() {
         data: {
             "CPF": cpf,
             "CNPJ": cnpj,
+            "TELEFONE": telefone,
             "CELULAR": celular
         },
         url: "./Procedimentos/Clientes/ValidarCadastroCliente.php",
@@ -248,6 +252,7 @@ $("#btnCadastrar").click(function() {
                     success: function(r) {
                         if (r == 1) {
                             $("#frmClientes")[0].reset();
+                            setFormulario();
                             alertify.success("SUCESSO");
                         } else {
                             alertify.error("ERRO");
@@ -260,9 +265,14 @@ $("#btnCadastrar").click(function() {
         }
     });
 });
+/** DEFINE FORMULARIO PADRAO */
+function setFormulario() {
+    validarForm("frmClientes");
+    camposObrigatorios(["nome", "celular"], true);
+}
 </script>
 <?php
 } else {
-	header("location:./index.php");
+    header("location:./index.php");
 }
 ?>

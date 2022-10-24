@@ -192,6 +192,7 @@ $(document).ready(function($) {
     $(".celular").mask("(99) 9 9999-9999");
     idCliente = "<?php echo @$idCliente ?>";
     carregarDados(idCliente);
+    setFormulario();
 });
 
 
@@ -222,8 +223,17 @@ $("#btnEditar").click(function() {
     var cpf = $("#cpfU").val();
     var cnpj = $("#cnpjU").val();
     var celular = $("#celularU").val();
+    let telefone = $("#telefoneU").val();
 
-    if ((nome == "") || (celular == "")) {
+    if (telefone != "") {
+        camposObrigatorios(["celularU"], false);
+    }
+
+    let validator = $("#frmClientesU").validate();
+    validator.form();
+    let checkValidator = validator.checkForm();
+
+    if (checkValidator == false) {
         alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
         return false;
     }
@@ -233,6 +243,7 @@ $("#btnEditar").click(function() {
         data: {
             "CPF": cpf,
             "CNPJ": cnpj,
+            "TELEFONE": telefone,
             "CELULAR": celular
         },
         url: "./Procedimentos/Clientes/ValidarCadastroCliente.php",
@@ -249,6 +260,7 @@ $("#btnEditar").click(function() {
                             $("#frmClientesU")[0].reset();
                             $("#conteudo").load(
                             "./Views/Clientes/ProcurarClientes.php");
+                            setFormulario();
                             alertify.success("SUCESSO");
                         } else {
                             alertify.error("ERRO");
@@ -299,6 +311,11 @@ function carregarDados(id) {
             $("#emailU").val(dado["email"]);
         }
     });
+}
+/** DEFINE FORMULARIO PADRAO */
+function setFormulario() {
+    validarForm("frmClientesU");
+    camposObrigatorios(["nome", "celularU"], true);
 }
 </script>
 <?php
