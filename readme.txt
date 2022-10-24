@@ -1,2 +1,6 @@
-/** DEPENDENCIAS
+# PORTAL NSERV
+
+##
+
+DEPENDENCIAS
 ARQUIVO DE ESTRUTURA SQL DO BANCO DE DADOS -- 'db_portal_nserv_struc.sql' 
