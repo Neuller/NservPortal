@@ -83,54 +83,54 @@ $ordemServ = $mostrar[13];
             $result = mysqli_query($conexao, $sql_cliente);
             while ($informacoesCliente = mysqli_fetch_row($result)) {
             ?>
-                <div class="dadosCliente">
-                    <div>
-                        <span>NOME:</span>
-                        <span><?php echo $informacoesCliente[0]; ?></span>
-                    </div>
-                    <div>
-                        <span>CPF:</span>
-                        <span><?php echo $informacoesCliente[1]; ?></span>
-                    </div>
-                    <div>
-                        <span>CNPJ:</span>
-                        <span><?php echo $informacoesCliente[2]; ?></span>
-                    </div>
-                    <div>
-                        <span>EMAIL:</span>
-                        <span><?php echo $informacoesCliente[11]; ?></span>
-                    </div>
-                </div>
-                <div class="dadosCliente">
-                    <div>
-                        <span>CEP:</span>
-                        <span><?php echo $informacoesCliente[3]; ?></span>
-                    </div>
-                    <div>
-                        <span>ENDEREÇO:</span>
-                        <span><?php echo $informacoesCliente[6]; ?></span>
-                    </div>
-                    <div>
-                        <span>BAIRRO:</span>
-                        <span><?php echo $informacoesCliente[4]; ?></span>
-                    </div>
-                    <div>
-                        <span>NUMERO:</span>
-                        <span><?php echo $informacoesCliente[7]; ?></span>
-                    </div>
-                    <div>
-                        <span>COMPLEMENTO:</span>
-                        <span><?php echo $informacoesCliente[8]; ?></span>
-                    </div>
-                </div>
-                <div class="dadosCliente">
-                    <span>TELEFONE:</span>
-                    <span><?php echo $informacoesCliente[9]; ?></span>
+            <div class="dadosCliente">
+                <div>
+                    <span>NOME:</span>
+                    <span><?php echo $informacoesCliente[0]; ?></span>
                 </div>
                 <div>
-                    <span>CELULAR:</span>
-                    <span><?php echo $informacoesCliente[10]; ?></span>
+                    <span>CPF:</span>
+                    <span><?php echo $informacoesCliente[1]; ?></span>
                 </div>
+                <div>
+                    <span>CNPJ:</span>
+                    <span><?php echo $informacoesCliente[2]; ?></span>
+                </div>
+                <div>
+                    <span>EMAIL:</span>
+                    <span><?php echo $informacoesCliente[11]; ?></span>
+                </div>
+            </div>
+            <div class="dadosCliente">
+                <div>
+                    <span>CEP:</span>
+                    <span><?php echo $informacoesCliente[3]; ?></span>
+                </div>
+                <div>
+                    <span>ENDEREÇO:</span>
+                    <span><?php echo $informacoesCliente[6]; ?></span>
+                </div>
+                <div>
+                    <span>BAIRRO:</span>
+                    <span><?php echo $informacoesCliente[4]; ?></span>
+                </div>
+                <div>
+                    <span>NUMERO:</span>
+                    <span><?php echo $informacoesCliente[7]; ?></span>
+                </div>
+                <div>
+                    <span>COMPLEMENTO:</span>
+                    <span><?php echo $informacoesCliente[8]; ?></span>
+                </div>
+            </div>
+            <div class="dadosCliente">
+                <span>TELEFONE:</span>
+                <span><?php echo $informacoesCliente[9]; ?></span>
+            </div>
+            <div>
+                <span>CELULAR:</span>
+                <span><?php echo $informacoesCliente[10]; ?></span>
+            </div>
             <?php } ?>
 
             <!-- INFORMAÇÕES DO EQUIPAMENTO E SERVIÇOS -->
@@ -173,23 +173,23 @@ $ordemServ = $mostrar[13];
                             <div>
                                 <span>OBSERVAÇÕES</span>
                                 <span><?php echo . $observacoes .  ?></span>
-                            </div>
-                            ";
-                    }
-                    ?>
                 </div>
+                ";
+                }
+                ?>
             </div>
-        </form>
+    </div>
+    </form>
 
-        <!-- CONDIÇÕES DE SERVIÇOS -->
-        <div class="equipamentoServicos">
-            <div class="text-center" align="center">
-                <div>
-                    <span><strong>CONDIÇÕES DE SERVIÇOS</strong></span>
-                </div>
+    <!-- CONDIÇÕES DE SERVIÇOS -->
+    <div class="equipamentoServicos">
+        <div class="text-center" align="center">
+            <div>
+                <span><strong>CONDIÇÕES DE SERVIÇOS</strong></span>
             </div>
-            <div class="text-justity condicoesServico">
-                <?php if ($status == "ORCAMENTO") {
+        </div>
+        <div class="text-justity condicoesServico">
+            <?php if ($status == "ORCAMENTO") {
                     echo
                     "
                     <div class='itensFormulario'>
@@ -205,30 +205,30 @@ $ordemServ = $mostrar[13];
                     ";
                 }
                 ?>
-                <div class="itensFormulario">
-                    <span>
-                        <strong>DO BEM ESQUECIDO PELO CLIENTE</strong>
-                    </span>
-                </div>
-                <div class="itensFormulario">
-                    <span>
-                        O PROPRIETÁRIO DE EQUIPAMENTO ELETRÔNICO, QUE O ENTREGOU A UM PRESTADOR DE SERVIÇO
-                        DE ASSISTÊNCIA TÉCNICA PARA CONCERTO,
-                        OBRIGASSE A RETIRAR O BEM NO PRAZO MÁXIMO DE 60 (SESSENTA) DIAS,
-                        CONTADOS DA DATA DE CONTATO DO ESTABELECIMENTO
-                        COMUNICANDO A REALIZAÇÃO DO CONCERTO OU DE SUA IMPOSSIBILIDADE.
-                        SUJEITO AO PAGAMENTO DE TAXA DIÁRIA NO VALOR DE R$ 01,00 À TÍTULO DE GUARDA.
-                    </span>
-                </div>
-            </div>
-            <div class="text-center msgFidelidade">
+            <div class="itensFormulario">
                 <span>
-                    A QUALIDADE É A NOSSA MELHOR GARANTIA DE FIDELIDADE AO CLIENTE,
-                    NOSSA MAIS FORTE DEFESA CONTRA A CONCORRÊNCIA E O ÚNICO CAMINHO PARA O CRESCIMENTO E PARA OS LUCROS.
-                    AGRADECEMOS A PREFERÊNCIA!
+                    <strong>DO BEM ESQUECIDO PELO CLIENTE</strong>
+                </span>
+            </div>
+            <div class="itensFormulario">
+                <span>
+                    O PROPRIETÁRIO DE EQUIPAMENTO ELETRÔNICO, QUE O ENTREGOU A UM PRESTADOR DE SERVIÇO
+                    DE ASSISTÊNCIA TÉCNICA PARA CONCERTO,
+                    OBRIGASSE A RETIRAR O BEM NO PRAZO MÁXIMO DE 60 (SESSENTA) DIAS,
+                    CONTADOS DA DATA DE CONTATO DO ESTABELECIMENTO
+                    COMUNICANDO A REALIZAÇÃO DO CONCERTO OU DE SUA IMPOSSIBILIDADE.
+                    SUJEITO AO PAGAMENTO DE TAXA DIÁRIA NO VALOR DE R$ 01,00 À TÍTULO DE GUARDA.
                 </span>
             </div>
         </div>
+        <div class="text-center msgFidelidade">
+            <span>
+                A QUALIDADE É A NOSSA MELHOR GARANTIA DE FIDELIDADE AO CLIENTE,
+                NOSSA MAIS FORTE DEFESA CONTRA A CONCORRÊNCIA E O ÚNICO CAMINHO PARA O CRESCIMENTO E PARA OS LUCROS.
+                AGRADECEMOS A PREFERÊNCIA!
+            </span>
+        </div>
+    </div>
 
     </div>
 </body>

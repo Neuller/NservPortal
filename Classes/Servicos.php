@@ -80,13 +80,14 @@ class servicos{
 	public function editarServicos($dados){
 		$c = new conectar();
 		$conexao = $c -> conexao();
+		$idServico = $dados[0];
 
 		$sql = "UPDATE servicos SET servico_realizado = '$dados[2]', observacao = '$dados[5]', id_tecnico = '$dados[3]', 
 		ordem_servico = '$dados[4]', garantia = '$dados[6]', valor_terceiro = '$dados[7]', valor_total = '$dados[8]', 
 		data_saida = '$dados[9]', diagnostico = '$dados[10]', nf_emitida = '$dados[11]', status = '$dados[1]'
 		WHERE id_servico = '$dados[0]'";
 
-		echo mysqli_query($conexao, $sql);
+		return mysqli_query($conexao, $sql);
 	}
 
 	public function cadastrarPrecoServicos($dados){
