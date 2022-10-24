@@ -5,7 +5,8 @@ if (isset($_SESSION["User"])) {
 
     $obj = new conectar();
     $conexao = $obj -> conexao();
-    $sqlAdmin = "SELECT grupo_usuario FROM usuarios WHERE nome = 'ADMINISTRADOR' ";
+    $idUsuarioLogado = $_SESSION["id_usuario"];
+    $sqlAdmin = "SELECT grupo_usuario FROM usuarios WHERE id_usuario = $idUsuarioLogado ";
     $result = mysqli_fetch_row(mysqli_query($conexao, $sqlAdmin));
 
     $userAdmin = false;
