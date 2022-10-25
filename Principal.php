@@ -8,7 +8,7 @@ if (isset($_SESSION["User"])) {
 
     <head>
         <?php require_once "./Dependencias.php" ?>
-        <?php require_once "./Classes/Conexao.php";
+        <?php require_once "./Model/Conexao.php";
         $c = new conectar();
         $conexao = $c->conexao();
         $idUsuario = $_SESSION["id_usuario"];
@@ -60,14 +60,14 @@ if (isset($_SESSION["User"])) {
         });
 
         function initForm() {
-            $("#conteudo").load("./Views/Principal/PaginaPrincipal.php");
-            $("#menuPrincipal").load("./Views/Menu/MenuPrincipal.php");
+            $("#conteudo").load("./View/Principal/PaginaPrincipal.php");
+            $("#menuPrincipal").load("./View/Menu/MenuPrincipal.php");
         }
 
         function setEvents() {
             // LOGO
             $("#logo").click(function(e) {
-                $("#conteudo").load("./Views/Principal/PaginaPrincipal.php");
+                $("#conteudo").load("./View/Principal/PaginaPrincipal.php");
             });
             // MENU PRINCIPAL
             $("#btnExibirMenu").click(function(e) {

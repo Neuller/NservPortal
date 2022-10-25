@@ -1,5 +1,5 @@
 <?php
-require_once "./Classes/Conexao.php";
+require_once "./Model/Conexao.php";
 
 $obj = new conectar();
 $conexao = $obj -> conexao();
@@ -89,7 +89,7 @@ if (mysqli_num_rows($result) > 0) {
 			$.ajax({
 				type: "POST",
 				data: dados,
-				url: "./Procedimentos/Login/Login.php",
+				url: "./Controller/Login/Login.php",
 				success: function(r) {
 					if (r == 1) {
 						window.location = "./Principal.php";

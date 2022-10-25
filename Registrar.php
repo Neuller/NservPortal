@@ -1,5 +1,5 @@
 <?php
-	require_once "./Classes/Conexao.php";
+	require_once "./Model/Conexao.php";
 
 	$obj = new conectar();
 	$conexao = $obj -> conexao();
@@ -102,7 +102,7 @@
 		$.ajax({
 			type: "POST",
 			data: dados,
-			url: "./Procedimentos/Login/CadastrarUsuario.php",
+			url: "./Controller/Login/CadastrarUsuario.php",
 			success: function(r) {
 				if (r == 1) {
 					$("#frmRegistro")[0].reset();

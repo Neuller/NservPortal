@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24-Out-2022 às 21:35
+-- Tempo de geração: 25-Out-2022 às 11:51
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.28
 
@@ -549,7 +549,8 @@ CREATE TABLE `produtos` (
   `estoque` int(10) DEFAULT NULL,
   `nf` varchar(10) DEFAULT NULL,
   `ncm` varchar(10) DEFAULT NULL,
-  `data_cadastro` date DEFAULT NULL
+  `data_cadastro` date DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
