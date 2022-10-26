@@ -3,7 +3,7 @@ require_once '../../Lib/dompdf/autoload.inc.php';
 
 use Dompdf\Dompdf;
 
-$id = $_GET['idServ']; // Via URL - Método GET
+$id = $_GET["idServ"];
 
 function file_get_contents_curl($url) {
     $ch = curl_init();
@@ -35,7 +35,3 @@ $pdf -> render();
 // Enviamos pdf para navegador.
 $pdf -> stream('OrdemServico.pdf', array("Attachment" => 0));
 ?>
-
-
-
-

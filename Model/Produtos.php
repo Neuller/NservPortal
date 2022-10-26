@@ -14,7 +14,7 @@ public function CadastrarProdutos($dados){
 
 public function obterDadosProdutos($idProduto){
 	$c = new conectar();
-	$conexao = $c->conexao();
+	$conexao = $c -> conexao();
 
 	$sql = "SELECT id_produto, categoria, codigo, descricao, garantia, preco, 
 	preco_instalacao, estoque, nf, ncm, data_cadastro
@@ -23,20 +23,24 @@ public function obterDadosProdutos($idProduto){
 	$result = mysqli_query($conexao, $sql);
 	$mostrar = mysqli_fetch_row($result);
 
-	$dados = array(
-		'id_produto' => $mostrar[0],
-		'categoria' => $mostrar[1],
-		'codigo' => $mostrar[2],
-		'descricao' => $mostrar[3],
-		'garantia' => $mostrar[4],
-		'preco' => $mostrar[5],
-		'preco_instalacao' => $mostrar[6],
-		'estoque' => $mostrar[7],
-		'nf' => $mostrar[8],
-		'ncm' => $mostrar[9],
-		'data_cadastro'=> $mostrar[10]
-	);
-	return $dados;
+	if($mostrar != null){
+		$dados = array(
+			'id_produto' => $mostrar[0],
+			'categoria' => $mostrar[1],
+			'codigo' => $mostrar[2],
+			'descricao' => $mostrar[3],
+			'garantia' => $mostrar[4],
+			'preco' => $mostrar[5],
+			'preco_instalacao' => $mostrar[6],
+			'estoque' => $mostrar[7],
+			'nf' => $mostrar[8],
+			'ncm' => $mostrar[9],
+			'data_cadastro'=> $mostrar[10]
+		);
+		return $dados;
+	} else {
+		return 1;
+	}
 }
 
 public function editarProduto($dados){

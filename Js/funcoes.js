@@ -28,7 +28,7 @@ const bloquearCampos = function (nomeCampos, show) {
     });
 };
 
-const limparCampos = function (nomeCampos) {
+const limparCampo = function (nomeCampos) {
     campo = Array.isArray(nomeCampos) ? nomeCampos : nomeCampos.split(",");
 
     campo.forEach(function (valor) {

@@ -35,7 +35,7 @@ $result = mysqli_query($conexao, $sql);
 				<?php
 					while($mostrar = mysqli_fetch_array($result))
 					{
-						$data = date('d/m/Y', strtotime($mostrar[6]));
+						$data = date("d/m/Y", strtotime($mostrar[6]));
 						echo 
 						'
 						<tr>

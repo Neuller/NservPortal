@@ -183,7 +183,7 @@ if (isset($_SESSION["User"])) {
                 var checkValidator = validator.checkForm();
 
                 if (checkValidator == false) {
-                    alertify.error("VERIFIQUE O(S) CAMPO(S) OBRIGATORIO(S)");
+                    alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
                     return false;
                 }
 
@@ -225,7 +225,7 @@ if (isset($_SESSION["User"])) {
             $("#tipoEquipamento").change(function() {
                 var tipo = $("#tipoEquipamento").val();
                 bloquearCampos(["equipamento", "serialNumber"], false);
-                limparCampos(["equipamento", "serialNumber"]);
+                limparCampo(["equipamento", "serialNumber"]);
                 esconderCampos(["groupEquipamento", "groupSerialNumber", "groupCheckFonte"]);
 
                 if (tipo == "DESKTOP") {
@@ -247,7 +247,7 @@ if (isset($_SESSION["User"])) {
 
             $("#StatusSelect").change(function() {
                 esconderCampos(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado"]);
-                limparCampos(["taxaOrcamentoRecusado"]);
+                limparCampo(["taxaOrcamentoRecusado"]);
                 var status = $("#StatusSelect").val();
 
                 if (status == "ORCAMENTO") {
@@ -257,7 +257,7 @@ if (isset($_SESSION["User"])) {
                     mostrarCampos(["grouptaxaServicoAutorizado"]);
                 } else {
                     esconderCampos(["grouptaxaOrcamentoRecusado", "avisoOrcamentoRecusado", "grouptaxaServicoAutorizado"]);
-                    limparCampos(["taxaOrcamentoRecusado"]);
+                    limparCampo(["taxaOrcamentoRecusado"]);
                 }
             });
         }
