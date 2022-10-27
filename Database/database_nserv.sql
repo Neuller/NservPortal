@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Out-2022 às 11:51
+-- Tempo de geração: 27-Out-2022 às 13:53
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.28
 
@@ -532,6 +532,22 @@ CREATE TABLE `preco_servicos` (
   `valor` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `preco_servicos`
+--
+
+INSERT INTO `preco_servicos` (`id_preco_servico`, `descricao`, `garantia`, `valor`) VALUES
+(1, 'FORMATACAO E INSTALACAO DE SOFTWARE (DRIVERS, OFFICE, ANTI-VIRUS, WINRAR, .PDF)', 'FUNCIONAL', '115.00'),
+(2, 'MANUTENCAO PREVENTIVA (DESKTOP)', 'FUNCIONAL', '60.00'),
+(3, 'MANUTENCAO PREVENTIVA (NOTEBOOK)', 'FUNCIONAL', '120.00'),
+(4, 'RECUPERACAO DE ARQUIVOS', 'FUNCIONAL', '60.00'),
+(8, 'VISITA TECNICA 1 HORA (CONTAGEM E REGIAO)', 'FUNCIONAL', '90.00'),
+(9, 'FRACAO 30 MINUTOS (CONTAGEM E REGIAO)', 'FUNCIONAL', '50.00'),
+(12, 'INSTALACAO/ATIVACAO DE SOFTWARE', 'FUNCIONAL', '60.00'),
+(13, 'MONTAGEM (DESKTOP)', 'FUNCIONAL', '75.00'),
+(14, 'TROCA DA BATERIA (DESKTOP)', 'FUNCIONAL', '45.00'),
+(15, 'TROCA DA BATERIA (NOTEBOOK)', 'FUNCIONAL', '90.00');
+
 -- --------------------------------------------------------
 
 --
@@ -630,7 +646,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `grupo_usuario`, `nome`, `usuario`, `email`, `senha`, `data_cadastro`) VALUES
-(1, 'ADMIN', 'ADMINISTRADOR', 'ADMIN', 'ADMIN@ADMIN.COM', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2022-10-24');
+(2, 'ADMIN', 'ADMINISTRADOR', 'ADMIN', 'NSERV@HOTMAIL.COM', 'f6f29cce53085ec2b4212d7ff01677f337c9e4de', '2022-10-27'),
+(3, 'OUTROS', 'RECEPCAO', 'RECEPCAO', 'NSERV@HOTMAIL.COM', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2022-10-27');
 
 -- --------------------------------------------------------
 
@@ -752,7 +769,7 @@ ALTER TABLE `fornecedores`
 -- AUTO_INCREMENT de tabela `preco_servicos`
 --
 ALTER TABLE `preco_servicos`
-  MODIFY `id_preco_servico` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_preco_servico` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
@@ -782,7 +799,7 @@ ALTER TABLE `tecnicos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

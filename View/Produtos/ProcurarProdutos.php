@@ -22,15 +22,7 @@ if (isset($_SESSION["User"])) {
                                 <select class="form-control input-sm" id="categoria" name="categoria">
                                     <option value=""></option>
                                     <option value="CEM">C&M INFO</option>
-                                    <option value="GABINETE">GABINETE</option>
-                                    <option value="HARD DISK">HARD DISK</option>
-                                    <option value="IMPRESSORA">IMPRESSORA</option>
-                                    <option value="MEMORIA">MEMORIA</option>
-                                    <option value="MONITOR">MONITOR</option>
-                                    <option value="PLACA DE VIDEO">PLACA DE VIDEO</option>
-                                    <option value="PLACA MAE">PLACA MAE</option>
-                                    <option value="PROCESSADOR">PROCESSADOR</option>
-                                    <option value="OUTROS">OUTROS</option>
+                                    <option value="NSERV">NSERV</option>
                                 </select>
                             </div>
                     </form>
