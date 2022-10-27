@@ -60,7 +60,12 @@ $troco = $mostrar[10];
         </div>
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12">
-
+        <!-- DATA DA VENDA -->
+        <div class="text-right">
+            <?php
+            echo "<span>DATA DA VENDA: " . $objUtils->data($dataVenda) . "</span>";
+            ?>
+        </div>
         <form class="dadosFormulario">
             <!-- INFORMAÇÕES DO CLIENTE -->
             <div>
@@ -76,63 +81,63 @@ $troco = $mostrar[10];
             $result = mysqli_query($conexao, $sql);
             while ($informacoesCliente = mysqli_fetch_row($result)) {
             ?>
-                <div class="dadosCliente">
-                    <div>
-                        <span>NOME:</span>
-                        <span><?php echo $informacoesCliente[0]; ?></span>
-                    </div>
-                    <div>
-                        <span>CPF:</span>
-                        <span><?php echo $informacoesCliente[1]; ?></span>
-                    </div>
-                    <div>
-                        <span>CNPJ:</span>
-                        <span><?php echo $informacoesCliente[2]; ?></span>
-                    </div>
-                    <div>
-                        <span>EMAIL:</span>
-                        <span><?php echo $informacoesCliente[10]; ?></span>
-                    </div>
-                </div>
-                <div class="dadosCliente">
-                    <div>
-                        <span>CEP:</span>
-                        <span><?php echo $informacoesCliente[3]; ?></span>
-                    </div>
-                    <div>
-                        <span>ENDEREÇO:</span>
-                        <span><?php echo $informacoesCliente[5]; ?></span>
-                    </div>
-                    <div>
-                        <span>BAIRRO:</span>
-                        <span><?php echo $informacoesCliente[4]; ?></span>
-                    </div>
-                    <div>
-                        <span>NUMERO:</span>
-                        <span><?php echo $informacoesCliente[6]; ?></span>
-                    </div>
-                    <div>
-                        <span>COMPLEMENTO:</span>
-                        <span><?php echo $informacoesCliente[7]; ?></span>
-                    </div>
-                </div>
-                <div class="dadosCliente">
-                    <span>TELEFONE:</span>
-                    <span><?php echo $informacoesCliente[8]; ?></span>
+            <div class="dadosCliente">
+                <div>
+                    <span>NOME:</span>
+                    <span><?php echo $informacoesCliente[0]; ?></span>
                 </div>
                 <div>
-                    <span>CELULAR:</span>
-                    <span><?php echo $informacoesCliente[9]; ?></span>
+                    <span>CPF:</span>
+                    <span><?php echo $informacoesCliente[1]; ?></span>
                 </div>
+                <div>
+                    <span>CNPJ:</span>
+                    <span><?php echo $informacoesCliente[2]; ?></span>
+                </div>
+                <div>
+                    <span>EMAIL:</span>
+                    <span><?php echo $informacoesCliente[10]; ?></span>
+                </div>
+            </div>
+            <div class="dadosCliente">
+                <div>
+                    <span>CEP:</span>
+                    <span><?php echo $informacoesCliente[3]; ?></span>
+                </div>
+                <div>
+                    <span>ENDEREÇO:</span>
+                    <span><?php echo $informacoesCliente[5]; ?></span>
+                </div>
+                <div>
+                    <span>BAIRRO:</span>
+                    <span><?php echo $informacoesCliente[4]; ?></span>
+                </div>
+                <div>
+                    <span>NUMERO:</span>
+                    <span><?php echo $informacoesCliente[6]; ?></span>
+                </div>
+                <div>
+                    <span>COMPLEMENTO:</span>
+                    <span><?php echo $informacoesCliente[7]; ?></span>
+                </div>
+            </div>
+            <div class="dadosCliente">
+                <span>TELEFONE:</span>
+                <span><?php echo $informacoesCliente[8]; ?></span>
+            </div>
+            <div>
+                <span>CELULAR:</span>
+                <span><?php echo $informacoesCliente[9]; ?></span>
+            </div>
             <?php } ?>
-            <!-- INFORMAÇÕES DO EQUIPAMENTO E SERVIÇOS -->           
+            <!-- INFORMAÇÕES DO EQUIPAMENTO E SERVIÇOS -->
             <div class="produtosServicos">
                 <div class="text-left">
                     <label><strong>PRODUTO(S)</strong></label>
                 </div>
                 <hr>
             </div>
-            <div class="dadosProdutosServicos">               
+            <div class="dadosProdutosServicos">
                 <?php 
                     $sql="SELECT ve.id_venda, ve.id_cliente, ve.id_produto, ve.id_usuario, ve.valor_total, ve.data_venda, ve.quantidade, 
                     pro.codigo, pro.descricao, pro.garantia, pro.preco
@@ -159,7 +164,7 @@ $troco = $mostrar[10];
                             <span>GARANTIA: <?php echo $item[9] ?></span>
                         </li>
                     </ul>
-                </div>              
+                </div>
                 <?php			    
  				}
  			    ?>
@@ -167,7 +172,7 @@ $troco = $mostrar[10];
                 <!-- VENDEDOR -->
                 <div>
                     <span>
-                    <?php 
+                        <?php 
                         if(($idVendedor == 0) || ($idVendedor == null) || ($idVendedor == "")){
                             echo "";
                         }else{
@@ -177,16 +182,10 @@ $troco = $mostrar[10];
                     </span>
                 </div>
 
-                <!-- DATA DA VENDA -->
-                <div>
-                    <span>DATA DA VENDA: </span>
-                    <span><?php echo $objUtils -> data($dataVenda) ?></span>
-                </div>  
-
                 <!-- FORMA DE PAGAMENTO -->
                 <div>
                     <span>
-                    <?php 
+                        <?php 
                         if(($formaPagamento == 0) || ($formaPagamento == null) || ($formaPagamento == "")){
                             echo "";
                         }else{
@@ -205,7 +204,7 @@ $troco = $mostrar[10];
                 ?>
                 <div>
                     <span>
-                    <?php 
+                        <?php 
                         if(($total == 0) || ($total == null) || ($total == "")){
                             echo "";
                         }else{
@@ -221,24 +220,24 @@ $troco = $mostrar[10];
                 <!-- DESCONTOS -->
                 <div>
                     <span>
-                    <?php 
+                        <?php 
                         if(($descontos == 0) || ($descontos == null) || ($descontos == "")){
                             echo "";
                         }else{
-                            echo "<span>DESCONTOS: R$ </span>".$descontos;
+                            echo "<span>DESCONTO: R$ </span>".$descontos;
                         } 
                     ?>
                     </span>
-                </div> 
+                </div>
 
-                <!-- VALOR TOTAL -->           
+                <!-- VALOR TOTAL -->
                 <div>
                     <span>
-                    <?php 
+                        <?php 
                         if(($valorTotal == 0) || ($valorTotal == null) || ($valorTotal == "")){
                             echo "";
                         }else{
-                            echo "<span>VALOR TOTAL: </span>"."R$ ".$valorTotal;
+                            echo "<span>VALOR TOTAL (C/ DESCONTO): </span>"."R$ ".$valorTotal;
                         } 
                     ?>
                     </span>
@@ -247,7 +246,7 @@ $troco = $mostrar[10];
                 <!-- VALOR DO PAGAMENTO -->
                 <div>
                     <span>
-                    <?php 
+                        <?php 
                         if(($valorPagamento == 0) || ($valorPagamento == null) || ($valorPagamento == "")){
                             echo "";
                         }else{
@@ -260,7 +259,7 @@ $troco = $mostrar[10];
                 <!-- TROCO -->
                 <div>
                     <span>
-                    <?php 
+                        <?php 
                         if(($troco == 0) || ($troco == null) || ($troco == "")){
                             echo "";
                         }else{
@@ -288,34 +287,35 @@ $troco = $mostrar[10];
 </html>
 
 <style>
-    .titulo {
-        margin: 30px;
-    }
+.titulo {
+    margin: 30px;
+}
 
-    .formulario {
-        position: fixed;
-    }
+.formulario {
+    position: fixed;
+}
 
-    .dadosFormulario {
-        margin-top: 5px;
-        border: 1px solid #000;
-        padding: 15px;
-    }
+.dadosFormulario {
+    margin-top: 5px;
+    border: 1px solid #000;
+    padding: 15px;
+}
 
-    .produtosServicos {
-        margin-top: 30px;
-    }
+.produtosServicos {
+    margin-top: 30px;
+}
 
-    .informacoesProdutos{
-        margin-bottom: 10px;
-    }
+.informacoesProdutos {
+    margin-bottom: 10px;
+}
 
-    .msgFidelidade {
-        margin-top: 15px;
-        font-size: 11px;
-    }
+.msgFidelidade {
+    margin-top: 15px;
+    font-size: 11px;
+}
 
-    .dadosCliente, .dadosProdutosServicos{
-        font-size: 13px;
-    }
+.dadosCliente,
+.dadosProdutosServicos {
+    font-size: 13px;
+}
 </style>
