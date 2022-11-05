@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Nov-2022 às 13:09
+-- Tempo de geração: 05-Nov-2022 às 13:38
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.28
 
@@ -587,7 +587,7 @@ CREATE TABLE `produtos` (
 INSERT INTO `produtos` (`id_produto`, `categoria`, `codigo`, `descricao`, `garantia`, `preco`, `preco_instalacao`, `estoque`, `nf`, `ncm`, `data_cadastro`, `status`) VALUES
 (1, 'CEM', '29', '2X1 LEITOR USB CARTAO DE MEMORIA CLASSE', 'FUNCIONAL', '0.00', '0.00', 0, '2', '85235190', '0000-00-00', 'ATIVO'),
 (2, 'CEM', '9888', 'ACHUB USB SLIM 20 4 PORTAS PRETO', '90 DIAS', '47.00', '0.00', 1, '3', '85176254', '0000-00-00', 'ATIVO'),
-(3, 'CEM', '3913', 'ADAPTADOR SECOND CADDY HD 95MM', '90 DIAS', '99.90', '0.00', 2, '0', '0', '0000-00-00', 'ATIVO'),
+(3, 'CEM', '3913', 'ADAPTADOR SECOND CADDY HD 95MM', '90 DIAS', '99.90', '0.00', 1, '0', '0', '0000-00-00', 'ATIVO'),
 (4, 'CEM', '8158', 'ADAPTADOR WIFI USB AC650 ', '30 DIAS', '82.00', '0.00', 2, '2', '85176277', '0000-00-00', 'ATIVO'),
 (5, 'CEM', '6408', 'ANTENA TP-LINK 2.4 GHZ TL-ANT2408C', '30 DIAS', '63.00', '0.00', 1, '0', '0', '0000-00-00', 'ATIVO'),
 (6, 'CEM', '8860', 'ARCHER C20BR ROTEADOR WIRELESS DUALBAND', '12 MESES', '399.00', '0.00', 0, '1', '8576241', '0000-00-00', 'ATIVO'),
@@ -694,7 +694,11 @@ INSERT INTO `produtos` (`id_produto`, `categoria`, `codigo`, `descricao`, `garan
 (107, 'CEM', '371', 'UPS OFFICE SECURITY 700 BIV 115V PR', '12 MESES', '820.00', '0.00', 0, '1', '85044040', '0000-00-00', 'ATIVO'),
 (108, 'CEM', '3545', 'USB ADAPTER 150 MBPS PN USB 150M PACIFIC NERWORK', '30 DIAS', '47.00', '0.00', 0, '2', '85176277', '0000-00-00', 'ATIVO'),
 (109, 'CEM', '4030', 'VIDEO BALUN FHD AHDCVITVICVBS', 'FUNCIONAL', '0.00', '0.00', 5, '5', '85044029', '0000-00-00', 'ATIVO'),
-(110, 'CEM', '3426', 'WEBCAM MULTILASER (AC339) HD 720P', '90 DIAS', '160.00', '0.00', 0, '1', '0', '0000-00-00', 'ATIVO');
+(110, 'CEM', '3426', 'WEBCAM MULTILASER (AC339) HD 720P', '90 DIAS', '160.00', '0.00', 0, '1', '0', '0000-00-00', 'ATIVO'),
+(111, 'NSERV', '0', 'ASUS TUF B360M-PLUS', '06 MESES', '589.90', '664.90', 1, '1', '', '2022-11-05', 'ATIVO'),
+(112, 'NSERV', '6572', 'SSD 120GB KINGSTON', '90 DIAS', '299.90', '0.00', 1, '1', '', '2022-11-05', 'ATIVO'),
+(113, 'NSERV', '3913', 'ADAPTADOR SECOND CADDY HD 95MM', '90 DIAS', '99.90', '0.00', 1, '0', '', '2022-11-05', 'ATIVO'),
+(114, 'NSERV', '1415', 'SSD MULTILASER 25 POL 120GB AXIS 500', '90 DIAS', '289.90', '0.00', 1, '1', '', '2022-11-05', 'ATIVO');
 
 -- --------------------------------------------------------
 
@@ -918,7 +922,7 @@ ALTER TABLE `preco_servicos`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id_produto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT de tabela `servicos`

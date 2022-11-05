@@ -127,30 +127,10 @@ $(document).ready(function() {
     $(".estoque").mask("9999999999");
     $(".nf").mask("9999999999");
     $(".ncm").mask("9999999999");
-
-    $("#codigo").change(function() {
-        var codProduto = $("#codigo").val();
-        $.ajax({
-            type: "POST",
-            data: {
-                "codProduto": codProduto
-            },
-            url: "./Controller/Verificacoes/ValidarCodProduto.php",
-            success: function(r) {
-                data = $.parseJSON(r);
-                if (data == 0) {
-
-                } else {
-                    alertify.error("CODIGO EXISTENTE");
-                    $("#codigo").val("");
-                }
-            }
-        });
-    });
     validarForm("frmProdutos");
-    camposObrigatorios(["categoria", "codigo", "preco", "descricao", "estoque", "ncm"], true);
+    camposObrigatorios(["categoria", "codigo", "preco", "descricao", "estoque", "nf"], true);
+    codigoProduto();
 });
-
 
 $("#btnCadastrar").click(function() {
     var descricao = $("#descricao").val();
@@ -169,6 +149,7 @@ $("#btnCadastrar").click(function() {
         alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
         return false;
     }
+
     if ((descricao == "") || (preco == "") || (categoria == "") || (estoque == "") || (codigo == "")) {
         alertify.error("VERIFIQUE OS CAMPOS OBRIGATORIOS");
         return false;
@@ -194,6 +175,41 @@ $("#btnCadastrar").click(function() {
         }
     });
 });
+
+$("#categoria").change(function() {
+    codigoProduto();
+});
+
+$("#codigo").change(function() {
+    let codProduto = $("#codigo").val();
+    let categoria = $("#categoria").val();
+    $.ajax({
+        type: "POST",
+        data: {
+            "codProduto": codProduto,
+            "categoria": categoria
+        },
+        url: "./Controller/Produtos/ValidarCodProduto.php",
+        success: function(r) {
+            data = $.parseJSON(r);
+            if (data == 0) {
+
+            } else {
+                alertify.error("CODIGO EXISTENTE");
+                $("#codigo").val("");
+            }
+        }
+    });
+});
+
+function codigoProduto() {
+    let categoria = $("#categoria").val();
+    bloquearCampo(["codigo"], true);
+    limparCampo(["codigo"]);
+    if (categoria != "") {
+        bloquearCampo(["codigo"], false);
+    }
+}
 </script>
 <?php
 } else {

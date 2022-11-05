@@ -71,7 +71,7 @@ if (isset($_SESSION['User'])) {
                 } else {
                     $("#btnAbrirCaixa").show();
                     $("#btnFecharCaixa").hide();
-                    esconderCampos(["groupStatus"]);
+                    esconderCampo(["groupStatus"]);
                 }
             }
 		});

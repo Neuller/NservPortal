@@ -1,4 +1,4 @@
-const esconderCampos = function (nomeCampos) {
+const esconderCampo = function (nomeCampos) {
     campo = Array.isArray(nomeCampos) ? nomeCampos : nomeCampos.split(",");
 
     campo.forEach(function (valor) {
@@ -6,7 +6,7 @@ const esconderCampos = function (nomeCampos) {
     });
 };
 
-const mostrarCampos = function (nomeCampos) {
+const mostrarCampo = function (nomeCampos) {
     campo = Array.isArray(nomeCampos) ? nomeCampos : nomeCampos.split(",");
 
     campo.forEach(function (valor) {
@@ -14,7 +14,7 @@ const mostrarCampos = function (nomeCampos) {
     });
 };
 
-const bloquearCampos = function (nomeCampos, show) {
+const bloquearCampo = function (nomeCampos, show) {
     show = show !== undefined ? show : true;
     campo = Array.isArray(nomeCampos) ? nomeCampos : nomeCampos.split(",");
 
