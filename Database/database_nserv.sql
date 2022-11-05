@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27-Out-2022 às 13:53
+-- Tempo de geração: 05-Nov-2022 às 13:09
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.28
 
@@ -456,7 +456,8 @@ INSERT INTO `clientes` (`id_cliente`, `id_usuario`, `nome`, `cpf`, `cnpj`, `cep`
 (536, 1, 'RAQUEL ALVES DE ALMEIDA', '', '', '', '', '', '', '', '', '', '', '(31) 9 9977-4517', '(31) 9 9067-8338', ''),
 (537, 1, 'CAUA WILLIAM', '', '', '', '', '', '', '', '', '', '', '(31) 9 7532-8617', '', ''),
 (539, 1, 'MIKE HOLLANDER', '', '', '', '', '', '', '', '', '', '', '(31) 9 9507-0594', '', ''),
-(540, 1, 'CONSUMIDOR FINAL', '', '', '', '', '', '', '', '', '', '', '(00) 0 0000-0000', '', '');
+(540, 1, 'CONSUMIDOR FINAL', '', '', '', '', '', '', '', '', '', '', '(00) 0 0000-0000', '', ''),
+(541, 3, 'VANBERTO DA SILVA', '', '', '', '', '', '', '', '', '', '', '(31) 9 7311-7324', '', '');
 
 -- --------------------------------------------------------
 
@@ -502,6 +503,16 @@ CREATE TABLE `fluxo_caixa` (
   `xerox_impressoes` int(10) DEFAULT NULL,
   `acessos` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `fluxo_caixa`
+--
+
+INSERT INTO `fluxo_caixa` (`id_caixa`, `id_usuario_entrada`, `qtd_notas_entrada`, `valor_total_notas_entrada`, `qtd_moedas_entrada`, `valor_total_moedas_entrada`, `data_referencia`, `valor_total_inicial`, `status`, `id_usuario_saida`, `qtd_notas_saida`, `valor_total_notas_saida`, `qtd_moedas_saida`, `valor_total_moedas_saida`, `valor_total_final`, `retirada`, `caixa_final`, `xerox_impressoes`, `acessos`) VALUES
+(1, 3, 12, '30.00', 172, '39.25', '31/10/2022', '69.25', 'ABERTO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 3, 13, '35.00', 167, '38.20', '01/11/2022', '73.20', 'ABERTO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 3, 13, '35.00', 168, '38.25', '03/11/2022', '73.25', 'ABERTO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 3, 15, '39.00', 167, '37.75', '04/11/2022', '76.75', 'ABERTO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -569,6 +580,122 @@ CREATE TABLE `produtos` (
   `status` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id_produto`, `categoria`, `codigo`, `descricao`, `garantia`, `preco`, `preco_instalacao`, `estoque`, `nf`, `ncm`, `data_cadastro`, `status`) VALUES
+(1, 'CEM', '29', '2X1 LEITOR USB CARTAO DE MEMORIA CLASSE', 'FUNCIONAL', '0.00', '0.00', 0, '2', '85235190', '0000-00-00', 'ATIVO'),
+(2, 'CEM', '9888', 'ACHUB USB SLIM 20 4 PORTAS PRETO', '90 DIAS', '47.00', '0.00', 1, '3', '85176254', '0000-00-00', 'ATIVO'),
+(3, 'CEM', '3913', 'ADAPTADOR SECOND CADDY HD 95MM', '90 DIAS', '99.90', '0.00', 2, '0', '0', '0000-00-00', 'ATIVO'),
+(4, 'CEM', '8158', 'ADAPTADOR WIFI USB AC650 ', '30 DIAS', '82.00', '0.00', 2, '2', '85176277', '0000-00-00', 'ATIVO'),
+(5, 'CEM', '6408', 'ANTENA TP-LINK 2.4 GHZ TL-ANT2408C', '30 DIAS', '63.00', '0.00', 1, '0', '0', '0000-00-00', 'ATIVO'),
+(6, 'CEM', '8860', 'ARCHER C20BR ROTEADOR WIRELESS DUALBAND', '12 MESES', '399.00', '0.00', 0, '1', '8576241', '0000-00-00', 'ATIVO'),
+(7, 'CEM', '9720', 'BATERIA 9 V CARBONO SINCO', 'FUNCIONAL', '8.90', '0.00', 2, '5', '85068090', '0000-00-00', 'ATIVO'),
+(8, 'CEM', '3815', 'BATERIA CR2032 3V LATIUM', 'FUNCIONAL', '10.50', '0.00', 8, '50', '85065090', '0000-00-00', 'ATIVO'),
+(9, 'CEM', '0', 'CABO AUDIO P10 X RCA', 'FUNCIONAL', '1.00', '0.00', 1, '0', '0', '0000-00-00', 'ATIVO'),
+(10, 'CEM', '0', 'CABO HDMI 1,8M', 'FUNCIONAL', '28.00', '0.00', 11, '0', '0', '0000-00-00', 'ATIVO'),
+(11, 'CEM', '573', 'CABO HDMI 1.8MT C/FILTRO', '30 DIAS', '28.00', '0.00', 0, '2', '85444200', '0000-00-00', 'ATIVO'),
+(12, 'CEM', '6693', 'CABO HDMI 3MT ', '30 DIAS', '38.00', '0.00', 0, '1', '85444200', '0000-00-00', 'ATIVO'),
+(13, 'CEM', '4679', 'CABO HDMIXHDMI 3MTS FILTRO 1.4', '30 DIAS', '38.00', '0.00', 2, '0', '0', '0000-00-00', 'ATIVO'),
+(14, 'CEM', '3732', 'CABO PP TRIP 3X075 10A 15M', 'FUNCIONAL', '15.00', '0.00', 9, '9', '85444200', '0000-00-00', 'ATIVO'),
+(15, 'CEM', '2732', 'CABO PP TRIPOLAR 3X 050 15M INMETRO', 'FUNCIONAL', '17.00', '0.00', 0, '4', '85444200', '0000-00-00', 'ATIVO'),
+(16, 'CEM', '5632', 'CABO SATA', 'FUNCIONAL', '5.00', '0.00', 5, '0', '0', '0000-00-00', 'ATIVO'),
+(17, 'CEM', '496', 'CABO USB 1,8M', '30 DIAS', '17.00', '0.00', 0, '5', '85444200', '0000-00-00', 'ATIVO'),
+(18, 'CEM', '496', 'CABO USB 20 AMBM 18M PT ', 'FUNCIONAL', '18.00', '0.00', 5, '7', '85444200', '0000-00-00', 'ATIVO'),
+(19, 'CEM', '7513', 'CABO USB 3M', 'FUNCIONAL', '28.00', '0.00', 2, '2', '0', '0000-00-00', 'ATIVO'),
+(20, 'CEM', '5552', 'CABO VGA 1,8M', 'FUNCIONAL', '26.00', '0.00', 2, '0', '0', '0000-00-00', 'ATIVO'),
+(21, 'CEM', '3325', 'CABO VGA 15M Q5M 1.4MT C FILTRO', 'FUNCIONAL', '26.00', '0.00', 0, '2', '85444200', '0000-00-00', 'ATIVO'),
+(22, 'CEM', '4801', 'CAIXA SOM SPEAKER 2.0 SP301 BK C3T', '30 DIAS', '65.00', '0.00', 2, '9', '85182100', '0000-00-00', 'ATIVO'),
+(23, 'CEM', '4565304', 'CAMERA DE TV P/ SIST. DE SEG .VHL 1220 BULLET (VAL. APROX. TRIBUTOS: FEDERAL (21,50%) R$61,50 ESTADUAL (20,00%) R$57,21 MUNICIPAL (0,00%) R$0,00 - FONTE: IBPT/EMPRESOMETRO.COM.BR)', 'FUNCIONAL', '143.02', '0.00', 0, '2', '85258913', '0000-00-00', 'ATIVO'),
+(24, 'CEM', '4562', 'CARTUCHO DE TONER BROTHER TN1060- COMPATIVEL', 'FUNCIONAL', '100.00', '0.00', 1, '1', '84439933', '0000-00-00', 'ATIVO'),
+(25, 'CEM', '7794', 'CONECTOR BNC MOLA PARAFUSO 6MM', 'FUNCIONAL', '0.00', '0.00', 10, '10', '85299019', '0000-00-00', 'ATIVO'),
+(26, 'CEM', '1864', 'COOLER UNIVERSAL 775 1155 1156 DX7115 VB', '30 DIAS', '33.90', '0.00', 2, '2', '84145910', '0000-00-00', 'ATIVO'),
+(27, 'CEM', '710', 'COOLER UNIVERSAL PARA INTEL AMD DX7120', '30 DIAS', '88.00', '45.00', 0, '3', '84145990', '0000-00-00', 'ATIVO'),
+(28, 'CEM', '2557', 'ESTAB ENERGETIC III 115V 300VA PRT', '30 DIAS', '145.00', '0.00', 0, '1', '90328911', '0000-00-00', 'ATIVO'),
+(29, 'CEM', '3707', 'ESTAB. FORCELINE ETERNITY 300VA PRETO', '30 DIAS', '145.00', '0.00', 0, '1', '0', '0000-00-00', 'ATIVO'),
+(30, 'CEM', '7766', 'EXTENSOR USB', 'FUNCIONAL', '17.00', '0.00', 1, '0', '0', '0000-00-00', 'ATIVO'),
+(31, 'CEM', '6173', 'FILTRO 10 TOM PLASTICO BIV PT', 'FUNCIONAL', '62.00', '0.00', 0, '2', '85359090', '0000-00-00', 'ATIVO'),
+(32, 'CEM', '8714', 'FILTRO 5 TOM INCORP SLIM BIVOLT', '90 DIAS', '45.00', '0.00', 2, '13', '85359000', '0000-00-00', 'ATIVO'),
+(33, 'CEM', '543', 'FILTRO 6 TOM INCORP BIVOLT PT', 'FUNCIONAL', '48.00', '0.00', 0, '3', '85359090', '0000-00-00', 'ATIVO'),
+(34, 'CEM', '9485', 'FONE DE OUVIDO INTRA AURICULAR P2 ZIPPER', '30 DIAS', '28.00', '0.00', 0, '2', '85183000', '0000-00-00', 'ATIVO'),
+(35, 'CEM', '9549', 'FONE DE OUVIDO PRETO ARS7500 C MICROFONE', '30 DIAS', '57.00', '0.00', 0, '2', '85183000', '0000-00-00', 'ATIVO'),
+(36, 'CEM', '3577', 'FONTE ATX 230W REAL TRS230 V12 24 PINOS', '30 DIAS', '125.00', '45.00', 1, '8', '85044090', '0000-00-00', 'ATIVO'),
+(37, 'CEM', '1939', 'FONTE CARREGADOR NOTBOOK POSITIVO, CCE, ASUS 19V 3...', '06 MESES', '195.00', '0.00', 1, '3', '85044010', '0000-00-00', 'ATIVO'),
+(38, 'CEM', '7521', 'FONTE COLMEIA 12V 05A', 'FUNCIONAL', '0.00', '0.00', 0, '1', '85044021', '0000-00-00', 'ATIVO'),
+(39, 'CEM', '996', 'FONTE COLMEIA 12V 10A', 'FUNCIONAL', '130.00', '0.00', 0, '1', '85044021', '0000-00-00', 'ATIVO'),
+(40, 'CEM', '9665', 'FONTE MODELO PX300CNG DE 100/220V EMB INDIVIDUAL ', '90 DIAS', '125.00', '45.00', 4, '13', '85044021', '0000-00-00', 'ATIVO'),
+(41, 'CEM', '2654', 'FONTE PK550 PCWELLES', '90 DIAS', '278.00', '45.00', 1, '3', '85044021', '0000-00-00', 'ATIVO'),
+(42, 'CEM', '9110', 'FTE ATX 200W PS200V4 C3PLUS SCABO', '06 MESES', '115.00', '45.00', 0, '2', '85044021', '0000-00-00', 'ATIVO'),
+(43, 'CEM', '171', 'GAB GX23R9 PRETO C PX300 C2 USB AUDIO CC', 'FUNCIONAL', '0.00', '0.00', 0, '1', '84733011', '0000-00-00', 'ATIVO'),
+(44, 'CEM', '3723', 'GAVETA HD 2,5 SATA C3T CH-200BK', 'FUNCIONAL', '99.99', '0.00', 1, '6', '84733090', '0000-00-00', 'ATIVO'),
+(45, 'CEM', '8995', 'GAVETA PHD EXT 25 USB 20 CH200GY C3T', 'FUNCIONAL', '85.00', '0.00', 2, '2', '84733099', '0000-00-00', 'ATIVO'),
+(46, 'CEM', '516', 'GPU GT210 1GB DDR3 64 PA210G6401D3LP', 'FUNCIONAL', '0.00', '0.00', 0, '1', '84733043', '0000-00-00', 'ATIVO'),
+(47, 'CEM', '6032', 'HUB USB 30 4PORTAS C BOTAO LIGDES', '30 DIAS', '85.00', '0.00', 1, '0', '85176254', '0000-00-00', 'ATIVO'),
+(48, 'CEM', '2922', 'KIT TECLADO E MOUS SEM FIO KAS229 MAA7', '90 DIAS', '125.00', '0.00', 0, '1', '84716059', '0000-00-00', 'ATIVO'),
+(49, 'CEM', '3108', 'MONITOR LG 195 20MK400HBAWZ 007872201', 'FUNCIONAL', '0.00', '0.00', 0, '1', '85285220', '0000-00-00', 'ATIVO'),
+(50, 'CEM', '35', 'MOUSE GAME USB MG10 BK PRETO C3T', '90 DIAS', '85.00', '0.00', 0, '1', '84716053', '0000-00-00', 'ATIVO'),
+(51, 'CEM', '1725', 'MOUSE MULTILASER USB MO300 PRETO', '30 DIAS', '23.00', '0.00', 0, '4', '84716053', '0000-00-00', 'ATIVO'),
+(52, 'CEM', '1839', 'MOUSE OPTICO USB PRETO 1000 DBI PCG PC MAX 1 PC', '30 DIAS', '23.00', '0.00', 0, '5', '84716053', '0000-00-00', 'ATIVO'),
+(53, 'CEM', '5164', 'MOUSE PAD GEL PRETO', 'FUNCIONAL', '37.00', '0.00', 0, '2', '40161090', '0000-00-00', 'ATIVO'),
+(54, 'CEM', '1847', 'MOUSE PAD STANDARD PRETO AC027', 'FUNCIONAL', '9.50', '0.00', 4, '9', '40161090', '0000-00-00', 'ATIVO'),
+(55, 'CEM', '8740', 'MOUSE S/FIO RC/NANO M-W12 BL C3T', '30 DIAS', '53.00', '0.00', 0, '1', '84716053', '0000-00-00', 'ATIVO'),
+(56, 'CEM', '9398', 'MOUSE S/FIO RC/NANO M-W20BK CT3', '30 DIAS', '49.00', '0.00', 0, '5', '84716053', '0000-00-00', 'ATIVO'),
+(57, 'CEM', '7021', 'MOUSE S/FIO RCNANO MW012 BK C3T', '30 DIAS', '53.00', '0.00', 1, '4', '84716053', '0000-00-00', 'ATIVO'),
+(58, 'CEM', '7020', 'MOUSE S/FIO RC-NANO M-W012 SL C37', 'FUNCIONAL', '53.00', '0.00', 0, '1', '84716053', '0000-00-00', 'ATIVO'),
+(59, 'CEM', '3408', 'MOUSE SEM FIO 24 GHZ PRETO USB BOX 05', '30 DIAS', '45.00', '0.00', 0, '2', '84716053', '0000-00-00', 'ATIVO'),
+(60, 'CEM', '8772', 'MOUSE USB MS25BK PRETO C3T', '30 DIAS', '23.00', '0.00', 1, '5', '84716053', '0000-00-00', 'ATIVO'),
+(61, 'CEM', '6246', 'MOUSE USB MS35BK PRETO C3PLUS', '30 DIAS', '23.00', '0.00', 4, '15', '84716053', '0000-00-00', 'ATIVO'),
+(62, 'CEM', '9568', 'MS 105 (EU) SWITCH DE MESA DE 5 PORTAS 10/100 MBPS...', '30 DIAS', '75.00', '0.00', 0, '1', '85176239', '0000-00-00', 'ATIVO'),
+(63, 'CEM', '9569', 'MS 108 (EU) SWITCH DE MESA DE 8 PORTAS 10/100 MBPS...', '30 DIAS', '82.00', '0.00', 0, '2', '85176239', '0000-00-00', 'ATIVO'),
+(64, 'CEM', '9592', 'ORGANIZADOR DE CABOS ESPIRAL 12MMX11MM B', 'FUNCIONAL', '25.00', '0.00', 0, '3', '39269090', '0000-00-00', 'ATIVO'),
+(65, 'CEM', '9593', 'ORGANIZADOR DE CABOS ESPIRAL 12MMX11MM P', 'FUNCIONAL', '0.00', '0.00', 0, '2', '39269090', '0000-00-00', 'ATIVO'),
+(66, 'CEM', '862', 'PAPEL A4 75GRS 210X297 5000 FLS PAPEXBRA', 'FUNCIONAL', '29.00', '0.00', 0, '1', '48025610', '0000-00-00', 'ATIVO'),
+(67, 'CEM', '1115', 'PAPEL A4 75GRS BRANCO COM 500FLS INK PREMIO', 'FUNCIONAL', '29.00', '0.00', 0, '5', '48025610', '0000-00-00', 'ATIVO'),
+(68, 'CEM', '8474', 'PAPEL REPORT PREMIUM', 'FUNCIONAL', '33.00', '0.00', 2, '2', '48025610', '0000-00-00', 'ATIVO'),
+(69, 'CEM', '1059', 'PEN DRIVE 16 GB USB 2.0 AH323 PRETO S/LOGO', 'FUNCIONAL', '37.00', '0.00', 0, '3', '85235190', '0000-00-00', 'ATIVO'),
+(70, 'CEM', '9504', 'PEN DRIVE 32 GB MAXPRINT RWIST 505658', 'FUNCIONAL', '45.00', '0.00', 0, '4', '85235190', '0000-00-00', 'ATIVO'),
+(71, 'CEM', '2833', 'PEN DRIVE 32 GB USB 2.0 AH323 PRETO APACER', 'FUNCIONAL', '45.00', '0.00', 0, '2', '85235190', '0000-00-00', 'ATIVO'),
+(72, 'CEM', '2058', 'PEN DRIVE MAXPRINT TWIST 16 GB', 'FUNCIONAL', '41.00', '0.00', 0, '6', '85235190', '0000-00-00', 'ATIVO'),
+(73, 'CEM', '4118', 'PENDRIVE 8GB MULTILASER ', 'FUNCIONAL', '35.00', '0.00', 0, '3', '85235190', '0000-00-00', 'ATIVO'),
+(74, 'CEM', '4214', 'PENDRIVE TWIST PRETO 16GB', 'FUNCIONAL', '41.00', '0.00', 0, '2', '85235190', '0000-00-00', 'ATIVO'),
+(75, 'CEM', '4832', 'PENDRIVE TWIST PRETO 32GB MULTILASER', 'FUNCIONAL', '43.00', '0.00', 2, '3', '85235190', '0000-00-00', 'ATIVO'),
+(76, 'CEM', '7535', 'PLACA CI MONTADA PLACA DE CIRCUITO IMPR', 'FUNCIONAL', '0.00', '0.00', 0, '1', '84733041', '0000-00-00', 'ATIVO'),
+(77, 'CEM', '5314', 'PLACA DE MICROP AFOX MONTADA EM CIRCUITO ', 'FUNCIONAL', '0.00', '0.00', 0, '2', '84733043', '0000-00-00', 'ATIVO'),
+(78, 'CEM', '5586', 'PLACA DISA -MODUALRE MAIS ', 'FUNCIONAL', '198.10', '0.00', 0, '1', '85177010', '0000-00-00', 'ATIVO'),
+(79, 'CEM', '6297', 'PLACA PCI EXPRESS REDE', '06 MESES', '96.00', '45.00', 0, '2', '84733049', '0000-00-00', 'ATIVO'),
+(80, 'CEM', '1878', 'PLACA RAMAL DES (4M) MODULARE MAIS', 'FUNCIONAL', '90.90', '0.00', 0, '1', '85177010', '0000-00-00', 'ATIVO'),
+(81, 'CEM', '4872', 'PLACA TRONCO (1 TR) MODULARE MAIS', 'FUNCIONAL', '151.75', '0.00', 0, '1', '85177010', '0000-00-00', 'ATIVO'),
+(82, 'CEM', '1741', 'REPETIDOR DE SINAL 300MBS WR01', '90 DIAS', '168.00', '0.00', 0, '1', '85176241', '0000-00-00', 'ATIVO'),
+(83, 'CEM', '750', 'ROTEADOR AC1200 4 ANTENAS IPV6', '90 DIAS', '245.00', '0.00', 0, '1', '85176241', '0000-00-00', 'ATIVO'),
+(84, 'CEM', '3676', 'SPEAKER 2.0 SP-303 RD C3T', '30 DIAS', '45.00', '0.00', 0, '2', '85182100', '0000-00-00', 'ATIVO'),
+(85, 'CEM', '4702', 'SPEAKER 2.0 SP303BK C3T', '30 DIAS', '68.00', '0.00', 0, '2', '85182100', '0000-00-00', 'ATIVO'),
+(86, 'CEM', '1307', 'SSD DATO 25 SATA III DS700SSD 240GB', 'FUNCIONAL', '460.00', '0.00', 0, '1', '85235190', '0000-00-00', 'ATIVO'),
+(87, 'CEM', '1949', 'SSD DATO 25 SATA III DS700SSD120GB ', '90 DIAS', '319.00', '0.00', 0, '6', '85235190', '0000-00-00', 'ATIVO'),
+(88, 'CEM', '4003', 'SSD GAMER 25 POL 480GB WARRIOR W500', 'FUNCIONAL', '0.00', '0.00', 0, '2', '85235190', '0000-00-00', 'ATIVO'),
+(89, 'CEM', '60', 'SSD GAMER WARRIOR 25 POL 240GB W500 GRA', '90 DIAS', '410.00', '0.00', 0, '4', '85235190', '0000-00-00', 'ATIVO'),
+(90, 'CEM', '994', 'SSD IMATION 25 SATA III A320 120GB', '06 MESES', '319.00', '0.00', 0, '6', '85235190', '0000-00-00', 'ATIVO'),
+(91, 'CEM', '3780', 'SSD IMATION 25 SATA III A320 240GB', 'FUNCIONAL', '460.00', '0.00', 0, '1', '85235190', '0000-00-00', 'ATIVO'),
+(92, 'CEM', '1415', 'SSD MULTILASER 25 POL 120GB AXIS 500', 'FUNCIONAL', '319.00', '0.00', 1, '11', '85235190', '0000-00-00', 'ATIVO'),
+(93, 'CEM', '727', 'SSD MULTILASER 25 POL 240GB AXIS 500', '90 DIAS', '460.00', '0.00', 1, '1', '84717040', '0000-00-00', 'ATIVO'),
+(94, 'CEM', '4289', 'SWITCH 08 PORTAS 10/100 TP LINK LS-1008', 'FUNCIONAL', '155.00', '0.00', 1, '2', '85176239', '0000-00-00', 'ATIVO'),
+(95, 'CEM', '679', 'SWITCH 8 POR GB101001000 MBPS QOS VLAN', '30 DIAS', '0.00', '0.00', 0, '1', '85176234', '0000-00-00', 'ATIVO'),
+(96, 'CEM', '9979', 'SWTCH 8 PPORTAS SOHO', '90 DIAS', '96.00', '0.00', 1, '1', '85176239', '0000-00-00', 'ATIVO'),
+(97, 'CEM', '7920', 'TABLET M8 WIFI32GB PRETO', 'FUNCIONAL', '897.00', '0.00', 0, '1', '84713012', '0000-00-00', 'ATIVO'),
+(98, 'CEM', '9188', 'TECL USB PADRÃO CK-KB15BK PRETO ', '30 DIAS', '45.00', '0.00', 4, '11', '84716052', '0000-00-00', 'ATIVO'),
+(99, 'CEM', '6078', 'TECLADO BASICO SLIM PRETO LASER USB TC19', '30 DIAS', '45.00', '0.00', 0, '2', '84716052', '0000-00-00', 'ATIVO'),
+(100, 'CEM', '4213', 'TECLADO BASICO SLIM PRETO USB 05', '30 DIAS', '47.00', '0.00', 0, '6', '84716053', '0000-00-00', 'ATIVO'),
+(101, 'CEM', '4758', 'TECLADO PADRãO USB PRETO MAX 1 PC', '30 DIAS', '48.50', '0.00', 0, '4', '84716052', '0000-00-00', 'ATIVO'),
+(102, 'CEM', '7256', 'TECLADO USB MULT KB 2237-2 BK PRETO', '30 DIAS', '56.00', '0.00', 0, '3', '84716052', '0000-00-00', 'ATIVO'),
+(103, 'CEM', '701', 'TECLADO USB PADRAO KB11BKV2 PRETO C3PLUS', '30 DIAS', '48.50', '0.00', 0, '6', '84716052', '0000-00-00', 'ATIVO'),
+(104, 'CEM', '6313', 'TG3468 ADAPTADOR DE REDE GIGABIT PCI EXP', '06 MESES', '176.00', '0.00', 0, '3', '85176259', '0000-00-00', 'ATIVO'),
+(105, 'CEM', '6232', 'TL WN725NEU NANO ADAPTADOR USB WIRELESS N', '12 MESES', '135.00', '0.00', 0, '3', '85176277', '0000-00-00', 'ATIVO'),
+(106, 'CEM', '1669', 'TLWR829NBR ROTEADOR WIRELESS N 300 MBPS', '90 DIAS', '230.00', '0.00', 0, '3', '85176241', '0000-00-00', 'ATIVO'),
+(107, 'CEM', '371', 'UPS OFFICE SECURITY 700 BIV 115V PR', '12 MESES', '820.00', '0.00', 0, '1', '85044040', '0000-00-00', 'ATIVO'),
+(108, 'CEM', '3545', 'USB ADAPTER 150 MBPS PN USB 150M PACIFIC NERWORK', '30 DIAS', '47.00', '0.00', 0, '2', '85176277', '0000-00-00', 'ATIVO'),
+(109, 'CEM', '4030', 'VIDEO BALUN FHD AHDCVITVICVBS', 'FUNCIONAL', '0.00', '0.00', 5, '5', '85044029', '0000-00-00', 'ATIVO'),
+(110, 'CEM', '3426', 'WEBCAM MULTILASER (AC339) HD 720P', '90 DIAS', '160.00', '0.00', 0, '1', '0', '0000-00-00', 'ATIVO');
+
 -- --------------------------------------------------------
 
 --
@@ -599,6 +726,13 @@ CREATE TABLE `servicos` (
   `taxa_servico_autorizado` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `servicos`
+--
+
+INSERT INTO `servicos` (`id_servico`, `id_cliente`, `id_usuario`, `ordem_servico`, `tipo_equipamento`, `equipamento`, `observacao`, `servico_realizado`, `id_tecnico`, `serial_number`, `garantia`, `valor_total`, `valor_terceiro`, `data_cadastro`, `data_saida`, `diagnostico`, `nf_emitida`, `status`, `data_comunicado`, `itens_cliente_fonte`, `taxa_servico_autorizado`) VALUES
+(1, 278, 3, 0, 'NOTEBOOK', 'NOTEBOOK ACER ASPIRE E1-471-6413', 'COM PASTA PRETA ', NULL, NULL, '24600484479', NULL, NULL, NULL, '2022-11-01', NULL, NULL, NULL, 'ORCAMENTO', NULL, 0, '0.00');
+
 -- --------------------------------------------------------
 
 --
@@ -624,6 +758,15 @@ CREATE TABLE `tecnicos` (
   `data_cadastro` date DEFAULT NULL,
   `endereco` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `tecnicos`
+--
+
+INSERT INTO `tecnicos` (`id_tecnico`, `nome`, `data_cadastro`, `endereco`) VALUES
+(1, 'NEULLER CESAR', '2022-11-01', NULL),
+(2, 'MARIO JACKSON', '2022-11-01', NULL),
+(3, 'COMPUMAX', '2022-11-01', NULL);
 
 -- --------------------------------------------------------
 
@@ -745,7 +888,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=541;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=542;
 
 --
 -- AUTO_INCREMENT de tabela `contas_a_pagar`
@@ -757,7 +900,7 @@ ALTER TABLE `contas_a_pagar`
 -- AUTO_INCREMENT de tabela `fluxo_caixa`
 --
 ALTER TABLE `fluxo_caixa`
-  MODIFY `id_caixa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_caixa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedores`
@@ -775,13 +918,13 @@ ALTER TABLE `preco_servicos`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id_produto` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_produto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT de tabela `servicos`
 --
 ALTER TABLE `servicos`
-  MODIFY `id_servico` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_servico` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `status`
@@ -793,7 +936,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT de tabela `tecnicos`
 --
 ALTER TABLE `tecnicos`
-  MODIFY `id_tecnico` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tecnico` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
