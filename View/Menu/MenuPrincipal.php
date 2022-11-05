@@ -27,7 +27,7 @@ if (isset($_SESSION["User"])) {
                         CLIENTES
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a id="cadastrarClientes" href="#">NOVO CLIENTE</a></li>
+                        <li><a id="cadastrarClientes" href="#">CADASTRAR CLIENTE</a></li>
                         <li><a id="procurarClientes" href="#">PROCURAR CLIENTES</a></li>
                     </ul>
                 </li>
@@ -72,7 +72,7 @@ if (isset($_SESSION["User"])) {
                         PRODUTOS
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a id="cadastrarProdutos" href="#">NOVO PRODUTO</a></li>
+                        <li><a id="cadastrarProdutos" href="#">CADASTRAR PRODUTO</a></li>
                         <li><a id="procurarProdutos" href="#">PROCURAR PRODUTOS</a></li>
                     </ul>
                 </li>
@@ -84,7 +84,7 @@ if (isset($_SESSION["User"])) {
                         SERVIÇOS
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a id="cadastrarServicos" href="#">NOVO SERVIÇO</a></li>
+                        <li><a id="cadastrarServicos" href="#">CADASTRAR SERVIÇO</a></li>
                         <li><a id="procurarServicos" href="#">PROCURAR SERVIÇOS</a></li>
                         <li><a id="precoServicos" href="#">TABELA DE PREÇOS</a></li>
                     </ul>
@@ -98,7 +98,7 @@ if (isset($_SESSION["User"])) {
                         USUÁRIOS
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a id="cadastrarUsuario" href="#">NOVO USUÁRIO</a></li>
+                        <li><a id="cadastrarUsuario" href="#">CADASTRAR USUÁRIO</a></li>
                         <!-- <li><a id="procurarUsuarios" href="#">PROCURAR USUÁRIO</a></li> -->
                     </ul>
                 </li>
@@ -111,7 +111,7 @@ if (isset($_SESSION["User"])) {
                         VENDAS
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a id="cadastrarVendas" href="#">NOVA VENDA</a></li>
+                        <li><a id="cadastrarVendas" href="#">CADASTRAR VENDA</a></li>
                         <li><a id="procurarVendas" href="#">PROCURAR VENDAS</a></li>
                     </ul>
                 </li>

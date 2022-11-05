@@ -16,7 +16,7 @@ if (isset($_SESSION["User"])) {
     <div class="container">
         <div class="cabecalho bgGray">
             <div class="text-center textCabecalho opacidade">
-                <h3><strong>CADASTRAR PRODUTOS</strong></h3>
+                <h3><strong>CADASTRAR PRODUTO</strong></h3>
             </div>
         </div>
         <!-- FORMULÁRIO -->
