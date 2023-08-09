@@ -32,7 +32,6 @@ if (isset($_SESSION["User"])) {
 						<div class="text-center">
 							<section class="conteudoContatos">
 								<div class="text-center">
-									<p class="h5 textContatos">(31) 9 9273-1661</p>
 									<p class="h5 textContatos">(31) 9 9246-6484</p>
 								</div>
 							</section>
