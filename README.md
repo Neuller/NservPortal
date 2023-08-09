@@ -9,3 +9,6 @@
 
 ## ARQUIVOS E DEPENDENCIAS
 ###### ESTRUTURA SQL DO BANCO DE DADOS -- 'database_nserv_struct.sql' 
+
+## ULTIMA ATUALIZACAO
+###### 08/2023

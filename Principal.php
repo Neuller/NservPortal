@@ -46,7 +46,7 @@ if (isset($_SESSION["User"])) {
         <!-- FOOTER -->
         <footer class="bgGradient text-left foot fixed-bottom">
             <div class="text-left p-3">
-                © 2022 COPYRIGHT
+                © 2023 COPYRIGHT
             </div>
         </footer>
     </body>
