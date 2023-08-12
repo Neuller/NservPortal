@@ -238,19 +238,8 @@ $("#btnEditar").click(function() {
         return false;
     }
 
-    $.ajax({
-        type: "POST",
-        data: {
-            "CPF": cpf,
-            "CNPJ": cnpj,
-            "TELEFONE": telefone,
-            "CELULAR": celular
-        },
-        url: "./Controller/Clientes/ValidarCadastrarCliente.php",
-        success: function(r) {
-            data = $.parseJSON(r);
-            if (data == 0) {
-                dados = $("#frmClientesU").serialize();
+    dados = $("#frmClientesU").serialize();
+    
                 $.ajax({
                     type: "POST",
                     data: dados,
@@ -267,11 +256,6 @@ $("#btnEditar").click(function() {
                         }
                     }
                 });
-            } else {
-                alertify.error("CADASTRO EXISTENTE");
-            }
-        }
-    });
 });
 
 $("#btnCancelar").click(function() {

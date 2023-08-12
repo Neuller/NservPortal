@@ -15,18 +15,18 @@ $telefone = $_POST["TELEFONE"];
         $sql = "SELECT * FROM clientes WHERE cpf = '{$cpf}'";
         $result = mysqli_query($conexao, $sql);
         if(mysqli_num_rows($result) > 0) {
-            echo json_encode(1);
+            echo "JÁ EXISTE UM CADASTRO COM O CPF INFORMADO";
         } else { 
-            echo json_encode(0); 
+            echo 0; 
         }
     /** VALIDACAO CNPJ */
     } else if ($cnpj != "") {
         $sql = "SELECT * FROM clientes WHERE cnpj = '{$cnpj}'";
         $result = mysqli_query($conexao, $sql);
         if(mysqli_num_rows($result) > 0) {
-            echo json_encode(1);
+            echo "JÁ EXISTE UM CADASTRO COM O CNPJ INFORMADO";
         } else { 
-            echo json_encode(0); 
+            echo 0; 
         }
     }
     /** VALIDACAO CELULAR */
@@ -34,17 +34,17 @@ $telefone = $_POST["TELEFONE"];
         $sql = "SELECT * FROM clientes WHERE celular = '{$celular}'";
         $result = mysqli_query($conexao, $sql);
         if(mysqli_num_rows($result) > 0) {
-            echo json_encode(1);
+            echo "JÁ EXISTE UM CADASTRO COM O CELULAR INFORMADO";
         } else { 
-            echo json_encode(0); 
+            echo 0; 
         }
     } else if ($telefone != "") {
         $sql = "SELECT * FROM clientes WHERE telefone = '{$telefone}'";
         $result = mysqli_query($conexao, $sql);
         if(mysqli_num_rows($result) > 0) {
-            echo json_encode(1);
+            echo "JÁ EXISTE UM CADASTRO COM O TELEFONE INFORMADO";
         } else { 
-            echo json_encode(0); 
+            echo 0; 
         }
     }
 ?>
